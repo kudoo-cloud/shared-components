@@ -1,0 +1,15 @@
+import React from 'react';
+import Signature from './Signature';
+import KudooThemeProvider, { theme } from 'src/config/theme';
+import renderer from 'react-test-renderer';
+
+it('renders default Signature', () => {
+  const tree = renderer
+    .create(
+      <KudooThemeProvider theme={theme}>
+        <Signature />
+      </KudooThemeProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

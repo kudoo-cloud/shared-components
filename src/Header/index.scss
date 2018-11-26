@@ -1,0 +1,177 @@
+header {
+  padding: 10px 0;
+
+  &.afix {
+    position: fixed;
+    z-index: 9999;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(221, 221, 221, .28);
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.header {
+  .logo {
+		float: left;
+		margin-left: 10px;
+    a {
+      img {
+        width: 100%;
+        max-width: 160px;
+        margin-top: 8px
+      }
+    }
+  }
+  .nav {
+    float: right;
+    .search_icon {
+      float: left;
+
+      a {
+        margin-top: 8px;
+      }
+    }
+
+    .menus {
+      float: left;
+      ul {
+        margin: 5px 0 0;
+        li {
+          display: inline-block;
+          margin: 0px 15px;
+          a {
+            color: #434856;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 10px 0;
+            font-family: robotolight;
+            font-size: 15px;
+          }
+          &.parter_menu {
+            // a {
+            //   border: 1px solid #1ca8dd;
+            //   border-radius: 60px;
+            //   padding: 8px 50px;
+            //   text-transform: inherit;
+            //   color: #1ca8dd;
+            //   font-family: robotomedium
+            // }
+          }
+          &.active {
+            a {
+              color: #2cc88f;
+              font-weight: 600;
+
+              &:hover {
+                color: #2cc88f;
+              }
+            }
+          }
+        } 
+      }
+
+      &.signin {
+        ul {
+          li{
+            .slinput  {
+              position: relative;
+              .left-icon{
+                position: absolute;
+                left: 10px;
+                top: 11px;
+              }
+              input {
+                padding-left: 30px;
+                font-family:robotolight;
+                padding-top:10px;
+                padding-bottom: 10px;
+              }
+              i {
+                color:#2BC88F;
+              }
+            }
+            .fa-question,
+            .fa-bell-o{
+              font-size: 25px;
+            }
+            &.drop-down-menu {
+              position: relative;
+              img {
+                height: 30px;
+                top: -6px;
+                width: 30px;
+                position: absolute;
+                left: -34px;
+              }
+              span {
+                color:green;
+              }
+              .fa-chevron-down {
+                color:green;
+              }
+              .dropbtn {
+                cursor: pointer;
+                margin-left: 10px;
+              }
+              .dropdown-content {
+                display: none;
+                position: absolute;
+                background: white;
+                overflow: auto;
+                z-index: 99;
+                border: solid 3px #eee;
+                left: -210px;
+                width: 300px;
+                top:35px;
+
+                ul {
+                  margin-top:90px;
+
+                  li {
+                    margin:0;
+                    display: block;
+                    border-top:solid 1px #eee;
+                    padding-left: 10px;
+
+                    a {
+                      text-transform: none;
+                      cursor: pointer;
+                    }
+
+                    i{
+                      margin-right: 20px;
+                      color: #908e8e;
+                      font-size: 16px;
+                    }
+                  }
+                }
+
+                &.show {
+                  display: block;
+                }
+
+                &::after {
+                  border-bottom: 18px solid #f6f5f2;
+                  border-left: 18px solid transparent;
+                  border-right: 18px solid transparent;
+                  z-index: 9;
+                  top: -18px;
+                }
+              }
+            }
+            &:nth-child(5n){
+              margin-left: 0px;
+              span {
+                margin-left: 5px;
+                font-size: 1em;
+                padding:5px;
+                color: #434856;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
