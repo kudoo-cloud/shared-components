@@ -1,7 +1,7 @@
 /* @flow */
 
 import type { ToggleSwitchProps } from './types';
-import type { Theme } from 'src/config/theme';
+import type { Theme } from '../config/theme';
 
 const switchWidth = 90;
 const switchHeight = 40;

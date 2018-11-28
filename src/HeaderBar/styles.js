@@ -1,5 +1,5 @@
 /** @flow **/
-import { type Theme } from 'src/config/theme';
+import { type Theme } from '../config/theme';
 import { type HeaderBarProps } from './types';
 
 const height = 70;

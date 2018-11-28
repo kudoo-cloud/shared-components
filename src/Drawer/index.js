@@ -12,9 +12,9 @@ import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import URL from 'src/config/urls';
-import { withRouterProps, withStylesProps } from 'src/config/types';
-import utility from 'src/utility/utils';
+import URL from '../config/urls';
+import { withRouterProps, withStylesProps } from '../config/types';
+import { mobileAndTabletcheck, getFirstLetters } from '../helpers';
 import withStyles from 'components/withStyles';
 import ErrorBoundary from 'components/ErrorBoundary';
 import Collapse from '@material-ui/core/Collapse';
@@ -54,7 +54,7 @@ class Drawer extends React.Component<DrawerProps, State> {
   constructor(props) {
     super(props);
 
-    const isTablet = utility.mobileAndTabletcheck();
+    const isTablet = mobileAndTabletcheck();
     if (isTablet) {
       if (this.props.onClose) {
         this.props.onClose();
@@ -240,9 +240,7 @@ class Drawer extends React.Component<DrawerProps, State> {
       <div className={classes.userWrapper}>
         {closed && (
           <div className={classes.userImageWrapper}>
-            <div className={classes.userInitial}>
-              {utility.getFirstLetters(name)}
-            </div>
+            <div className={classes.userInitial}>{getFirstLetters(name)}</div>
           </div>
         )}
         {!closed && (

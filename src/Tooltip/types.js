@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from 'react';
-import { type withStylesFlowType } from 'src/config/types';
+import { type withStylesFlowType } from '../config/types';
 
 export type TooltipProps = {
   /* Plain string */

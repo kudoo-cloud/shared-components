@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Button from 'components/Button';
 import { Route } from 'react-router';
 
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import { I18nProvider } from 'lingui-react';
 import toJson from 'enzyme-to-json';
 

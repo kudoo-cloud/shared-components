@@ -4,7 +4,7 @@ import type { TooltipProps } from './types';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Tooltip as BaseTooltip } from 'react-tippy';
-import { withStylesProps } from 'src/config/types';
+import { withStylesProps } from '../config/types';
 import withStyles from 'components/withStyles';
 import ErrorBoundary from 'components/ErrorBoundary';
 import styles from './styles';

@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import { Portal } from 'react-portal';
 import cx from 'classnames';
 import idx from 'idx';
-import URL from 'src/config/urls';
+import URL from '../config/urls';
 import withStyles from 'components/withStyles';
 import Collapse from '@material-ui/core/Collapse';
 import ErrorBoundary from 'components/ErrorBoundary';
 import TriangleArrow from 'components/TriangleArrow';
-import { withRouterProps } from 'src/config/types';
+import { withRouterProps } from '../config/types';
 import styles from './styles';
 
 type State = {

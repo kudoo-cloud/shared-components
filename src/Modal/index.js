@@ -6,7 +6,7 @@ import cx from 'classnames';
 import { Portal } from 'react-portal';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import withStyles from 'components/withStyles';
-import { withStylesProps } from 'src/config/types';
+import { withStylesProps } from '../config/types';
 import ErrorBoundary from 'components/ErrorBoundary';
 import Button from 'components/Button';
 import styles from './styles';

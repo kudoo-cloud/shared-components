@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactForm from './ContactForm';
 import { I18nProvider } from 'lingui-react';
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import renderer from 'react-test-renderer';
 
 it('renders default ContactForm', () => {

@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { type ButtonProps } from 'components/Button/types';
-import { type withStylesFlowType } from 'src/config/types';
+import { type withStylesFlowType } from '../config/types';
 
 export type ModalProps = {
   /** Modal is visible or not **/

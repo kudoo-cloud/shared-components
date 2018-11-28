@@ -4,11 +4,9 @@
     "module": "commonjs",
     "baseUrl": ".",
     "paths": {
-      "webapp/*": ["../../app/webapp/*"],
-      "src/*": ["../../app/webapp/src/*"],
-			"shared/*": ["./*"],
-			"components/*": ["./src/*"],
-			"images/*": ["../assets/images/*"],
+      "shared/*": ["./*"],
+      "components/*": ["./src/*"],
+      "images/*": ["../assets/images/*"]
     }
   },
   "exclude": ["node_modules"],

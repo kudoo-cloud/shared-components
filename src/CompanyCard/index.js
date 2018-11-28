@@ -2,7 +2,7 @@
 import * as React from 'react';
 import type { CardProps } from './types';
 import cx from 'classnames';
-import utils from 'src/utility/utils';
+import { getFirstLetters } from '../helpers';
 import withStyles from 'components/withStyles';
 import ErrorBoundary from 'components/ErrorBoundary';
 import styles from './styles';
@@ -30,7 +30,7 @@ class CompanyCard extends React.Component<CardProps, State> {
         <div className={cx(classes.upperPart)}>
           {!imageUrl && (
             <div className={cx(classes.letterImage)}>
-              {utils.getFirstLetters(primaryLabel || '')}
+              {getFirstLetters(primaryLabel || '')}
             </div>
           )}
           {imageUrl && (

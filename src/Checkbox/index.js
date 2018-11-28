@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import withStyles from 'components/withStyles';
 import ErrorBoundary from 'components/ErrorBoundary';
-import utils from 'src/utility/utils';
+import { randomNumber } from '../helpers';
 import styles from './styles';
 
 type State = {
@@ -31,7 +31,7 @@ class CheckBox extends React.Component<CheckBoxProps, State> {
     disabled: false,
     value: false,
     size: 'large',
-    id: `checkbox-${utils.randomNumber()}`,
+    id: `checkbox-${randomNumber()}`,
   };
 
   constructor(props) {

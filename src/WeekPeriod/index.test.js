@@ -1,7 +1,7 @@
 import React from 'react';
 import WeekPeriod from './index';
 import renderer from 'react-test-renderer';
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import { I18nProvider } from 'lingui-react';
 
 import toJson from 'enzyme-to-json';

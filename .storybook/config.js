@@ -3,11 +3,8 @@ import { configure, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import '@babel/polyfill';
 import 'react-tippy/dist/tippy.css';
-import '../../../app/webapp/src/index.scss';
-import '../../../app/webapp/src/Screens/App/index.scss';
-import KudooThemeProvider, {
-  theme,
-} from '../../../app/webapp/src/config/theme';
+import '../src/config/theme/css/index.scss';
+import KudooThemeProvider, { theme } from '../src/config/theme';
 import { I18nProvider } from '@lingui/react';
 import { jss, JssProvider } from 'react-jss';
 jss.options.insertionPoint = document.getElementById('jss-insertion-point');

@@ -1,8 +1,8 @@
 {
-  "name": "shared",
+  "name": "@kudoo/components",
   "version": "1.0.0",
   "description": "Shared React components across Kudoo",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest --env=jsdom",
     "storybook": "cross-env ENV=storybook start-storybook -p 6006",
@@ -47,6 +47,7 @@
     "react-social-login": "^3.4.2",
     "react-tap-event-plugin": "^3.0.2",
     "react-tippy": "^1.2.2",
+    "react-toastify": "^3.4.3",
     "react-transition-group": "2.5.0",
     "signature_pad": "^2.3.2",
     "smart-truncate": "^1.0.1",

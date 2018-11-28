@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   type withRouterFlowType,
   type withStylesFlowType,
-} from 'src/config/types';
+} from '../config/types';
 
 export type DrawerProps = {
   /** is drawer closed or not */

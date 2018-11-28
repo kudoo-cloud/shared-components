@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { theming } from 'src/config/theme';
+import { theming } from './config/theme';
 import cx from 'classnames';
 import _ from 'lodash';
 import PropTypes from 'prop-types';

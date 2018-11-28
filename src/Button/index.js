@@ -8,7 +8,7 @@ import cx from 'classnames';
 import withStyles from 'components/withStyles';
 import ErrorBoundary from 'components/ErrorBoundary';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import utils from 'src/utility/utils';
+import { isExternalUrl } from '../helpers';
 import styles from './styles';
 
 type State = {};
@@ -106,8 +106,8 @@ class Button extends React.Component<ButtonProps, State> {
     });
 
     if (href) {
-      let isExternalUrl = utils.isExternalUrl(href);
-      if (isExternalUrl) {
+      let isExternal = isExternalUrl(href);
+      if (isExternal) {
         // render <a> tag
         return (
           <ButtonBase

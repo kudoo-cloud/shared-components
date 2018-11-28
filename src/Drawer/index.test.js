@@ -5,7 +5,7 @@ import { render } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router';
 import { I18nProvider } from 'lingui-react';
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import toJson from 'enzyme-to-json';
 
 it('renders Drawer', () => {

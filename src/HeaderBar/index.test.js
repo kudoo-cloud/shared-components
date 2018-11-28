@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router';
 
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import { I18nProvider } from 'lingui-react';
 import toJson from 'enzyme-to-json';
 

@@ -4,7 +4,7 @@ import { render } from 'enzyme';
 import { action } from '@storybook/addon-actions';
 
 import { I18nProvider } from 'lingui-react';
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import DemoTable from './index.story';
 import toJson from 'enzyme-to-json';
 

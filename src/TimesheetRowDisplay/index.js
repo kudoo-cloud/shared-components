@@ -6,8 +6,8 @@ import idx from 'idx';
 import get from 'lodash/get';
 import moment from 'moment';
 import withStyles from 'components/withStyles';
-import { withStylesProps } from 'src/config/types';
-import utils from 'src/utility/utils';
+import { withStylesProps } from '../config/types';
+import { getRangeDates } from '../helpers';
 import { type TimesheetRowDisplayProps } from './types';
 import styles from './styles';
 
@@ -57,7 +57,7 @@ class TimesheetRowDisplay extends Component<TimesheetRowDisplayProps, State> {
   }
 
   _calculateRangeOfDates = (startWeekDay, endWeekDay) => {
-    const dates = utils.getRangeDates(startWeekDay, endWeekDay);
+    const dates = getRangeDates(startWeekDay, endWeekDay);
     this.setState({ dates });
   };
 

@@ -5,7 +5,7 @@ import cx from 'classnames';
 import get from 'lodash/get';
 import truncate from 'smart-truncate';
 import withStyles from 'components/withStyles';
-import { withStylesProps } from 'src/config/types';
+import { withStylesProps } from '../config/types';
 import { type FileBlockProps } from './types';
 import styles from './styles';
 

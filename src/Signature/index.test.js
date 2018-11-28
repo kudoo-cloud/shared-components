@@ -1,6 +1,6 @@
 import React from 'react';
 import Signature from './Signature';
-import KudooThemeProvider, { theme } from 'src/config/theme';
+import KudooThemeProvider, { theme } from '../config/theme';
 import renderer from 'react-test-renderer';
 
 it('renders default Signature', () => {

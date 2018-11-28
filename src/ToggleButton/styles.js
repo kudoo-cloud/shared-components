@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { Theme } from 'src/config/theme';
+import type { Theme } from '../config/theme';
 import type { ToggleButtonProps } from './types';
 
 const inActiveColor = '#fff';

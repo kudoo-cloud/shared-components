@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import withStyles from 'components/withStyles';
 import ErrorBoundary from 'components/ErrorBoundary';
-import { type withStylesFlowType, withStylesProps } from 'src/config/types';
+import { type withStylesFlowType, withStylesProps } from '../config/types';
 import styles from './styles';
 
 type Props = {

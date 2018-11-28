@@ -9,11 +9,14 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const babelConfig = require('../.babelrc.js');
-const aliasPath = require('../../../aliasPaths');
 
 module.exports = {
   resolve: {
-    alias: aliasPath,
+    alias: {
+      shared: path.resolve(__dirname, '../'),
+			components: path.resolve(__dirname, '../src'),
+			images: path.resolve(__dirname, '../src/assets/images'),
+    },
     modules: ['node_modules'],
     extensions: ['.json', '.js', '.jsx'],
   },
@@ -53,11 +56,7 @@ module.exports = {
             compact: true,
           },
         },
-        include: [
-          path.resolve(__dirname, '../../'),
-          path.resolve(__dirname, '../../../app/webapp'),
-          path.resolve(__dirname, '../../../app/webapp/src'),
-        ],
+        include: [path.resolve(__dirname, '../../')],
       },
       {
         test: /\.css$/,
@@ -67,8 +66,6 @@ module.exports = {
         }),
         include: [
           path.resolve(__dirname, '../../'),
-          path.resolve(__dirname, '../../../app/webapp'),
-          path.resolve(__dirname, '../../../app/webapp/src'),
           path.resolve(__dirname, '../node_modules'),
         ],
       },
@@ -80,37 +77,25 @@ module.exports = {
           'postcss-loader',
           'sass-loader',
         ],
-        include: [
-          path.resolve(__dirname, '../../'),
-          path.resolve(__dirname, '../../../app/webapp'),
-        ],
+        include: [path.resolve(__dirname, '../../')],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         exclude: /node_modules/,
         use: 'url-loader?limit=10000&minetype=application/font-woff',
-        include: [
-          path.resolve(__dirname, '../../'),
-          path.resolve(__dirname, '../../../app/webapp'),
-        ],
+        include: [path.resolve(__dirname, '../../')],
       },
       {
         test: /\.(ttf|eot|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         exclude: /node_modules/,
         loader: 'file-loader?prefix=images/&name=[path][name].[ext]',
-        include: [
-          path.resolve(__dirname, '../../'),
-          path.resolve(__dirname, '../../../app/webapp'),
-        ],
+        include: [path.resolve(__dirname, '../../')],
       },
       {
         test: /\.(png|jpg|svg|gif)(\?.*)?$/,
         exclude: /node_modules/,
         loader: 'url-loader?limit=1024&name=images/[name].[ext]',
-        include: [
-          path.resolve(__dirname, '../../'),
-          path.resolve(__dirname, '../../../app/webapp'),
-        ],
+        include: [path.resolve(__dirname, '../../')],
       },
       {
         test: /\.md$/,

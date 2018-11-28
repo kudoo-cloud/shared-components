@@ -1,4 +1,4 @@
-import type { Theme } from 'src/config/theme';
+import type { Theme } from '../config/theme';
 
 const width = {
   small: 20,
