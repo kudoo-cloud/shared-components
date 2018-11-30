@@ -1,6 +1,5 @@
 import React from 'react';
 import NotFound from './index';
-import './index.scss';
 import KudooThemeProvider, { theme } from '../config/theme';
 import renderer from 'react-test-renderer';
 

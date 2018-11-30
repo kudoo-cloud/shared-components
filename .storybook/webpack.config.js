@@ -14,8 +14,8 @@ module.exports = {
   resolve: {
     alias: {
       shared: path.resolve(__dirname, '../'),
-			components: path.resolve(__dirname, '../src'),
-			images: path.resolve(__dirname, '../src/assets/images'),
+      components: path.resolve(__dirname, '../src'),
+      images: path.resolve(__dirname, '../src/assets/images'),
     },
     modules: ['node_modules'],
     extensions: ['.json', '.js', '.jsx'],
@@ -45,6 +45,7 @@ module.exports = {
               '@babel/plugin-syntax-import-meta',
               '@babel/plugin-proposal-json-strings',
               ['@babel/plugin-proposal-decorators', { legacy: true }],
+              'import-md-to-js',
               [
                 '@babel/plugin-transform-runtime',
                 {

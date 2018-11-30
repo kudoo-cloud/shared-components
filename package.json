@@ -2,11 +2,13 @@
   "name": "@kudoo/components",
   "version": "1.0.0",
   "description": "Shared React components across Kudoo",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "jest --env=jsdom",
     "storybook": "cross-env ENV=storybook start-storybook -p 6006",
-    "build": "cross-env ENV=storybook build-storybook"
+    "build": "cross-env ENV=storybook build-storybook",
+    "babel": "rm -rf build && babel ./src --out-dir build && copyfiles ./src/assets/**/* ./build -u 1",
+    "postinstall": "npm run babel"
   },
   "keywords": [
     "React",
@@ -20,7 +22,9 @@
     "@lingui/react": "2.7.0",
     "@material-ui/core": "3.1.2",
     "autoprefixer": "^9.3.1",
+    "babel-plugin-import-md-to-js": "^1.0.0",
     "classnames": "^2.2.5",
+    "copyfiles": "^2.1.0",
     "downshift": "^1.30.0",
     "es6-promise": "^4.2.2",
     "extract-text-webpack-plugin": "^3.0.2",

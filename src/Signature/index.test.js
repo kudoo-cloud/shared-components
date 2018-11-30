@@ -1,5 +1,5 @@
 import React from 'react';
-import Signature from './Signature';
+import Signature from './index';
 import KudooThemeProvider, { theme } from '../config/theme';
 import renderer from 'react-test-renderer';
 

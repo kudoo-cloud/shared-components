@@ -1,7 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
 import ErrorBoundary from 'components/ErrorBoundary';
-import './ContactForm.scss';
 
 type Props = {};
 

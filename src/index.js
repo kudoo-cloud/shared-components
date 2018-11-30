@@ -1,3 +1,6 @@
+import * as Types from './config/types';
+import * as helpers from './helpers';
+
 export { default as AddressForm } from './AddressForm';
 export { default as AlertDialog } from './AlertDialog';
 export { default as Animation } from './Animation';
@@ -6,7 +9,7 @@ export { default as Button } from './Button';
 export { default as Checkbox } from './Checkbox';
 export { default as CircularProgressBar } from './CircularProgressBar';
 export { default as CompanyCard } from './CompanyCard';
-export { default as ContactForm } from './ContactForm';
+export { default as ContactForm } from './ContactForm/ContactForm';
 export { default as CustomerForm } from './CustomerForm';
 export { default as DatePicker } from './DatePicker';
 export { default as DottedCreateButton } from './DottedCreateButton';
@@ -20,7 +23,7 @@ export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as HeaderBar } from './HeaderBar';
 export { default as HeaderNavMenu } from './HeaderNavMenu';
-export { default as I18nLoader } from './I18nLoader';
+// export { default as I18nLoader } from './I18nLoader';
 export { default as Jumbotron } from './Jumbotron';
 export { default as LinearProgressBar } from './LinearProgressBar';
 export { default as Loading } from './Loading';
@@ -50,3 +53,11 @@ export { default as TriangleArrow } from './TriangleArrow';
 export { default as WeekPeriod } from './WeekPeriod';
 export { default as WizardSteps } from './WizardSteps';
 export { composeStyles, default as withStyles } from './withStyles';
+export {
+  theme,
+  theming,
+  withTheme,
+  default as KudooThemeProvider,
+} from './config/theme';
+export { Types, helpers };
+export { default as URL } from './config/urls';

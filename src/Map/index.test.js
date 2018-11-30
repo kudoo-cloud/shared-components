@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from './Map';
+import Map from './index';
 import KudooThemeProvider, { theme } from '../config/theme';
 import renderer from 'react-test-renderer';
 

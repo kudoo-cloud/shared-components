@@ -14,6 +14,7 @@
     "@babel/plugin-syntax-import-meta",
     "@babel/plugin-proposal-json-strings",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "import-md-to-js",
     [
       "@babel/plugin-transform-runtime",
       {

@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SocialLogin from 'react-social-login';
-import './styles.scss';
 
 const SocialLoginButton = ({ children, triggerLogin, ...props }) => (
-  <button className="social-button" onClick={triggerLogin} {...props}>
+  <button
+    style={{
+      backgroundColor: 'transparent',
+      cursor: 'pointer',
+      border: '0px solid',
+      outline: 'none',
+    }}
+    onClick={triggerLogin}
+    {...props}>
     {children}
   </button>
 );

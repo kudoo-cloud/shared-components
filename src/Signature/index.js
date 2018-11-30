@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SignaturePad from 'signature_pad';
 import ErrorBoundary from 'components/ErrorBoundary';
 import { Trans } from '@lingui/react';
-import './Signature.scss';
+// import './Signature.scss';
 // Heres the code to implement
 //TODO we need to refactor a base React button located under ./src/Components/Base/Button that will be used for all Buttons throughout the application
 

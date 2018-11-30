@@ -1,9 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
-import Logo from 'components/Logo/Logo';
-import HeaderNavMenu from 'components/HeaderNavMenu/HeaderNavMenu';
+import Logo from 'components/Logo';
+import HeaderNavMenu from 'components/HeaderNavMenu';
 import ErrorBoundary from 'components/ErrorBoundary';
-import './index.scss';
+// import './index.scss';
 
 type Props = {};
 type State = {};

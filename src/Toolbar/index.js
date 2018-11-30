@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ErrorBoundary from 'components/ErrorBoundary';
-import './index.scss';
+// import './index.scss';
 
 type Props = {
   location: Object,

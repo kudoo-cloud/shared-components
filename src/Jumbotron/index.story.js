@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Jumbotron from './Jumbotron';
+import Jumbotron from './index';
 
 storiesOf('Jumbotron', module)
   .add('Default', withInfo('Default Jumbotron')(() => <Jumbotron />))

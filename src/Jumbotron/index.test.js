@@ -1,5 +1,5 @@
 import React from 'react';
-import Jumbotron from './Jumbotron';
+import Jumbotron from './index';
 import { BrowserRouter as Router } from 'react-router-dom';
 import KudooThemeProvider, { theme } from '../config/theme';
 import renderer from 'react-test-renderer';

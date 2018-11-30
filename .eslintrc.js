@@ -130,6 +130,7 @@ module.exports = {
     'no-inner-declarations': 0,
     'consistent-return': ['error', { treatUndefinedAsUnspecified: false }],
     complexity: ['error', { max: 40 }],
+    'no-restricted-globals': 0,
     'prettier/prettier': [
       'error',
       {

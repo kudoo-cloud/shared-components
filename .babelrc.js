@@ -11,6 +11,18 @@ let plugins = [
   '@babel/plugin-syntax-import-meta',
   '@babel/plugin-proposal-json-strings',
   ['@babel/plugin-proposal-decorators', { legacy: true }],
+  'import-md-to-js',
+  [
+    'module-resolver',
+    {
+      root: ['.'],
+      alias: {
+        components: './src',
+				shared: '.',
+				images: './src/assets/images'
+      },
+    },
+  ],
 ];
 
 if (process.env['ENV'] === 'test' || process.env['NODE_ENV'] === 'test') {
