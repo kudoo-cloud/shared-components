@@ -1,6 +1,4 @@
-import * as Types from './config/types';
 import * as helpers from './helpers';
-
 export { default as AddressForm } from './AddressForm';
 export { default as AlertDialog } from './AlertDialog';
 export { default as Animation } from './Animation';
@@ -59,5 +57,6 @@ export {
   withTheme,
   default as KudooThemeProvider,
 } from './config/theme';
-export { Types, helpers };
+export { withRouterProps, withStylesProps } from './config/types';
 export { default as URL } from './config/urls';
+export { helpers };

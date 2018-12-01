@@ -2,3 +2,4 @@ src
 test
 .storybook
 __mocks__
+*.test.js
