@@ -15,8 +15,16 @@
     "React",
     "Storybook"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KudooCloud/kudoo-shared-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KudooCloud/kudoo-shared-components/issues"
+  },
+  "homepage": "https://github.com/KudooCloud/kudoo-shared-components.git",
   "author": "Kudoo Cloud Pty Ltd",
-  "license": "Copyright",
+  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.46",
     "@lingui/babel-preset-react": "2.7.0",
