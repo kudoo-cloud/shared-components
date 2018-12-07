@@ -21,7 +21,7 @@ export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as HeaderBar } from './HeaderBar';
 export { default as HeaderNavMenu } from './HeaderNavMenu';
-// export { default as I18nLoader } from './I18nLoader';
+export { default as I18nLoader } from './I18nLoader';
 export { default as Jumbotron } from './Jumbotron';
 export { default as LinearProgressBar } from './LinearProgressBar';
 export { default as Loading } from './Loading';

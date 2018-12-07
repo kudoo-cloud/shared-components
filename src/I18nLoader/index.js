@@ -18,7 +18,7 @@ export class I18nLoader extends React.Component {
 
   loadCatalog = async language => {
     const catalog = await import(/* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
-    `shared/locale/${language}/messages.js`);
+    `@kudoo/locale/${language}/messages.js`);
     this.setState(state => ({
       catalogs: {
         ...state.catalogs,
