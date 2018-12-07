@@ -47,6 +47,7 @@ export { default as TimesheetRowDisplay } from './TimesheetRowDisplay';
 export { default as ToggleButton } from './ToggleButton';
 export { default as ToggleSwitch } from './ToggleSwitch';
 export { default as Toolbar } from './Toolbar';
+export { default as Tooltip } from './Tooltip';
 export { default as TriangleArrow } from './TriangleArrow';
 export { default as WeekPeriod } from './WeekPeriod';
 export { default as WizardSteps } from './WizardSteps';
