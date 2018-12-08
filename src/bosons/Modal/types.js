@@ -12,6 +12,8 @@ export type ModalProps = {
   onClose: Function,
   /* title */
   title: React.Node | string,
+  /* title color */
+  titleColor: string,
   /* description */
   description: React.Node | string,
   /* buttons */

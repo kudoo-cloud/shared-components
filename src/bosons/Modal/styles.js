@@ -35,7 +35,7 @@ export default (theme: Theme) => ({
     fontFamily: theme.typography.font.family1,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: theme.palette.primary.color2,
+    color: props => props.titleColor || theme.palette.primary.color2,
   },
   description: {
     padding: '0px 30px 30px',

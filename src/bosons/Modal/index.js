@@ -20,6 +20,7 @@ class Modal extends React.Component<ModalProps, State> {
     onClose: PropTypes.func,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    titleColor: PropTypes.string,
     buttons: PropTypes.arrayOf(PropTypes.any),
     renderContent: PropTypes.func,
     showCloseButton: PropTypes.bool,
