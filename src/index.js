@@ -24,7 +24,7 @@ export { default as LinearProgressBar } from './bosons/LinearProgressBar';
 export { default as Loading } from './bosons/Loading';
 export { default as Logo } from './bosons/Logo';
 export { default as Map } from './bosons/Map';
-export { default as Modal } from './nuclei/Modal';
+export { default as Modal } from './bosons/Modal';
 export { default as Newsletter } from './nuclei/Newsletter';
 export { default as NotFound } from './atoms/NotFound';
 export { default as Pagination } from './bosons/Pagination';
