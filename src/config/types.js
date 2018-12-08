@@ -1,8 +1,7 @@
 /* @flow */
 
 import PropTypes from 'prop-types';
-import type { Theme } from './theme';
-import { ThemePropTypes } from './theme';
+import  { type Theme, ThemePropTypes } from './theme';
 
 export const withRouterProps = {
   match: PropTypes.object.isRequired, // will come from withRouter HOC
