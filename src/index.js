@@ -1,6 +1,5 @@
 import * as helpers from './helpers';
 export { default as AddressForm } from './nuclei/AddressForm';
-export { default as AlertDialog } from './nuclei/AlertDialog';
 export { default as Attachment } from './nuclei/Attachment';
 export { default as Button } from './bosons/Button';
 export { default as Checkbox } from './bosons/Checkbox';
