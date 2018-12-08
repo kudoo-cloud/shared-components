@@ -5,7 +5,7 @@ import type { CircularProgressBarProps } from './types';
 import PropTypes from 'prop-types';
 import { Circle } from 'rc-progress';
 import withStyles from 'components/hoc/withStyles';
-import ErrorBoundary from '../ErrorBoundary';
+import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
 
 type State = {};

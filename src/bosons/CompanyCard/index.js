@@ -2,7 +2,7 @@
 import * as React from 'react';
 import type { CardProps } from './types';
 import cx from 'classnames';
-import { getFirstLetters } from '../helpers';
+import { getFirstLetters } from 'components/helpers';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';

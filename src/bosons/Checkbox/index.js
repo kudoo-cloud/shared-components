@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
-import { randomNumber } from '../helpers';
+import { randomNumber } from 'components/helpers';
 import styles from './styles';
 
 type State = {

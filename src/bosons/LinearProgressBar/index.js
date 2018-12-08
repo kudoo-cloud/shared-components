@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
 import withStyles from 'components/hoc/withStyles';
-import ErrorBoundary from '../ErrorBoundary';
+import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
 
 type State = {};

@@ -8,7 +8,7 @@ import cx from 'classnames';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { isExternalUrl } from '../helpers';
+import { isExternalUrl } from 'components/helpers';
 import styles from './styles';
 
 type State = {};

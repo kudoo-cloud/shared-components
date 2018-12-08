@@ -14,7 +14,7 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import URL from 'components/config/urls';
 import { withRouterProps, withStylesProps } from 'components/config/types';
-import { mobileAndTabletcheck, getFirstLetters } from '../helpers';
+import { mobileAndTabletcheck, getFirstLetters } from 'components/helpers';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import Collapse from '@material-ui/core/Collapse';

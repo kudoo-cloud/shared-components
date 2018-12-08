@@ -7,7 +7,7 @@ import get from 'lodash/get';
 import moment from 'moment';
 import withStyles from 'components/hoc/withStyles';
 import { withStylesProps } from 'components/config/types';
-import { getRangeDates } from '../helpers';
+import { getRangeDates } from 'components/helpers';
 import { type TimesheetRowDisplayProps } from './types';
 import styles from './styles';
 
