@@ -47,6 +47,7 @@ export { default as TriangleArrow } from './bosons/TriangleArrow';
 export { default as WeekPeriod } from './nuclei/WeekPeriod';
 export { default as WizardSteps } from './bosons/WizardSteps';
 export { composeStyles, default as withStyles } from './hoc/withStyles';
+export { default as ScrollObserver } from './hoc/ScrollObserver';
 export {
   theme,
   theming,

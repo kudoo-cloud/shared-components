@@ -88,4 +88,13 @@ export default (theme: Theme) => ({
     color: theme.palette.blueGrey['50'],
     fontFamily: theme.typography.font.family2,
   },
+  loadingCell: {
+    padding: 10,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  hideLoading: {
+    display: 'none',
+  },
 });

@@ -152,6 +152,7 @@ export default class DemoTable extends Component {
         sortable
         onRequestSort={this._onRequestSort}
         onRemoveClicked={this._onRemoveClicked}
+        loading
       />
     );
   }
