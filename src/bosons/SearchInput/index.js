@@ -59,6 +59,7 @@ class SearchInput extends React.Component<SearchInputProps, State> {
       defaultInputValue,
       renderItem, // eslint-disable-line
       labelKey,
+      showClearIcon,
       ...rest
     } = this.props;
     return (
@@ -67,14 +68,14 @@ class SearchInput extends React.Component<SearchInputProps, State> {
           <Downshift
             itemToString={i => (i ? i[labelKey] : i)}
             onChange={onItemClick}
-            defaultInputValue={defaultInputValue}
-            render={({
+            initialInputValue={defaultInputValue}>
+            {({
               getInputProps,
               getItemProps,
               isOpen,
               inputValue,
               selectedItem,
-              highlightedIndex,
+              clearSelection,
             }) => {
               return (
                 <div style={{ position: 'relative' }}>
@@ -84,7 +85,7 @@ class SearchInput extends React.Component<SearchInputProps, State> {
                       {...getInputProps({
                         ...rest,
                         value: inputValue || '',
-                        showClearIcon: false,
+                        showClearIcon: showClearIcon || false,
                         label: '',
                         classes: {
                           textInputWrapper: classes.input,
@@ -93,6 +94,9 @@ class SearchInput extends React.Component<SearchInputProps, State> {
                           const value = idx(event, _ => _.target.value);
                           if (typeof value === 'undefined') {
                             return;
+                          }
+                          if (value === '' || !value) {
+                            clearSelection();
                           }
                           onSearch(value);
                         },
@@ -128,7 +132,7 @@ class SearchInput extends React.Component<SearchInputProps, State> {
                 </div>
               );
             }}
-          />
+          </Downshift>
         </div>
       </ErrorBoundary>
     );
