@@ -17,6 +17,7 @@ class SearchInput extends React.Component<SearchInputProps, State> {
     ...TextField.propTypes,
     items: PropTypes.arrayOf(PropTypes.any),
     onSearch: PropTypes.func,
+    onInputChange: PropTypes.func,
     onItemClick: PropTypes.func,
     searchLoading: PropTypes.bool,
     showSearchIcon: PropTypes.bool,
@@ -29,9 +30,26 @@ class SearchInput extends React.Component<SearchInputProps, State> {
     items: [],
     showSearchIcon: true,
     onSearch: () => {},
+    onInputChange: () => {},
     onItemClick: () => {},
     defaultInputValue: '',
     labelKey: 'label',
+  };
+
+  _handleStateReducer = (state, changes) => {
+    switch (changes.type) {
+      // Downshift by default reset the input value on blur when there is no item selected
+      // we dont want to reset that value
+      case Downshift.stateChangeTypes.mouseUp:
+      case Downshift.stateChangeTypes.blurInput: {
+        return {
+          ...changes,
+          inputValue: state.inputValue,
+        };
+      }
+      default:
+        return changes;
+    }
   };
 
   _renderItem = ({ getItemProps, item, index, selectedItem }) => {
@@ -54,12 +72,13 @@ class SearchInput extends React.Component<SearchInputProps, State> {
       onSearch,
       onItemClick,
       searchLoading,
-      items,
+      items = [],
       showSearchIcon,
       defaultInputValue,
       renderItem, // eslint-disable-line
       labelKey,
       showClearIcon,
+      onInputChange,
       ...rest
     } = this.props;
     return (
@@ -68,7 +87,8 @@ class SearchInput extends React.Component<SearchInputProps, State> {
           <Downshift
             itemToString={i => (i ? i[labelKey] : i)}
             onChange={onItemClick}
-            initialInputValue={defaultInputValue}>
+            initialInputValue={defaultInputValue}
+            stateReducer={this._handleStateReducer}>
             {({
               getInputProps,
               getItemProps,
@@ -80,7 +100,10 @@ class SearchInput extends React.Component<SearchInputProps, State> {
               return (
                 <div style={{ position: 'relative' }}>
                   <div
-                    className={cx(classes.component, isOpen ? 'is-open' : '')}>
+                    className={cx(
+                      classes.component,
+                      isOpen && items.length > 0 ? 'is-open' : ''
+                    )}>
                     <TextField
                       {...getInputProps({
                         ...rest,
@@ -98,7 +121,7 @@ class SearchInput extends React.Component<SearchInputProps, State> {
                           if (value === '' || !value) {
                             clearSelection();
                           }
-                          onSearch(value);
+                          onInputChange(value);
                         },
                       })}
                     />
@@ -117,18 +140,19 @@ class SearchInput extends React.Component<SearchInputProps, State> {
                       </div>
                     )}
                   </div>
-                  {isOpen && (
-                    <div className={classes.searchedItemsWrapper}>
-                      {items.map((item, index) =>
-                        this._renderItem({
-                          item,
-                          index,
-                          getItemProps,
-                          selectedItem,
-                        })
-                      )}
-                    </div>
-                  )}
+                  {isOpen &&
+                    (items || []).length > 0 && (
+                      <div className={classes.searchedItemsWrapper}>
+                        {items.map((item, index) =>
+                          this._renderItem({
+                            item,
+                            index,
+                            getItemProps,
+                            selectedItem,
+                          })
+                        )}
+                      </div>
+                    )}
                 </div>
               );
             }}
