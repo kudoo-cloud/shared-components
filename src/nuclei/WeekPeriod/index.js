@@ -23,177 +23,104 @@ type State = {
 
 class WeekPeriod extends React.Component<WeekPeriodProps, State> {
   static propTypes = {
-    month: PropTypes.any,
-    year: PropTypes.any,
-    date: PropTypes.any,
+    week: PropTypes.number,
+    year: PropTypes.number,
     onWeekChange: PropTypes.func,
-    startWeekDay: PropTypes.any,
-    endWeekDay: PropTypes.any,
     classes: PropTypes.object, // will come from withStyles HOC
+  };
+
+  static defaultProps = {
+    week: moment().week(),
+    year: moment().year(),
+    onWeekChange: () => {},
   };
 
   constructor(props) {
     super(props);
     this.state = {
+      week: props.week,
+      year: props.year,
       startWeekDay: moment()
+        .year(props.year)
+        .week(props.week)
         .startOf('week')
         .format(),
       endWeekDay: moment()
+        .year(props.year)
+        .week(props.week)
         .endOf('week')
         .format(),
     };
   }
 
   componentDidMount() {
-    this._updateWeekPeriod(this.props);
+    this._updateWeekPeriod(this.props, 'mount');
   }
 
   componentDidUpdate(prevProps) {
     const props = this.props;
-    if (props.year !== prevProps.year) {
+    const state = this.state;
+    if (props.week !== prevProps.week && props.week !== state.week) {
+      this._updateWeekPeriod(props, 'week');
+    }
+    if (props.year !== prevProps.year && props.year !== state.year) {
       this._updateWeekPeriod(props, 'year');
-    }
-    if (props.month !== prevProps.month) {
-      this._updateWeekPeriod(props, 'month');
-    }
-    if (props.date !== prevProps.date) {
-      this._updateWeekPeriod(props, 'date');
-    }
-    if (props.startWeekDay !== prevProps.startWeekDay) {
-      this.setState({
-        startWeekDay: props.startWeekDay,
-      });
-    }
-    if (props.endWeekDay !== prevProps.endWeekDay) {
-      this.setState({
-        endWeekDay: props.endWeekDay,
-      });
     }
   }
 
-  _updateWeekPeriod = (props, updatedType) => {
-    let { year, month, date } = props;
-    if (typeof year === 'undefined') {
-      year = moment().year();
-    }
+  _updateWeekPeriod = (props, updateType) => {
+    const state = this.state;
+    let finalYear = updateType === 'year' ? props.year : state.year;
+    let finalWeek = updateType === 'week' ? props.week : state.week;
+    
+    const startWeekDay = moment()
+      .year(finalYear)
+      .week(finalWeek)
+      .startOf('week')
+      .format();
+    const endWeekDay = moment()
+      .year(finalYear)
+      .week(finalWeek)
+      .endOf('week')
+      .format();
 
-    if (typeof month === 'undefined') {
-      month = moment().month();
-    }
-
-    if (typeof date === 'undefined') {
-      date = moment().date();
-    }
-
-    let startWeekDay;
-
-    if (updatedType === 'year') {
-      if (
-        this.state.startWeekDay &&
-        moment(this.state.startWeekDay).year() === year
-      ) {
-        startWeekDay = this.state.startWeekDay;
-      } else {
-        date = 1;
-        month = 0;
-        const tempStartWeekDay = moment()
-          .year(year)
-          .month(month)
-          .date(date)
-          .startOf('isoWeek');
-        if (tempStartWeekDay.year() === year) {
-          // tempStartWeekDay is in selected month so keep it
-          startWeekDay === tempStartWeekDay.format();
-        } else {
-          // tempStartWeekDay is not in selected month so find next week first day
-          const tempEndWeekDay = moment()
-            .year(year)
-            .month(month)
-            .date(date)
-            .endOf('isoWeek');
-          startWeekDay = tempEndWeekDay.add(1, 'days').format();
-        }
-      }
-    }
-
-    if (updatedType === 'month') {
-      if (
-        this.state.startWeekDay &&
-        moment(this.state.startWeekDay).month() === month
-      ) {
-        startWeekDay = this.state.startWeekDay;
-      } else {
-        date = 1;
-        const tempStartWeekDay = moment()
-          .year(year)
-          .month(month)
-          .date(date)
-          .startOf('isoWeek');
-
-        if (tempStartWeekDay.month() === month) {
-          // tempStartWeekDay is in selected month so keep it
-          startWeekDay === tempStartWeekDay.format();
-        } else {
-          // tempStartWeekDay is not in selected month so find next week first day
-          const tempEndWeekDay = moment()
-            .year(year)
-            .month(month)
-            .date(date)
-            .endOf('isoWeek');
-          startWeekDay = tempEndWeekDay.add(1, 'days').format();
-        }
-      }
-    }
-
-    if (!startWeekDay) {
-      startWeekDay = moment()
-        .year(year)
-        .month(month)
-        .date(date)
-        .startOf('isoWeek')
-        .format();
-    }
-
-    const weekObj = {
+    let weekObj = {
+      week: finalWeek,
+      year: finalYear,
+      month: moment(endWeekDay).month(),
       startWeekDay,
-      endWeekDay: moment(startWeekDay)
-        .add(6, 'days')
-        .format(),
+      endWeekDay,
     };
+
     this.setState(weekObj, () => {
-      if (this.props.onWeekChange) {
-        this.props.onWeekChange(weekObj);
+      if (updateType === 'mount') {
+        props.onWeekChange(weekObj);
       }
     });
   };
 
-  _goToNextWeek = () => {
-    const { endWeekDay } = this.state;
-    const nextWeekStartWeekDay = moment(endWeekDay).add(1, 'days');
-    const nextWeekEndWeekDay = moment(endWeekDay).add(7, 'days');
+  _handleWeekChange = isNext => event => {
+    const { year, week } = this.state;
+    const { onWeekChange } = this.props;
+    const newWeek = moment()
+      .year(year)
+      .week(week);
+    if (isNext) {
+      newWeek.add(1, 'w');
+    } else {
+      newWeek.subtract(1, 'w');
+    }
+    const startWeekDay = newWeek.startOf('week').format();
+    const endWeekDay = newWeek.endOf('week').format();
     const weekObj = {
-      startWeekDay: nextWeekStartWeekDay.format(),
-      endWeekDay: nextWeekEndWeekDay.format(),
+      week: newWeek.week(),
+      year: moment(endWeekDay).year(),
+      month: moment(endWeekDay).month(),
+      startWeekDay,
+      endWeekDay,
     };
     this.setState(weekObj, () => {
-      if (this.props.onWeekChange) {
-        this.props.onWeekChange(weekObj);
-      }
-    });
-  };
-
-  _goToPrevWeek = () => {
-    const { startWeekDay } = this.state;
-    const prevWeekStartWeekDay = moment(startWeekDay).subtract(7, 'days');
-    const prevWeekEndWeekDay = moment(startWeekDay).subtract(1, 'days');
-    const weekObj = {
-      startWeekDay: prevWeekStartWeekDay.format(),
-      endWeekDay: prevWeekEndWeekDay.format(),
-    };
-    this.setState(weekObj, () => {
-      if (this.props.onWeekChange) {
-        this.props.onWeekChange(weekObj);
-      }
+      onWeekChange(weekObj);
     });
   };
 
@@ -207,7 +134,7 @@ class WeekPeriod extends React.Component<WeekPeriodProps, State> {
           <div className={classes.root}>
             <div
               className={cx(classes.button, classes.prevButton)}
-              onClick={this._goToPrevWeek}>
+              onClick={this._handleWeekChange(false)}>
               <TriangleArrow
                 direction={'left'}
                 classes={{ arrow: classes.arrow }}
@@ -219,7 +146,7 @@ class WeekPeriod extends React.Component<WeekPeriodProps, State> {
             </div>
             <div
               className={cx(classes.button, classes.nextButton)}
-              onClick={this._goToNextWeek}>
+              onClick={this._handleWeekChange(true)}>
               <TriangleArrow
                 direction={'right'}
                 classes={{ arrow: classes.arrow }}
