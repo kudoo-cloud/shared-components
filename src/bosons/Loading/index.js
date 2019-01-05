@@ -12,8 +12,8 @@ const Loading = (props: LoadingProps) => {
       <div className={props.classes.component}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width={props.width}
-          height={props.height}
+          width={props.size}
+          height={props.size}
           viewBox="0 0 100 100"
           preserveAspectRatio="xMidYMid"
           className="uil-default">
@@ -249,14 +249,12 @@ const Loading = (props: LoadingProps) => {
 
 Loading.propTypes = {
   color: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  size: PropTypes.number,
   classes: PropTypes.object,
 };
 
 Loading.defaultProps = {
-  width: 120,
-  height: 120,
+  size: 40,
   color: '#337ab7',
 };
 

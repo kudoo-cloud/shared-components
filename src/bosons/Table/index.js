@@ -274,7 +274,7 @@ class Table extends React.PureComponent<TableProps, {}> {
             padding="none"
             colSpan={totalColumns}>
             <div className={classes.loadingCell}>
-              <Loading width={30} height={30} />
+              <Loading size={30} />
             </div>
           </TableCell>
         </TableRow>

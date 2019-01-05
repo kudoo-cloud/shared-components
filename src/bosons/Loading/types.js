@@ -3,8 +3,7 @@ import * as React from 'react';
 
 export type LoadingProps = {
   color?: string,
-  width?: number,
-  height?: number,
+  size?: number,
   /** classse **/
   classes: Object,
 };
