@@ -77,7 +77,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
   }
 
   componentDidMount() {
-    if (this.props.value) {
+    if (typeof this.props.value !== 'undefined') {
       this._selectValueFromProps();
     }
     document.addEventListener('mousedown', this._handleOutSideClick, false);
