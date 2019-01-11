@@ -54,6 +54,9 @@ class ScrollObserver extends React.Component {
   };
 
   componentDidMount() {
+    // call observeScrolling first time manually when component mount
+    // this will be helpful when screen height is too big and total fetch records are occupying less height then screen height
+    this.observeScrolling();
     document.addEventListener('scroll', this.observeScrolling);
   }
 
