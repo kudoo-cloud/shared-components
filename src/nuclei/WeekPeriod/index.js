@@ -72,7 +72,6 @@ class WeekPeriod extends React.Component<WeekPeriodProps, State> {
     const state = this.state;
     let finalYear = updateType === 'year' ? props.year : state.year;
     let finalWeek = updateType === 'week' ? props.week : state.week;
-    
     const startWeekDay = moment()
       .year(finalYear)
       .week(finalWeek)
@@ -93,9 +92,7 @@ class WeekPeriod extends React.Component<WeekPeriodProps, State> {
     };
 
     this.setState(weekObj, () => {
-      if (updateType === 'mount') {
-        props.onWeekChange(weekObj);
-      }
+      props.onWeekChange(weekObj);
     });
   };
 
