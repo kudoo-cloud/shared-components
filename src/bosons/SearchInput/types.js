@@ -6,10 +6,12 @@ export type SearchInputProps = {
   ...$Exact<TextFieldProps>,
   /**  searched items **/
   items: Array<any>,
-  /** callback will be called when user click on search icon or user type in TextField **/
+  /** callback will be called when user click on search icon **/
   onSearch: Function,
   /** callback will be called when user click on searched item **/
   onItemClick: Function,
+  /** callback will be called when user type in Input field **/
+  onInputChange: Function,
   /** custom render item **/
   renderItem: Function,
   /** custom label key */

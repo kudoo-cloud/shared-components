@@ -2,13 +2,12 @@
 import * as React from 'react';
 
 export type WeekPeriodProps = {
-  year: any,
-  month: any,
-  date: any,
+  /** year **/
+  year: Number,
+  /** week number **/
+  week: Number,
   /** on week change **/
-	onWeekChange?: Function,
-	startWeekDay: any,
-	endWeekDay: any,
+  onWeekChange?: Function,
   /** classes **/
   classes: Object,
 };

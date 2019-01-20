@@ -12,6 +12,8 @@ import TableRow from '@material-ui/core/TableRow';
 import withStyles from 'components/hoc/withStyles';
 import TriangleArrow from 'components/bosons/TriangleArrow';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
+import Loading from 'components/bosons/Loading';
+import ScrollObserver from 'components/hoc/ScrollObserver';
 import styles from './styles';
 
 class Table extends React.PureComponent<TableProps, {}> {
@@ -38,6 +40,8 @@ class Table extends React.PureComponent<TableProps, {}> {
     onAddClicked: PropTypes.func,
     cellStyler: PropTypes.func,
     cellRenderer: PropTypes.func,
+    loading: PropTypes.bool,
+    ...ScrollObserver.propTypes,
     classes: PropTypes.object,
   };
 
@@ -54,6 +58,9 @@ class Table extends React.PureComponent<TableProps, {}> {
     showAddIcon: false,
     onAddClicked: () => {},
     cellStyler: () => '',
+    loading: false,
+    onBottomReachedThreshold: 200,
+    onTopReachedThreshold: 200,
   };
 
   _onRequestSort = column => event => {
@@ -169,6 +176,7 @@ class Table extends React.PureComponent<TableProps, {}> {
       showRemoveIcon,
       showAddIcon,
       cellStyler,
+      loading,
     } = this.props;
 
     let totalColumns = columnData.length;
@@ -246,16 +254,30 @@ class Table extends React.PureComponent<TableProps, {}> {
             )}
           </TableRow>
         ))}
-        {data.length === 0 && (
-          <TableRow classes={{ root: classes.tableRowRoot }}>
-            <TableCell
-              className={classes.tableCellRoot}
-              padding="none"
-              colSpan={totalColumns}>
-              <div className={classes.noDatCell}>No data to display</div>
-            </TableCell>
-          </TableRow>
-        )}
+        {data.length === 0 &&
+          !loading && (
+            <TableRow classes={{ root: classes.tableRowRoot }}>
+              <TableCell
+                className={classes.tableCellRoot}
+                padding="none"
+                colSpan={totalColumns}>
+                <div className={classes.noDatCell}>No data to display</div>
+              </TableCell>
+            </TableRow>
+          )}
+        <TableRow
+          classes={{
+            root: cx(classes.tableRowRoot, !loading ? classes.hideLoading : ''),
+          }}>
+          <TableCell
+            className={classes.tableCellRoot}
+            padding="none"
+            colSpan={totalColumns}>
+            <div className={classes.loadingCell}>
+              <Loading size={30} />
+            </div>
+          </TableCell>
+        </TableRow>
       </TableBody>
     );
   }
@@ -271,11 +293,22 @@ class Table extends React.PureComponent<TableProps, {}> {
   }
 
   render() {
-    let { classes } = this.props;
-    let componentClass = cx(classes.component);
+    let {
+      classes,
+      onBottomReached,
+      onTopReached,
+      onBottomReachedThreshold,
+      onTopReachedThreshold,
+    } = this.props;
     return (
       <ErrorBoundary>
-        <div className={componentClass}>{this._renderTable()}</div>
+        <ScrollObserver
+          onBottomReachedThreshold={onBottomReachedThreshold}
+          onBottomReached={onBottomReached}
+          onTopReachedThreshold={onTopReachedThreshold}
+          onTopReached={onTopReached}>
+          <div className={classes.component}>{this._renderTable()}</div>
+        </ScrollObserver>
       </ErrorBoundary>
     );
   }

@@ -49,35 +49,40 @@ class Modal extends React.Component<ModalProps, State> {
     } = this.props;
     return (
       <div className={classes.content}>
-        {showCloseButton && (
-          <ButtonBase classes={{ root: classes.closeButton }} onClick={onClose}>
-            <i className="ion ion-close" />
-          </ButtonBase>
-        )}
-        {title && <div className={classes.title}>{title}</div>}
-        {description && (
-          <div className={classes.description}>{description}</div>
-        )}
-        {buttons &&
-          buttons.length > 0 && (
-            <div className={classes.buttons}>
-              {buttons.map((buttonProps, index) => (
-                <Button
-                  key={index}
-                  classes={{
-                    component: cx(classes.button, {
-                      cancel: buttonProps.type === 'cancel',
-                    }),
-                    text: cx({
-                      [classes.cancelButtonText]: buttonProps.type === 'cancel',
-                    }),
-                  }}
-                  buttonColor={theme.palette.primary.color2}
-                  {...buttonProps}
-                />
-              ))}
-            </div>
+        <div className={classes.contentInnerWrapper}>
+          {showCloseButton && (
+            <ButtonBase
+              classes={{ root: classes.closeButton }}
+              onClick={onClose}>
+              <i className="ion ion-close" />
+            </ButtonBase>
           )}
+          {title && <div className={classes.title}>{title}</div>}
+          {description && (
+            <div className={classes.description}>{description}</div>
+          )}
+          {buttons &&
+            buttons.length > 0 && (
+              <div className={classes.buttons}>
+                {buttons.map((buttonProps, index) => (
+                  <Button
+                    key={index}
+                    classes={{
+                      component: cx(classes.button, {
+                        cancel: buttonProps.type === 'cancel',
+                      }),
+                      text: cx({
+                        [classes.cancelButtonText]:
+                          buttonProps.type === 'cancel',
+                      }),
+                    }}
+                    buttonColor={theme.palette.primary.color2}
+                    {...buttonProps}
+                  />
+                ))}
+              </div>
+            )}
+        </div>
       </div>
     );
   }

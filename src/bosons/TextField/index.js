@@ -93,7 +93,8 @@ class TextField extends React.Component<TextFieldProps, State> {
 
   componentDidUpdate(prevProps) {
     const props = this.props;
-    if (props.value !== prevProps.value) {
+    const state = this.state;
+    if (props.value !== prevProps.value || state.value !== props.value) {
       this.setState({
         value: props.value,
       });

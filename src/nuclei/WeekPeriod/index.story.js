@@ -10,6 +10,7 @@ storiesOf('WeekPeriod', module).add(
   'Default',
   withInfo('Default')(() => (
     <div style={{ margin: 10 }}>
+      <h4>Default</h4>
       <WeekPeriod onWeekChange={action('onWeekChange')} />
     </div>
   ))

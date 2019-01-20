@@ -44,6 +44,7 @@ class Search extends React.Component {
           placeholder={'Search github repositories'}
           showClearIcon={false}
           onSearch={this._fetchRepo}
+          onInputChange={this._fetchRepo}
           onItemClick={this._handleItemClick}
           searchLoading={this.state.loading}
           items={this.state.items}

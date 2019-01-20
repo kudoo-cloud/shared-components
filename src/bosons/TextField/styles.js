@@ -66,7 +66,7 @@ export default (theme: Theme) => ({
     width: '100%',
     fontFamily: theme.typography.font.family2,
     fontSize: 15,
-    minHeight: 30,
+    height: 30,
     border: '0px solid',
     color: 'inherit',
     '$component.error &': {

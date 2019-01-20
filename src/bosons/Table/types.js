@@ -38,6 +38,8 @@ export type TableProps = {
   cellStyler?: Function,
   /** custom cell renderer, this function is used to render custom cell **/
   cellRenderer?: Function,
+  /** loading data */
+  loading?: boolean,
   /** classes **/
   classes: Object,
 };

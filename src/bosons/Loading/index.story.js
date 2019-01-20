@@ -11,8 +11,8 @@ storiesOf('Loading', module).add(
       <Loading />
       <label>Color</label>
       <Loading color={'#f00'} />
-      <label>width & height</label>
-      <Loading width={60} height={60} />
+      <label>Size</label>
+      <Loading size={60} />
     </div>
   ))
 );
