@@ -25,6 +25,8 @@ export type DrawerProps = {
     id: string,
   }>,
   onCompanyClick: Function,
+  renderMenuItem: Function,
+  menuItems: Array,
   ...$Exact<withStylesFlowType>,
   ...$Exact<withRouterFlowType>,
 };

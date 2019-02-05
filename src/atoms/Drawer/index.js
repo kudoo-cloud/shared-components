@@ -40,6 +40,8 @@ class Drawer extends React.Component<DrawerProps, State> {
     selectedCompany: PropTypes.object,
     companies: PropTypes.arrayOf(PropTypes.object),
     onCompanyClick: PropTypes.func,
+    renderMenuItem: PropTypes.func,
+    menuItems: PropTypes.array,
   };
 
   static defaultProps = {
@@ -64,68 +66,7 @@ class Drawer extends React.Component<DrawerProps, State> {
     this.state = {
       closed: isTablet,
       userMoreClosed: true,
-      menuItems: [],
     };
-  }
-
-  get dashboardMenuItem() {
-    return {
-      icon: <i className="icon icon-dashboard" />,
-      title: 'Dashboard',
-      url: URL.DASHBOARD(),
-    };
-  }
-
-  get projectMenuItem() {
-    return {
-      icon: <i className="icon icon-projects" />,
-      title: 'Projects',
-      url: URL.PROJECTS(),
-    };
-  }
-
-  get invoicesMenuItem() {
-    return {
-      icon: <i className="icon icon-invoicing" />,
-      title: 'Invoices',
-      url: URL.INVOICES(),
-    };
-  }
-
-  get timesheetMenuItem() {
-    return {
-      icon: <i className="icon icon-timesheets" />,
-      title: 'Timesheets',
-      url: URL.TIMESHEETS(),
-    };
-  }
-
-  get customerMenuItem() {
-    return {
-      icon: <i className="icon icon-user-account" />,
-      title: 'Customers',
-      url: URL.CUSTOMERS(),
-    };
-  }
-
-  get servicesMenuItem() {
-    return {
-      icon: <i className="icon icon-timesheets" />,
-      title: 'Services',
-      url: URL.SERVICES(),
-    };
-  }
-
-  get workerMenuItem() {
-    return {
-      icon: <i className="icon icon-sales" />,
-      title: 'Workers',
-      url: URL.WORKERS(),
-    };
-  }
-
-  componentDidMount() {
-    this._updateMenuItems();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -134,46 +75,7 @@ class Drawer extends React.Component<DrawerProps, State> {
         closed: this.props.closed,
       });
     }
-    if (!isEqual(this.props.selectedCompany, prevProps.selectedCompany)) {
-      this._updateMenuItems();
-    }
   }
-
-  _updateMenuItems = () => {
-    if (isEmpty(this.props.selectedCompany)) {
-      this._setBlankMenuItem();
-    } else if (get(this.props, 'selectedCompany.owner', false)) {
-      this._setOwnerMenuItem();
-    } else {
-      this._setNormalUserMenuItem();
-    }
-  };
-
-  _setOwnerMenuItem = () => {
-    this.setState({
-      menuItems: [
-        this.dashboardMenuItem,
-        this.projectMenuItem,
-        this.invoicesMenuItem,
-        this.timesheetMenuItem,
-        this.customerMenuItem,
-        this.workerMenuItem,
-        this.servicesMenuItem,
-      ],
-    });
-  };
-
-  _setNormalUserMenuItem = () => {
-    this.setState({
-      menuItems: [this.dashboardMenuItem, this.timesheetMenuItem],
-    });
-  };
-
-  _setBlankMenuItem = () => {
-    this.setState({
-      menuItems: [],
-    });
-  };
 
   closeDrawer = () => {
     this.setState({
@@ -192,15 +94,6 @@ class Drawer extends React.Component<DrawerProps, State> {
     if (this.props.onOpen) {
       this.props.onOpen();
     }
-  };
-
-  _onClickItem = (item: any, index: number) => {};
-
-  _isActive = (url: string) => {
-    const match = matchPath(idx(this.props, _ => _.location.pathname), {
-      path: url,
-    });
-    return Boolean(match);
   };
 
   _renderHamburgerIcon() {
@@ -225,7 +118,7 @@ class Drawer extends React.Component<DrawerProps, State> {
     );
   }
 
-  _renderUser() {
+  _renderCompany() {
     let { name } = this.props.selectedCompany;
     let { classes, selectedCompany } = this.props;
     let { closed, userMoreClosed } = this.state;
@@ -294,17 +187,19 @@ class Drawer extends React.Component<DrawerProps, State> {
   }
 
   _renderItems() {
-    let { classes } = this.props;
-    return this.state.menuItems.map((item, index) => {
-      let itemClass = classNames(classes.drawerItem, {
-        active: this._isActive(item.url),
-      });
-      return (
-        <Link className={itemClass} key={index} to={item.url}>
-          <div className={classes.itemIcon}>{item.icon}</div>
-          <div className={classes.itemTitle}>{item.title}</div>
-        </Link>
+    let { classes, renderMenuItem, menuItems } = this.props;
+    return menuItems.map((item, index) => {
+      let dom = (
+        <React.Fragment>
+          <div className={classes.drawerItem} key={index}>
+            <div className={classes.itemTitle}>{item.menuItem}</div>
+          </div>
+        </React.Fragment>
       );
+      if (renderMenuItem) {
+        dom = renderMenuItem(item.menuItem);
+      }
+      return dom;
     });
   }
 
@@ -316,7 +211,7 @@ class Drawer extends React.Component<DrawerProps, State> {
         <div className={classes.upperPart}>
           {closed && this._renderHamburgerIcon()}
           {!closed && this._renderCloseIcon()}
-          {this._renderUser()}
+          {this._renderCompany()}
           {this._renderItems()}
         </div>
         <div className={classes.kudooIconWraper}>
