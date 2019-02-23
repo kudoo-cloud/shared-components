@@ -32,7 +32,6 @@ class SubscriptionCard extends React.Component<CardProps, State> {
       shortDescription,
       highlighted,
       classes,
-      onFindOutClick,
     } = this.props;
 
     let cardWrapperClass = cx(classes.root, { highlighted });
@@ -40,23 +39,14 @@ class SubscriptionCard extends React.Component<CardProps, State> {
     let cardDescClass = cx(classes.cardShortDesc, { highlighted });
     return (
       <div className={cardWrapperClass}>
-        {type && <div className={cardTypeClass}>{type}</div>}
         <div className={classes.cardInfoWrapper}>
           {price && <div className={classes.cardPrice}>{price}</div>}
           {period && <div className={classes.cardPeriod}>{period}</div>}
           {shortDescription && (
             <div className={cardDescClass}>{shortDescription}</div>
           )}
-          {/* className={classes.cardBtn} */}
-          <Button
-            title="Find out more"
-            href={onFindOutClick ? null : 'https://kudoo.io'}
-            onClick={onFindOutClick}
-            target="_blank"
-            applyBorderRadius
-            classes={{ component: classes.cardBtn, text: classes.cardBtnText }}
-          />
         </div>
+        {type && <div className={cardTypeClass}>{type}</div>}
       </div>
     );
   }

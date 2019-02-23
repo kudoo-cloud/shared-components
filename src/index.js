@@ -19,6 +19,7 @@ export { default as Footer } from './atoms/Footer';
 export { default as HeaderBar } from './atoms/HeaderBar';
 export { default as I18nLoader } from './hoc/I18nLoader';
 export { default as Jumbotron } from './nuclei/Jumbotron';
+export { default as License } from './nuclei/License';
 export { default as LinearProgressBar } from './bosons/LinearProgressBar';
 export { default as Loading } from './bosons/Loading';
 export { default as Logo } from './bosons/Logo';

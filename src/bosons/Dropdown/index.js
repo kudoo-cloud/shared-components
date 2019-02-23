@@ -57,6 +57,8 @@ class Dropdown extends React.Component<DropdownProps, State> {
     multiple: PropTypes.bool,
     /** classes  **/
     classes: PropTypes.object,
+    /** custom css  **/
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -226,6 +228,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
       disabled,
       error,
       multiple,
+      className,
     } = this.props;
     const { isOpen, selectedIndex } = this.state;
     let selectedLabel;
@@ -247,7 +250,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
     }
 
     return (
-      <div className={cx(classes.root, { error: Boolean(error) })}>
+      <div className={cx(classes.root, { error: Boolean(error) }, className)}>
         {/* Label */}
         {label && (
           <FieldLabel label={label} classes={{ label: classes.label }} />
