@@ -1,18 +1,22 @@
-/* @flow */
 import { withStylesProps } from 'components/config/types';
 export type LicenseProps = {
-  align: string,
-  lg: number,
   isConvertCurrencyBtnVisible: boolean,
   classes: any,
   currency: string,
   onConvertCurrencyDDChange: Function,
+  isVizierRepo: boolean,
+  isWebsite: boolean,
   subscriptionPrice: Array<number>,
-  subscriptionRange: Array<number>,
+  subscriptionRange: number,
   ...withStyleProps
 };
 
 export type LicenseState = {
   isConvertCurrencyDDVisible: boolean,
-  selectedCurrency: string
+  selectedCurrency: string,
+  calculatedSubscriptionPrice: Array<number>,
+  calculatedSubscriptionRange: number,
+  align: string,
+  lg: number,
+  isLoading: boolean
 };

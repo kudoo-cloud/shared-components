@@ -32,6 +32,10 @@ export const CURRENCY = [
     label: 'Danish krone',
   },
   {
+    value: 'EUR',
+    label: 'Euro',
+  },
+  {
     value: 'GBP',
     label: 'Pound sterling',
   },

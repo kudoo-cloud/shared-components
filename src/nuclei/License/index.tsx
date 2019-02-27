@@ -1,38 +1,58 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Button, Select } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
+import isEqual from 'lodash/isEqual';
 import { LicenseState, LicenseProps } from './types';
 import SubscriptionCard from '../../bosons/SubscriptionCard';
 import Dropdown from '../../bosons/Dropdown';
+import Loading from '../../bosons/Loading';
 import withStyles from 'components/hoc/withStyles';
 import styles from './styles';
 import { CURRENCY } from './currency';
+import { getCurrencyBaseAmount } from 'components/helpers';
 
 class License extends React.Component<LicenseProps, LicenseState> {
 
   static propTypes = {
     isConvertCurrencyBtnVisible: PropTypes.bool,
     onConvertCurrencyDDChange: PropTypes.func,
-    subscriptionPrice: PropTypes.array,
-    subscriptionRange: PropTypes.array,
     classes: PropTypes.any,
-    currency: PropTypes.string
+    currency: PropTypes.string,
+    isVizierRepo: PropTypes.bool,
+    isWebsite: PropTypes.bool,
+    subscriptionPrice: PropTypes.array,
+    subscriptionRange: PropTypes.number,
   };
 
   state = {
     isConvertCurrencyDDVisible: false,
-    selectedCurrency: 'USD'
+    selectedCurrency: 'USD',
+    justify: this.props.isVizierRepo ? 'flex-start' : 'center',
+    lg: this.props.isVizierRepo ? 4 : 5,
+    isLoading: false,
+    // To store value after calculation
+    calculatedSubscriptionPrice: this.props.subscriptionPrice,
+    calculatedSubscriptionRange: this.props.subscriptionRange,
   };
 
+  componentDidMount(){
+    this._handleConvertCurrencyChange(this.props.currency);
+  }
+
+  componentDidUpdate(prevProps){
+    if(!isEqual(prevProps.currency, this.props.currency)){
+      this._handleConvertCurrencyChange(this.props.currency);
+    }
+  }
+
   _renderButton() {
-    const { isConvertCurrencyBtnVisible, classes } = this.props;
+    const { isWebsite, classes, isVizierRepo } = this.props;
     const { isConvertCurrencyDDVisible } = this.state;
     return (
       <div className={classes.cardBtnWrapper}>
-        { (!isConvertCurrencyDDVisible && isConvertCurrencyBtnVisible) && (
+        { (!isVizierRepo && isWebsite && !isConvertCurrencyDDVisible) && (
             <Button
               className={classes.cardBtn}
-              // classes={classes.cardBtn}
               onClick={this._onCurrencyBtnClick}
               variant={'contained'}
             >
@@ -45,13 +65,31 @@ class License extends React.Component<LicenseProps, LicenseState> {
 
   _handleOnChange = (name, e) => {
     this.setState({
-      selectedCurrency: e.value
+      isLoading: true
     },()=>{
-      this.props.onConvertCurrencyDDChange(this.state.selectedCurrency);
+      this.props.onConvertCurrencyDDChange(e.value);
+      this._handleConvertCurrencyChange(e.value);
     });
   };
 
-  _renderDropDown() {
+  _handleConvertCurrencyChange = value => {
+    let { subscriptionPrice, subscriptionRange } = this.props;
+    let { calculatedSubscriptionRange, calculatedSubscriptionPrice } = this.state;
+    getCurrencyBaseAmount('USD', value).then(res => {
+      calculatedSubscriptionRange = Math.round(subscriptionRange * res);
+      for (let i = 0; i < subscriptionPrice.length; i++) {
+        calculatedSubscriptionPrice[i] = Math.round(subscriptionPrice[i] * res);
+      }
+      this.setState({
+        calculatedSubscriptionRange,
+        calculatedSubscriptionPrice,
+        selectedCurrency: value,
+        isLoading: false
+      });
+    });
+  };
+
+  _renderDropDown = () => {
     const { classes } = this.props;
     const { isConvertCurrencyDDVisible, selectedCurrency } = this.state;
     return (
@@ -62,12 +100,12 @@ class License extends React.Component<LicenseProps, LicenseState> {
             className={classes.currencyDropdown}
             items={CURRENCY}
             value={selectedCurrency}
-            onChange={(e)=>{this._handleOnChange("selectedCurrency", e)}}
+            onChange={(e) => { this._handleOnChange("selectedCurrency", e) } }
           />
         )}
       </div>
     )
-  }
+  };
 
   _onCurrencyBtnClick = () => {
     this.setState({
@@ -75,29 +113,42 @@ class License extends React.Component<LicenseProps, LicenseState> {
     })
   };
 
+  _renderCard = () => {
+    const { classes, currency } = this.props;
+    const { calculatedSubscriptionRange, calculatedSubscriptionPrice, justify, lg, isLoading } = this.state;
+    return (
+      <React.Fragment>
+        {isLoading ?
+        <Loading
+          color={'#000'}
+          size={200} />
+        : <Grid container spacing={40} classes={{ container: classes.container }} justify={justify}>
+            <Grid className={classes.subscriptionCardGrid} item xs={12} sm={6} md={6} lg={lg}>
+              <SubscriptionCard
+                type='FREE'
+                price={`${currency} ${calculatedSubscriptionPrice[0]}`}
+                shortDescription={`For less than ${calculatedSubscriptionRange} ${currency} on total invoice`}
+              />
+            </Grid>
+            <Grid className={classes.subscriptionCardGrid} item xs={12} sm={6} md={6} lg={lg}>
+              <SubscriptionCard
+                type='PAID'
+                price={`${currency} ${calculatedSubscriptionPrice[1]}`}
+                period='One time fee'
+                shortDescription={`For more than ${calculatedSubscriptionRange} ${currency} on total invoice`}
+              />
+            </Grid>
+          </Grid> }
+      </React.Fragment>
+    );
+  };
+
   render() {
-    const { classes, align, lg, currency, subscriptionPrice, subscriptionRange } = this.props;
     return (
       <React.Fragment>
         {this._renderButton()}
         {this._renderDropDown()}
-        <Grid container spacing={40} classes={{ container: classes.container }} justify={align}>
-          <Grid item xs={12} sm={6} md={6} lg={lg}>
-            <SubscriptionCard
-              type='FREE'
-              price={`${currency} ${subscriptionPrice[0]}`}
-              shortDescription={`For less than ${subscriptionRange[0]} ${currency} on total invoice`}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={lg}>
-            <SubscriptionCard
-              type='PAID'
-              price={`${currency} ${subscriptionPrice[1]}`}
-              period='One time fee'
-              shortDescription={`For more than ${subscriptionRange[0]} ${currency} on total invoice`}
-            />
-          </Grid>
-        </Grid>
+        {this._renderCard()}
       </React.Fragment>
     );
   }

@@ -26,4 +26,9 @@ export default theme => ({
       color: 'white',
     },
   },
+  subscriptionCardGrid: {
+    maxWidth: '450px',
+    minWidth: '450px',
+    width: '100%'
+  }
 })

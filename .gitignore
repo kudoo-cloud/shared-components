@@ -4,3 +4,4 @@ __snapshots__
 dist
 build
 .DS_Store
+.idea

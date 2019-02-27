@@ -5,6 +5,18 @@ import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import { toast } from 'react-toastify';
 import { matchPath } from 'react-router';
+import axios from 'axios';
+
+const getCurrencyBaseAmount = async (source, target) => {
+  return await axios
+    .get(`https://api.exchangeratesapi.io/latest?base=${source}`)
+    .then(response => {
+      return response.data.rates[target];
+    })
+    .catch(() => {
+      return 0;
+    });
+};
 
 let validateABN = (ABNNumber: any = '') => {
   let _ABNNumber = ABNNumber.replace(/ /g, '').toString() || '';
@@ -143,6 +155,7 @@ const numberWithCommas = (x = '') => {
 };
 
 const utils = {
+  getCurrencyBaseAmount,
   validateABN,
   mobileAndTabletcheck,
   isURLMatching,
@@ -156,6 +169,7 @@ const utils = {
   numberWithCommas,
 };
 export {
+  getCurrencyBaseAmount,
   validateABN,
   mobileAndTabletcheck,
   isURLMatching,

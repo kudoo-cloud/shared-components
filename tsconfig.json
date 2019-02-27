@@ -4,8 +4,15 @@
     "target": "es6",
     "sourceMap": true,
     "jsx": "react",
-    "esModuleInterop": true
-  },
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "shared/*": ["./*"],
+      "components/*": ["./src/*"],
+      "images/*": ["../assets/images/*"]
+    }
+  }
+  ,
   "exclude": [
     "node_modules"
   ]
