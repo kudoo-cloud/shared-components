@@ -9,7 +9,7 @@ import styles from './styles';
 const Loading = (props: LoadingProps) => {
   return (
     <ErrorBoundary>
-      <div className={props.classes.component}>
+      <div className={props.classes.component + props.className}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={props.size}
@@ -251,6 +251,7 @@ Loading.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
   classes: PropTypes.object,
+  className: PropTypes.object,
 };
 
 Loading.defaultProps = {

@@ -18,5 +18,6 @@ export type LicenseState = {
   calculatedSubscriptionRange: number,
   align: string,
   lg: number,
-  isLoading: boolean
+  isLoading: boolean,
+  component: any,
 };

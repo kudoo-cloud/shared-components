@@ -33,6 +33,9 @@ class License extends React.Component<LicenseProps, LicenseState> {
     // To store value after calculation
     calculatedSubscriptionPrice: this.props.subscriptionPrice,
     calculatedSubscriptionRange: this.props.subscriptionRange,
+    component:{
+      justifyContent: this.props.isVizierRepo ? 'flex-start' : 'center',
+    }
   };
 
   componentDidMount(){
@@ -64,29 +67,29 @@ class License extends React.Component<LicenseProps, LicenseState> {
   }
 
   _handleOnChange = (name, e) => {
-    this.setState({
-      isLoading: true
-    },()=>{
-      this.props.onConvertCurrencyDDChange(e.value);
-      this._handleConvertCurrencyChange(e.value);
-    });
+    this.props.onConvertCurrencyDDChange(e.value);
+    this._handleConvertCurrencyChange(e.value);
   };
 
   _handleConvertCurrencyChange = value => {
-    let { subscriptionPrice, subscriptionRange } = this.props;
-    let { calculatedSubscriptionRange, calculatedSubscriptionPrice } = this.state;
-    getCurrencyBaseAmount('USD', value).then(res => {
-      calculatedSubscriptionRange = Math.round(subscriptionRange * res);
-      for (let i = 0; i < subscriptionPrice.length; i++) {
-        calculatedSubscriptionPrice[i] = Math.round(subscriptionPrice[i] * res);
-      }
-      this.setState({
-        calculatedSubscriptionRange,
-        calculatedSubscriptionPrice,
-        selectedCurrency: value,
-        isLoading: false
+    this.setState({
+        isLoading: true
+      }, () => {
+      let { subscriptionPrice, subscriptionRange } = this.props;
+      let { calculatedSubscriptionRange, calculatedSubscriptionPrice } = this.state;
+      getCurrencyBaseAmount('USD', value).then(res => {
+        calculatedSubscriptionRange = Math.round(subscriptionRange * res);
+        for (let i = 0; i < subscriptionPrice.length; i++) {
+          calculatedSubscriptionPrice[i] = Math.round(subscriptionPrice[i] * res);
+        }
+        this.setState({
+          calculatedSubscriptionRange,
+          calculatedSubscriptionPrice,
+          selectedCurrency: value,
+          isLoading: false
+        });
       });
-    });
+    })
   };
 
   _renderDropDown = () => {
@@ -115,13 +118,15 @@ class License extends React.Component<LicenseProps, LicenseState> {
 
   _renderCard = () => {
     const { classes, currency } = this.props;
-    const { calculatedSubscriptionRange, calculatedSubscriptionPrice, justify, lg, isLoading } = this.state;
+    const { calculatedSubscriptionRange, calculatedSubscriptionPrice, justify, lg, isLoading, component } = this.state;
     return (
       <React.Fragment>
         {isLoading ?
         <Loading
           color={'#000'}
-          size={200} />
+          size={200}
+          className={component}
+        />
         : <Grid container spacing={40} classes={{ container: classes.container }} justify={justify}>
             <Grid className={classes.subscriptionCardGrid} item xs={12} sm={6} md={6} lg={lg}>
               <SubscriptionCard
