@@ -45,10 +45,7 @@ class CardSection extends React.Component<Props> {
             Card number
             <CardNumberElement
               className={classes.cardInput}
-              onBlur={handleBlur}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onReady={handleReady}
               {...createOptions(this.props.fontSize, '15px')}
             />
           </label>

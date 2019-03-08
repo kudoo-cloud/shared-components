@@ -66,6 +66,9 @@ export default {
     '/company/settings/:companyId/integrations'
   ),
 
+  //DataImport
+  DATAIMPORT: abstractURL('/dataImport'),
+
   // Projects
   PROJECTS: abstractURL('/projects'),
   PROJECT_CREATE: abstractURL('/project/create'),
