@@ -10,6 +10,7 @@ import withStyles from 'components/hoc/withStyles';
 import styles from './styles';
 import { CURRENCY } from './currency';
 import { getCurrencyBaseAmount } from 'components/helpers';
+import Dinero from 'dinero.js';
 
 class License extends React.Component<LicenseProps, LicenseState> {
 
@@ -119,6 +120,9 @@ class License extends React.Component<LicenseProps, LicenseState> {
   _renderCard = () => {
     const { classes, currency } = this.props;
     const { calculatedSubscriptionRange, calculatedSubscriptionPrice, justify, lg, isLoading, component } = this.state;
+    const subscriptionPriceFree = Dinero({ amount: calculatedSubscriptionPrice[0] * 100, currency: currency }).toFormat('$0,0');
+    const subscriptionPricePaid = Dinero({ amount: calculatedSubscriptionPrice[1] * 100, currency: currency }).toFormat('$0,0');
+    const subscriptionRange = Dinero({ amount: calculatedSubscriptionRange * 100, currency: currency }).toFormat('$0,0');
     return (
       <React.Fragment>
         {isLoading ?
@@ -131,16 +135,16 @@ class License extends React.Component<LicenseProps, LicenseState> {
             <Grid className={classes.subscriptionCardGrid} item xs={12} sm={6} md={6} lg={lg}>
               <SubscriptionCard
                 type='FREE'
-                price={`${currency} ${calculatedSubscriptionPrice[0]}`}
-                shortDescription={`For less than ${calculatedSubscriptionRange} ${currency} on total invoice`}
+                price={subscriptionPriceFree}
+                shortDescription={`For less than ${subscriptionRange} on total invoice`}
               />
             </Grid>
             <Grid className={classes.subscriptionCardGrid} item xs={12} sm={6} md={6} lg={lg}>
               <SubscriptionCard
                 type='PAID'
-                price={`${currency} ${calculatedSubscriptionPrice[1]}`}
+                price={subscriptionPricePaid}
                 period='One time fee'
-                shortDescription={`For more than ${calculatedSubscriptionRange} ${currency} on total invoice`}
+                shortDescription={`For more than ${subscriptionRange} on total invoice`}
               />
             </Grid>
           </Grid> }
