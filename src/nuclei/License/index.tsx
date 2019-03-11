@@ -136,7 +136,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
               <SubscriptionCard
                 type='FREE'
                 price={subscriptionPriceFree}
-                shortDescription={`For less than ${subscriptionRange} on total invoice`}
+                shortDescription={`Kudoo operates on a pay per usage model. If you use Kudoo to invoice for less than ${subscriptionRange} then Kudoo will be free`}
               />
             </Grid>
             <Grid className={classes.subscriptionCardGrid} item xs={12} sm={6} md={6} lg={lg}>
@@ -144,7 +144,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
                 type='PAID'
                 price={subscriptionPricePaid}
                 period='One time fee'
-                shortDescription={`For more than ${subscriptionRange} on total invoice`}
+                shortDescription={`If you Invoice your customers for more than ${subscriptionRange} through Kudoo you will be charged a one off fee`}
               />
             </Grid>
           </Grid> }
