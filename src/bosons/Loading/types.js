@@ -6,4 +6,5 @@ export type LoadingProps = {
   size?: number,
   /** classse **/
   classes: Object,
+  className: Object,
 };
