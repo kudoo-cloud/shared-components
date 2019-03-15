@@ -1,6 +1,6 @@
 {
   "name": "@kudoo/components",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Shared React components across Kudoo",
   "main": "build/index.js",
   "scripts": {
@@ -44,7 +44,7 @@
     "faker": "^4.1.0",
     "flow": "^0.2.3",
     "formik": "^0.11.11",
-    "idx": "^2.2.0",
+    "idx": "^2.5.4",
     "jquery": "^3.2.1",
     "lodash": "^4.17.11",
     "lodash.filter": "^4.6.0",
