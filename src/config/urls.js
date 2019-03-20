@@ -159,6 +159,11 @@ export default {
 
   //Ledger
   LEDGER: abstractURL('/ledger'),
+  LEDGER_POSTINGS: abstractURL('/ledger/ledgerPostings'),
+  LEDGER_MAIN_ACCOUNTS: abstractURL('/ledger/mainAccounts'),
+  LEDGER_JOURNALS: abstractURL('/ledger/journals'),
+  CREATE_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/create'),
+  CREATE_MAIN_ACCOUNT: abstractURL('/ledger/mainAccounts/create'),
 
   //Banking
   BANKING: abstractURL('/banking'),
@@ -181,5 +186,4 @@ export default {
 
   //Inventory
   INVENTORY: abstractURL('/inventory'),
-
 };

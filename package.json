@@ -1,6 +1,6 @@
 {
   "name": "@kudoo/components",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Shared React components across Kudoo",
   "main": "build/index.js",
   "scripts": {
