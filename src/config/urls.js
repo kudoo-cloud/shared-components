@@ -66,9 +66,6 @@ export default {
     '/company/settings/:companyId/integrations'
   ),
 
-  //DataImport
-  DATAIMPORT: abstractURL('/dataImport'),
-
   // Projects
   PROJECTS: abstractURL('/projects'),
   PROJECT_CREATE: abstractURL('/project/create'),
@@ -154,4 +151,39 @@ export default {
 
   INTEGRATION_LOGIN: abstractURL('/integrations'),
   INTEGRATION_CHOOSE_COMPANY: abstractURL('/integrations/:type/choose'),
+
+  //======================Finance=====================//
+
+  //DataImport
+  DATAIMPORT: abstractURL('/dataImport'),
+
+  //Ledger
+  LEDGER: abstractURL('/ledger'),
+  LEDGER_POSTINGS: abstractURL('/ledger/ledgerPostings'),
+  LEDGER_MAIN_ACCOUNTS: abstractURL('/ledger/mainAccounts'),
+  LEDGER_JOURNALS: abstractURL('/ledger/journals'),
+  CREATE_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/create'),
+  CREATE_MAIN_ACCOUNT: abstractURL('/ledger/mainAccounts/create'),
+
+  //Banking
+  BANKING: abstractURL('/banking'),
+
+  //Assets
+  ASSETS: abstractURL('/assets'),
+
+  //======================Health=====================//
+
+  //Patients
+  PATIENTS: abstractURL('/patients'),
+
+  //HealthcareProviders
+  HEALTH_CARE_PROVIDERS: abstractURL('/healthCareProviders'),
+
+  //======================Inventory=====================//
+
+  //Suppliers
+  SUPPLIERS: abstractURL('/suppliers'),
+
+  //Inventory
+  INVENTORY: abstractURL('/inventory'),
 };
