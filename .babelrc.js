@@ -3,6 +3,7 @@ let presets = [
   '@babel/preset-react',
   '@babel/preset-flow',
   '@lingui/babel-preset-react',
+  '@babel/preset-typescript',
 ];
 let plugins = [
   '@babel/plugin-proposal-class-properties',
@@ -10,6 +11,8 @@ let plugins = [
   '@babel/plugin-syntax-dynamic-import',
   '@babel/plugin-syntax-import-meta',
   '@babel/plugin-proposal-json-strings',
+  '@babel/plugin-proposal-object-rest-spread',
+  '@babel/plugin-transform-spread',
   ['@babel/plugin-proposal-decorators', { legacy: true }],
   'import-md-to-js',
   [
@@ -18,8 +21,8 @@ let plugins = [
       root: ['.'],
       alias: {
         components: './src',
-				shared: '.',
-				images: './src/assets/images'
+        shared: '.',
+        images: './src/assets/images',
       },
     },
   ],

@@ -170,6 +170,9 @@ export default {
 
   //Assets
   ASSETS: abstractURL('/assets'),
+  ASSET_GROUPS: abstractURL('/asset-groups'),
+  CREATE_ASSET: abstractURL('/assets/create'),
+  CREATE_ASSET_GROUP: abstractURL('/asset-groups/create'),
 
   //======================Health=====================//
 

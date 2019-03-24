@@ -257,6 +257,7 @@ Loading.propTypes = {
 Loading.defaultProps = {
   size: 40,
   color: '#337ab7',
+  className: '',
 };
 
 export default withStyles(styles)(Loading);

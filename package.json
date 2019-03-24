@@ -8,7 +8,7 @@
     "storybook": "cross-env ENV=storybook start-storybook -p 6006",
     "build": "cross-env ENV=storybook build-storybook",
     "copy-files": "copyfiles ./src/assets/**/* ./src/config/theme/css/fonts/**/* ./src/config/theme/css/*.scss ./src/config/theme/css/*.css  ./build -u 1",
-    "babel": "rm -rf build && babel ./src --out-dir build && npm run copy-files",
+    "babel": "rm -rf build && babel ./src --extensions \".ts,.tsx,.js,.jsx\" --out-dir build && npm run copy-files",
     "prepublishOnly": "npm run babel"
   },
   "keywords": [
@@ -83,6 +83,7 @@
     "@babel/plugin-proposal-function-sent": "^7.0.0",
     "@babel/plugin-proposal-json-strings": "^7.0.0",
     "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
@@ -90,10 +91,12 @@
     "@babel/plugin-transform-modules-commonjs": "^7.0.0",
     "@babel/plugin-transform-regenerator": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/plugin-transform-spread": "^7.2.2",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@storybook/addon-actions": "^3.4.0",
     "@storybook/addon-info": "^3.4.0",
     "@storybook/addon-links": "^3.4.0",
@@ -135,6 +138,7 @@
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
+    "typescript": "^3.3.4000",
     "url-loader": "^0.6.2"
   },
   "resolutions": {
