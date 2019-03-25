@@ -1,22 +1,22 @@
 export const POSTING_TYPES = [
   {
-    value: 'DRCONTROL',
-    label: 'DRCONTROL',
+    value: "DRCONTROL",
+    label: "DRCONTROL",
   },
   {
-    value: 'BANK',
-    label: 'BANK',
+    value: "BANK",
+    label: "BANK",
   },
   {
-    value: 'REVENUE',
-    label: 'REVENUE',
+    value: "REVENUE",
+    label: "REVENUE",
   },
   {
-    value: 'TAXPAYABLE',
-    label: 'TAXPAYABLE',
+    value: "TAXPAYABLE",
+    label: "TAXPAYABLE",
   },
   {
-    value: 'TAXRECEIVABLE',
-    label: 'TAXRECEIVABLE',
+    value: "TAXRECEIVABLE",
+    label: "TAXRECEIVABLE",
   }
 ];

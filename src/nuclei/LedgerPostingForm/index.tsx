@@ -1,14 +1,12 @@
 import * as React from "react";
 import { LedgerPostingFormProps } from "./types";
-// import cx from 'classnames';
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import withStyles from "components/hoc/withStyles";
 import ErrorBoundary from "components/hoc/ErrorBoundary";
 import styles from "./styles";
-import Dropdown from '../../bosons/Dropdown';
-import { POSTING_TYPES } from './postingTypes';
-import { MAIN_ACCOUNT_TYPES } from "shared/src/nuclei/MainAccountForm/mainAccountTypes";
+import Dropdown from "../../bosons/Dropdown";
+import { POSTING_TYPES } from "./postingTypes";
 type State = {};
 
 class LedgerPostingForm extends React.Component<LedgerPostingFormProps, State> {
@@ -16,13 +14,12 @@ class LedgerPostingForm extends React.Component<LedgerPostingFormProps, State> {
     keys: PropTypes.shape({
       postingType: PropTypes.string,
       mainAccount_id: PropTypes.string,
-      mainAccount_type: PropTypes.string,
     }),
     labels: PropTypes.shape({
       postingType: PropTypes.string,
       mainAccount_id: PropTypes.string,
-      mainAccount_type: PropTypes.string,
     }),
+    mainAccounts: PropTypes.array,
     values: PropTypes.object, // coming from formik
     errors: PropTypes.object, // coming from formik
     touched: PropTypes.object, // coming from formik
@@ -37,12 +34,10 @@ class LedgerPostingForm extends React.Component<LedgerPostingFormProps, State> {
     keys: {
       postingType: "postingType",
       mainAccount_id: "mainAccount_id",
-      mainAccount_type: "mainAccount_type",
     },
     labels: {
       postingType: "Posting Type",
       mainAccount_id: "Main Account",
-      mainAccount_type: "Main Account Type",
     }
   };
 
@@ -52,12 +47,11 @@ class LedgerPostingForm extends React.Component<LedgerPostingFormProps, State> {
       keys,
       labels,
       values,
-      handleChange,
-      handleBlur,
       errors,
       touched,
       setFieldValue,
-      setFieldTouched
+      setFieldTouched,
+      mainAccounts
     } = this.props;
     return (
       <ErrorBoundary>
@@ -78,15 +72,15 @@ class LedgerPostingForm extends React.Component<LedgerPostingFormProps, State> {
             </Grid>
             <Grid item xs={12}>
               <Dropdown
-                label={labels.mainAccount_type}
+                label={labels.mainAccount_id}
                 placeholder={"Select Type"}
-                name={keys.mainAccount_type}
-                id={keys.mainAccount_type}
-                items={MAIN_ACCOUNT_TYPES}
-                value={values[keys.mainAccount_type]}
-                onChange={e => setFieldValue(keys.mainAccount_type, e.value)}
-                onClose={() => setFieldTouched(keys.mainAccount_type)}
-                error={touched[keys.mainAccount_type] && errors[keys.mainAccount_type]}
+                name={keys.mainAccount_id}
+                id={keys.mainAccount_id}
+                items={mainAccounts.length ? mainAccounts : [{ value: '', label: 'No account found for this company. Please create Main Account first' }]}
+                value={values[keys.mainAccount_id]}
+                onChange={e => setFieldValue(keys.mainAccount_id, e.value)}
+                onClose={() => setFieldTouched(keys.mainAccount_id)}
+                error={touched[keys.mainAccount_id] && errors[keys.mainAccount_id]}
               />
             </Grid>
           </Grid>

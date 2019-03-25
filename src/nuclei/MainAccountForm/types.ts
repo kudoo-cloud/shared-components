@@ -17,5 +17,5 @@ export type MainAccountFormProps = {
   setFieldValue: Function,
   setFieldTouched: Function,
   /** classse **/
-  classes: Object,
+  classes: any,
 };
