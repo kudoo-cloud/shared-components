@@ -159,11 +159,13 @@ export default {
 
   //Ledger
   LEDGER: abstractURL('/ledger'),
-  LEDGER_POSTINGS: abstractURL('/ledger/ledgerPostings'),
   LEDGER_MAIN_ACCOUNTS: abstractURL('/ledger/mainAccounts'),
-  LEDGER_JOURNALS: abstractURL('/ledger/journals'),
-  CREATE_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/create'),
   CREATE_MAIN_ACCOUNT: abstractURL('/ledger/mainAccounts/create'),
+  EDIT_MAIN_ACCOUNT: abstractURL('/ledger/mainAccounts/:id/edit'),
+  LEDGER_POSTINGS: abstractURL('/ledger/ledgerPostings'),
+  CREATE_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/create'),
+  EDIT_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/:id/edit'),
+  LEDGER_JOURNALS: abstractURL('/ledger/journals'),
 
   //Banking
   BANKING: abstractURL('/banking'),
