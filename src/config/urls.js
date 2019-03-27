@@ -164,6 +164,8 @@ export default {
   LEDGER_JOURNALS: abstractURL('/ledger/journals'),
   CREATE_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/create'),
   CREATE_MAIN_ACCOUNT: abstractURL('/ledger/mainAccounts/create'),
+  EDIT_MAIN_ACCOUNT: abstractURL('/ledger/mainAccounts/:id/edit'),
+  EDIT_LEDGER_POSTING: abstractURL('/ledger/ledgerPostings/:id/edit'),
 
   //Banking
   BANKING: abstractURL('/banking'),
