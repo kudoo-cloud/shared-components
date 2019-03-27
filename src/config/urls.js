@@ -191,4 +191,6 @@ export default {
 
   //Inventory
   INVENTORY: abstractURL('/inventory'),
+  CREATE_INVENTORY: abstractURL('/inventory/create'),
+  EDIT_INVENTORY: abstractURL('/inventory/:id/edit'),
 };
