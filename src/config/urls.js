@@ -152,6 +152,11 @@ export default {
   INTEGRATION_LOGIN: abstractURL('/integrations'),
   INTEGRATION_CHOOSE_COMPANY: abstractURL('/integrations/:type/choose'),
 
+  //Warehouse
+  WAREHOUSE: abstractURL('/warehouse'),
+  CREATE_WAREHOUSE: abstractURL('/warehouse/create'),
+  EDIT_WAREHOUSE: abstractURL('/warehouse/:id/edit'),
+
   //======================Finance=====================//
 
   //DataImport
@@ -171,12 +176,19 @@ export default {
   BANKING: abstractURL('/banking'),
   BANKING_BANK_ACCOUNT: abstractURL('/banking/bankAccount'),
   BANKING_BANK_TRANSACTIONS: abstractURL('/banking/bankTransactions'),
+  CREATE_BANK_TRANSACTIONS: abstractURL('/banking/bankTransactions/create'),
+  EDIT_BANK_TRANSACTIONS: abstractURL('/banking/bankTransactions/:id/edit'),
 
   //Assets
   ASSETS: abstractURL('/assets'),
   ASSET_GROUPS: abstractURL('/asset-groups'),
   CREATE_ASSET: abstractURL('/assets/create'),
   CREATE_ASSET_GROUP: abstractURL('/asset-groups/create'),
+
+  //Reporting
+  REPORTING: abstractURL('/reporting'),
+  REPORTING_PROFIT_AND_LOSS: abstractURL('/reporting/profitAndLoss'),
+  REPORTING_BALANCE_SHEET: abstractURL('/reporting/balanceSheet'),
 
   //======================Health=====================//
 
