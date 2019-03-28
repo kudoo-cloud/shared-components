@@ -169,6 +169,8 @@ export default {
 
   //Banking
   BANKING: abstractURL('/banking'),
+  BANKING_BANK_ACCOUNT: abstractURL('/banking/bankAccount'),
+  BANKING_BANK_TRANSACTIONS: abstractURL('/banking/bankTransactions'),
 
   //Assets
   ASSETS: abstractURL('/assets'),
