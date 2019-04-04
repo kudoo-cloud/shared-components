@@ -211,4 +211,9 @@ export default {
   INVENTORY: abstractURL('/inventory'),
   CREATE_INVENTORY: abstractURL('/inventory/create'),
   EDIT_INVENTORY: abstractURL('/inventory/:id/edit'),
+
+  //SalesOrder
+  SALES_ORDER: abstractURL('/salesOrder'),
+  CREATE_SALES_ORDER: abstractURL('/salesOrder/create'),
+  EDIT_SALES_ORDER: abstractURL('/salesOrder/:id/edit'),
 };
