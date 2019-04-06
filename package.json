@@ -10,7 +10,7 @@
 		"copy-files": "copyfiles ./src/assets/**/* ./src/config/theme/css/fonts/**/* ./src/config/theme/css/*.scss ./src/config/theme/css/*.css  ./build -u 1",
 		"babel": "rm -rf build && babel ./src --extensions \".ts,.tsx,.js,.jsx\" --out-dir build && npm run copy-files",
 		"prepublishOnly": "npm run babel",
-		"postversion": "auto-changelog && git add CHANGELOG.md",
+		"version": "auto-changelog && git add CHANGELOG.md",
 		"release": "np --yolo --no-yarn"
 	},
 	"keywords": [
