@@ -152,7 +152,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
     return (
       <React.Fragment>
         {isLoading ? (
-          <Loading color={"#000"} size={200} className={component} />
+          <Loading color={"#000"} size={200} classes={{ component }} />
         ) : (
           <Grid
             container
