@@ -10,13 +10,13 @@ export default theme => ({
   prevNextWrapper: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   prevNextButton: {
     width: 230,
     margin: '0px 10px',
   },
-  mainDiv:{
+  mainDiv: {
     height: 'calc(100vh - 340px)',
     overflowY: 'auto',
   },
@@ -51,5 +51,4 @@ export default theme => ({
     padding: '20px 10px',
     textAlign: 'center',
   },
-
 });

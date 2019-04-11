@@ -1,16 +1,16 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
-import isEqual from "lodash/isEqual";
-import { LicenseState, LicenseProps } from "./types";
-import SubscriptionCard from "../../bosons/SubscriptionCard";
-import Dropdown from "../../bosons/Dropdown";
-import Loading from "../../bosons/Loading";
-import withStyles from "components/hoc/withStyles";
-import styles from "./styles";
-import { CURRENCY } from "./currency";
-import { getCurrencyBaseAmount } from "components/helpers";
-import Dinero from "dinero.js";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Grid, Button } from '@material-ui/core';
+import isEqual from 'lodash/isEqual';
+import { LicenseState, LicenseProps } from './types';
+import SubscriptionCard from '../../bosons/SubscriptionCard';
+import Dropdown from '../../bosons/Dropdown';
+import Loading from '../../bosons/Loading';
+import withStyles from 'components/hoc/withStyles';
+import styles from './styles';
+import { CURRENCY } from './currency';
+import { getCurrencyBaseAmount } from 'components/helpers';
+import Dinero from 'dinero.js';
 
 class License extends React.Component<LicenseProps, LicenseState> {
   static propTypes = {
@@ -21,21 +21,21 @@ class License extends React.Component<LicenseProps, LicenseState> {
     isVizierRepo: PropTypes.bool,
     isWebsite: PropTypes.bool,
     subscriptionPrice: PropTypes.array,
-    subscriptionRange: PropTypes.number
+    subscriptionRange: PropTypes.number,
   };
 
   state = {
     isConvertCurrencyDDVisible: false,
-    selectedCurrency: "USD",
-    justify: this.props.isVizierRepo ? "flex-start" : "center",
+    selectedCurrency: 'USD',
+    justify: this.props.isVizierRepo ? 'flexStart' : 'center',
     lg: this.props.isVizierRepo ? 4 : 5,
     isLoading: false,
     // To store value after calculation
     calculatedSubscriptionPrice: this.props.subscriptionPrice,
     calculatedSubscriptionRange: this.props.subscriptionRange,
     component: {
-      justifyContent: this.props.isVizierRepo ? "flex-start" : "center"
-    }
+      justifyContent: this.props.isVizierRepo ? 'flexStart' : 'center',
+    },
   };
 
   componentDidMount() {
@@ -59,7 +59,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
             <Button
               className={classes.cardBtn}
               onClick={this._onCurrencyBtnClick}
-              variant={"contained"}>
+              variant={'contained'}>
               Convert Currency
             </Button>
           )}
@@ -75,15 +75,15 @@ class License extends React.Component<LicenseProps, LicenseState> {
   _handleConvertCurrencyChange = value => {
     this.setState(
       {
-        isLoading: true
+        isLoading: true,
       },
       () => {
         let { subscriptionPrice, subscriptionRange } = this.props;
         let {
           calculatedSubscriptionRange,
-          calculatedSubscriptionPrice
+          calculatedSubscriptionPrice,
         } = this.state;
-        getCurrencyBaseAmount("USD", value).then(res => {
+        getCurrencyBaseAmount('USD', value).then(res => {
           calculatedSubscriptionRange = Math.round(subscriptionRange * res);
           for (let i = 0; i < subscriptionPrice.length; i++) {
             calculatedSubscriptionPrice[i] = Math.round(
@@ -94,7 +94,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
             calculatedSubscriptionRange,
             calculatedSubscriptionPrice,
             selectedCurrency: value,
-            isLoading: false
+            isLoading: false,
           });
         });
       }
@@ -113,7 +113,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
             items={CURRENCY}
             value={selectedCurrency}
             onChange={e => {
-              this._handleOnChange("selectedCurrency", e);
+              this._handleOnChange('selectedCurrency', e);
             }}
           />
         )}
@@ -123,7 +123,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
 
   _onCurrencyBtnClick = () => {
     this.setState({
-      isConvertCurrencyDDVisible: true
+      isConvertCurrencyDDVisible: true,
     });
   };
 
@@ -135,24 +135,24 @@ class License extends React.Component<LicenseProps, LicenseState> {
       justify,
       lg,
       isLoading,
-      component
+      component,
     } = this.state;
     const subscriptionPriceFree = Dinero({
       amount: calculatedSubscriptionPrice[0] * 100,
-      currency: currency
-    }).toFormat("$0,0");
+      currency: currency,
+    }).toFormat('$0,0');
     const subscriptionPricePaid = Dinero({
       amount: calculatedSubscriptionPrice[1] * 100,
-      currency: currency
-    }).toFormat("$0,0");
+      currency: currency,
+    }).toFormat('$0,0');
     const subscriptionRange = Dinero({
       amount: calculatedSubscriptionRange * 100,
-      currency: currency
-    }).toFormat("$0,0");
+      currency: currency,
+    }).toFormat('$0,0');
     return (
       <React.Fragment>
         {isLoading ? (
-          <Loading color={"#000"} size={200} classes={{ component }} />
+          <Loading color={'#000'} size={200} classes={component} />
         ) : (
           <Grid
             container
