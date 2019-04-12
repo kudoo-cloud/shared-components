@@ -185,9 +185,9 @@ export default {
   ASSETS: abstractURL('/assets'),
   ASSET_GROUPS: abstractURL('/assets/asset-groups'),
   CREATE_ASSET: abstractURL('/assets/create'),
-	CREATE_ASSET_GROUP: abstractURL('/asset-groups/create'),
-	EDIT_ASSET: abstractURL('/assets/:id/edit'),
-	EDIT_ASSET_GROUP: abstractURL('/asset-groups/:id/edit'),
+  CREATE_ASSET_GROUP: abstractURL('/asset-groups/create'),
+  EDIT_ASSET: abstractURL('/assets/:id/edit'),
+  EDIT_ASSET_GROUP: abstractURL('/asset-groups/:id/edit'),
 
   //Reporting
   REPORTING: abstractURL('/reporting'),
@@ -206,14 +206,37 @@ export default {
 
   //Suppliers
   SUPPLIERS: abstractURL('/suppliers'),
+  CREATE_SUPPLIERS: abstractURL('/suppliers/create'),
+  EDIT_SUPPLIERS: abstractURL('/suppliers/:id/edit'),
 
   //Inventory
   INVENTORY: abstractURL('/inventory'),
   CREATE_INVENTORY: abstractURL('/inventory/create'),
   EDIT_INVENTORY: abstractURL('/inventory/:id/edit'),
 
+  //Sales
+  SALES: abstractURL('/sales'),
+
   //SalesOrder
   SALES_ORDER: abstractURL('/salesOrder'),
   CREATE_SALES_ORDER: abstractURL('/salesOrder/create'),
   EDIT_SALES_ORDER: abstractURL('/salesOrder/:id/edit'),
+
+  //PurchaseOrder
+  PURCHASE_ORDER: abstractURL('/purchaseOrder'),
+  CREATE_PURCHASE_ORDER: abstractURL('/purchaseOrder/create'),
+  EDIT_PURCHASE_ORDER: abstractURL('/purchaseOrder/:id/edit'),
+
+  //PBS
+  PBS: abstractURL('/pbs'),
+
+  //Manufacturers
+  MANUFACTURERS: abstractURL('/manufacturers'),
+  CREATE_MANUFACTURER: abstractURL('/manufacturers/create'),
+  EDIT_MANUFACTURER: abstractURL('/manufacturers/:id/edit'),
+
+  //Drugs
+  DRUGS: abstractURL('/drugs'),
+  CREATE_DRUGS: abstractURL('/drugs/create'),
+  EDIT_DRUGS: abstractURL('/drugs/:id/edit'),
 };
