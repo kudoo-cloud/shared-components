@@ -218,9 +218,9 @@ export default {
   SALES: abstractURL('/sales'),
 
   //SalesOrder
-  SALES_ORDER: abstractURL('/salesOrder'),
-  CREATE_SALES_ORDER: abstractURL('/salesOrder/create'),
-  EDIT_SALES_ORDER: abstractURL('/salesOrder/:id/edit'),
+  SALES_ORDER: abstractURL('/sales/salesOrder'),
+  CREATE_SALES_ORDER: abstractURL('/sales/salesOrder/create'),
+  EDIT_SALES_ORDER: abstractURL('/sales/salesOrder/:id/edit'),
 
   //PurchaseOrder
   PURCHASE_ORDER: abstractURL('/purchaseOrder'),
@@ -231,12 +231,12 @@ export default {
   PBS: abstractURL('/pbs'),
 
   //Manufacturers
-  MANUFACTURERS: abstractURL('/manufacturers'),
-  CREATE_MANUFACTURER: abstractURL('/manufacturers/create'),
-  EDIT_MANUFACTURER: abstractURL('/manufacturers/:id/edit'),
+  MANUFACTURERS: abstractURL('/pbs/manufacturers'),
+  CREATE_MANUFACTURER: abstractURL('/pbs/manufacturers/create'),
+  EDIT_MANUFACTURER: abstractURL('/pbs/manufacturers/:id/edit'),
 
   //Drugs
-  DRUGS: abstractURL('/drugs'),
-  CREATE_DRUGS: abstractURL('/drugs/create'),
-  EDIT_DRUGS: abstractURL('/drugs/:id/edit'),
+  DRUGS: abstractURL('/pbs/drugs'),
+  CREATE_DRUGS: abstractURL('/pbs/drugs/create'),
+  EDIT_DRUGS: abstractURL('/pbs/drugs/:id/edit'),
 };
