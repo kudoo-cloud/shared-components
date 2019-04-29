@@ -223,9 +223,17 @@ export default {
   EDIT_SALES_ORDER: abstractURL('/sales/salesOrder/:id/edit'),
 
   //PurchaseOrder
-  PURCHASE_ORDER: abstractURL('/purchaseOrder'),
-  CREATE_PURCHASE_ORDER: abstractURL('/purchaseOrder/create'),
-  EDIT_PURCHASE_ORDER: abstractURL('/purchaseOrder/:id/edit'),
+  PURCHASE_ORDER: abstractURL('/po'),
+
+  //Non PBS Purchase Order
+  NON_PBS_PURCHASE_ORDER: abstractURL('/po/purchaseOrder'),
+  CREATE_NON_PBS_PURCHASE_ORDER: abstractURL('/po/purchaseOrder/create'),
+  EDIT_NON_PBS_PURCHASE_ORDER: abstractURL('/po/purchaseOrder/:id/edit'),
+
+  //PBS Purchase Order
+  PBS_PURCHASE_ORDER: abstractURL('/po/pbsPurchaseOrder'),
+  CREATE_PBS_PURCHASE_ORDER: abstractURL('/po/pbsPurchaseOrder/create'),
+  EDIT_PBS_PURCHASE_ORDER: abstractURL('/po/pbsPurchaseOrder/:id/edit'),
 
   //PBS
   PBS: abstractURL('/pbs'),
