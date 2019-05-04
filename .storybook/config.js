@@ -23,8 +23,7 @@ const MyJssProvider = storyFn => (
 addDecorator(MyJssProvider);
 
 function loadStories() {
-  const req = require.context('../src', true, /\.story\.js$/);
-  console.log(req);
+  const req = require.context('../src', true, /\.story\.(js|tsx)?.*$/);
   requireAll(req);
 }
 

@@ -1,17 +1,15 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import withStyles from 'components/hoc/withStyles';
-import ErrorBoundary from 'components/hoc/ErrorBoundary';
-import { type withStylesFlowType, withStylesProps } from 'components/config/types';
-import styles from './styles';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import withStyles from "components/hoc/withStyles";
+import ErrorBoundary from "components/hoc/ErrorBoundary";
+import { withStylesProps } from "components/config/types";
+import styles, { StyleKeys } from "./styles";
 
-type Props = {
-  ...$Exact<withStylesFlowType>,
-};
+type Props = IComponentProps<StyleKeys> & {};
 
 class Footer extends React.Component<Props, any> {
   static propTypes = {
-    ...withStylesProps,
+    ...withStylesProps
   };
 
   render() {
@@ -41,22 +39,22 @@ class Footer extends React.Component<Props, any> {
               </div>
             </Grid>
             {/* <Grid item xs={12} sm={6} lg={3}>
-            <div className={classes.block}>
-              <div className={classes.title}>
-                <i className="fa fa-phone" />
-                CONNECT
-              </div>
-              <div className={classes.items}>
-                <a className={classes.itemLink} href="#support">
-                  Contact Us
-                </a>
-                <a className={classes.itemLink} href="#support">
-                  Support & Training
-                </a>
-              </div>
-            </div>
-          </Grid> */}
-            <Grid item xs={12} sm={6} lg={3}>
+							<div className={classes.block}>
+								<div className={classes.title}>
+									<i className="fa fa-phone" />
+									CONNECT
+								</div>
+								<div className={classes.items}>
+									<a className={classes.itemLink} href="#support">
+										Contact Us
+									</a>
+									<a className={classes.itemLink} href="#support">
+										Support & Training
+									</a>
+								</div>
+							</div>
+						</Grid> */}
+            {/* <Grid item xs={12} sm={6} lg={3}>
               <div className={classes.block}>
                 <div className={classes.title}>
                   <i className="fa fa-phone" />
@@ -76,7 +74,7 @@ class Footer extends React.Component<Props, any> {
                   </a>
                 </div>
               </div>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} sm={6} lg={3}>
               <div className={classes.block}>
                 <div className={classes.title}>
@@ -129,4 +127,4 @@ class Footer extends React.Component<Props, any> {
   }
 }
 
-export default withStyles(styles)(Footer);
+export default withStyles(styles)(Footer) as any; // TODO: Remove "as any" once we refactor withStyles to typescript

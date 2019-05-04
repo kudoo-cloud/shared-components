@@ -8,6 +8,7 @@
     "allowJs": true,
     "declaration": true,
     "baseUrl": ".",
+    "rootDir": "src",
     "paths": {
       "shared/*": ["./*"],
       "components/*": ["./src/*"],

@@ -18,13 +18,13 @@ module.exports = {
       images: path.resolve(__dirname, '../src/assets/images'),
     },
     modules: ['node_modules'],
-    extensions: ['.json', '.js', '.jsx'],
+    extensions: ['.json', '.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [new ExtractTextPlugin({ filename: 'css/[name].[hash].css' })],
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -35,6 +35,7 @@ module.exports = {
               '@babel/preset-react',
               '@babel/preset-flow',
               '@lingui/babel-preset-react',
+              '@babel/preset-typescript',
             ],
             plugins: [
               '@babel/plugin-proposal-class-properties',
