@@ -4,7 +4,7 @@ import withStyles from "components/hoc/withStyles";
 import ErrorBoundary from "components/hoc/ErrorBoundary";
 import { withStylesProps } from "components/config/types";
 import styles, { StyleKeys } from "./styles";
-
+import { IComponentProps, ITheme } from './types';
 type Props = IComponentProps<StyleKeys> & {};
 
 class Footer extends React.Component<Props, any> {

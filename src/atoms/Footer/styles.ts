@@ -1,3 +1,4 @@
+import { ITheme } from './types';
 export type StyleKeys =
   | "component"
   | "block"

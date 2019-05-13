@@ -1,9 +1,9 @@
-interface IComponentProps<T extends string> {
+export interface IComponentProps<T extends string> {
   classes?: { [K in T]?: string };
   theme?: ITheme;
 }
 
-interface ITheme {
+export interface ITheme {
   drawer: {
     closedWidth: number;
     openWidth: number;
