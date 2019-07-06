@@ -224,6 +224,7 @@ export default {
 
   //PurchaseOrder
   PURCHASE_ORDER: abstractURL('/po'),
+  PREVIEW_PURCHASE_ORDER: abstractURL('/previewPurchaseOrder/:id'),
 
   //Non PBS Purchase Order
   NON_PBS_PURCHASE_ORDER: abstractURL('/po/purchaseOrder'),
