@@ -5,7 +5,7 @@ import ErrorBoundary from "components/hoc/ErrorBoundary";
 import { withStylesProps } from "components/config/types";
 import styles, { StyleKeys } from "./styles";
 import { IComponentProps, ITheme } from './types';
-type Props = IComponentProps<StyleKeys> & {};
+type Props = IComponentProps<StyleKeys>;
 
 class Footer extends React.Component<Props, any> {
   static propTypes = {

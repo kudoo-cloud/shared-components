@@ -198,9 +198,13 @@ export default {
 
   //Patients
   PATIENTS: abstractURL('/patients'),
+  CREATE_PATIENT: abstractURL('/patients/create'),
+  EDIT_PATIENT: abstractURL('/patients/:id/edit'),
 
   //HealthcareProviders
-  HEALTH_CARE_PROVIDERS: abstractURL('/healthCareProviders'),
+  HEALTH_CARE_PROVIDERS: abstractURL('/healthcareProviders'),
+  CREATE_HEALTH_CARE_PROVIDER: abstractURL('/healthcareProviders/create'),
+  EDIT_HEALTH_CARE_PROVIDER: abstractURL('/healthcareProviders/:id/edit'),
 
   //======================Inventory=====================//
 

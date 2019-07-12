@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Grid, Button } from '@material-ui/core';
 import isEqual from 'lodash/isEqual';
 import { LicenseState, LicenseProps } from './types';
@@ -11,25 +10,21 @@ import styles from './styles';
 import { CURRENCY } from './currency';
 import { getCurrencyBaseAmount } from 'components/helpers';
 import Dinero from 'dinero.js';
+import { stat } from 'fs';
 
 class License extends React.Component<LicenseProps, LicenseState> {
-  static propTypes = {
-    isConvertCurrencyBtnVisible: PropTypes.bool,
-    onConvertCurrencyDDChange: PropTypes.func,
-    classes: PropTypes.any,
-    currency: PropTypes.string,
-    isVizierRepo: PropTypes.bool,
-    isWebsite: PropTypes.bool,
-    subscriptionPrice: PropTypes.array,
-    subscriptionRange: PropTypes.number,
-  };
 
   state = {
     isConvertCurrencyDDVisible: false,
-    selectedCurrency: 'USD',
+    selectedCurrency: 'AUD',
     justify: this.props.isVizierRepo ? 'flexStart' : 'center',
     lg: this.props.isVizierRepo ? 4 : 5,
     isLoading: false,
+    pricing: {
+      free: 0.00,
+      pro: 9.99,
+      enterprise: 99.00
+    },
     // To store value after calculation
     calculatedSubscriptionPrice: this.props.subscriptionPrice,
     calculatedSubscriptionRange: this.props.subscriptionRange,
@@ -168,8 +163,8 @@ class License extends React.Component<LicenseProps, LicenseState> {
               lg={lg}>
               <SubscriptionCard
                 type="FREE"
-                price={subscriptionPriceFree}
-                shortDescription={`Kudoo operates on a pay per usage model. If you use Kudoo to invoice for less than ${subscriptionRange} then Kudoo will be free`}
+                price={this.state.pricing.free}
+                shortDescription={`All features except those specific to Pro or Enterprise version`}
               />
             </Grid>
             <Grid
@@ -180,10 +175,24 @@ class License extends React.Component<LicenseProps, LicenseState> {
               md={6}
               lg={lg}>
               <SubscriptionCard
-                type="PAID"
-                price={subscriptionPricePaid}
+                type="PRO"
+                price={this.state.pricing.pro}
                 period="One time fee"
-                shortDescription={`If you Invoice your customers for more than ${subscriptionRange} through Kudoo you will be charged a one off fee`}
+                shortDescription={`Includes PBS and MBS Integration`}
+              />
+            </Grid>
+            <Grid
+              className={classes.subscriptionCardGrid}
+              item
+              xs={12}
+              sm={6}
+              md={6}
+              lg={lg}>
+              <SubscriptionCard
+                type="ENTERPRISE"
+                price={this.state.pricing.enterprise}
+                period="One time fee"
+                shortDescription={`Automated Procurement, AI Budgeting and Sales predictions, Management Reporting`}
               />
             </Grid>
           </Grid>
