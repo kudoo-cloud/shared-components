@@ -1,114 +1,143 @@
-import * as React from 'react';
-import { Grid, Button } from '@material-ui/core';
-import isEqual from 'lodash/isEqual';
-import { LicenseState, LicenseProps } from './types';
-import SubscriptionCard from '../../bosons/SubscriptionCard';
-import Dropdown from '../../bosons/Dropdown';
-import Loading from '../../bosons/Loading';
-import withStyles from 'components/hoc/withStyles';
-import styles from './styles';
-import { CURRENCY } from './currency';
-import { getCurrencyBaseAmount } from 'components/helpers';
-import Dinero from 'dinero.js';
-import { stat } from 'fs';
+import * as React from "react";
+import cx from "classnames";
+import { Grid } from "@material-ui/core";
+import isEqual from "lodash/isEqual";
+import { LicenseState, LicenseProps } from "./types";
+import SubscriptionCard from "../../bosons/SubscriptionCard";
+import Dropdown from "../../bosons/Dropdown";
+import Loading from "../../bosons/Loading";
+import withStyles from "components/hoc/withStyles";
+import styles from "./styles";
+import { CURRENCY } from "./currency";
+import { getCurrencyBaseAmount } from "components/helpers";
+import Dinero from "dinero.js";
 
 class License extends React.Component<LicenseProps, LicenseState> {
+  static defaultProps = {
+    showConvertCurrencyDropdown: true,
+    onCurrencyChange: () => {},
+    onTierClick: () => {}
+  };
 
   state = {
-    isConvertCurrencyDDVisible: false,
-    selectedCurrency: 'AUD',
-    justify: this.props.isVizierRepo ? 'flexStart' : 'center',
-    lg: this.props.isVizierRepo ? 4 : 5,
+    selectedCurrency: "AUD",
     isLoading: false,
-    pricing: {
-      free: 0.00,
-      pro: 9.99,
-      enterprise: 99.00
-    },
-    // To store value after calculation
-    calculatedSubscriptionPrice: this.props.subscriptionPrice,
-    calculatedSubscriptionRange: this.props.subscriptionRange,
-    component: {
-      justifyContent: this.props.isVizierRepo ? 'flexStart' : 'center',
-    },
+    tiers: [
+      {
+        type: "FREE",
+        interval: "One Time Fee",
+        description:
+          "All features except those specific to Pro or Enterprise version"
+      },
+      {
+        type: "PRO",
+        interval: "One Time Fee",
+        description: "Includes PBS and MBS Integration"
+      },
+      {
+        type: "ENTERPRISE",
+        interval: "One Time Fee",
+        description:
+          "Automated Procurement, AI Budgeting and Sales predictions, Management Reporting"
+      }
+    ],
+    tiersPricing: [
+      {
+        pricing: 0,
+        currency: "AUD"
+      },
+      {
+        pricing: 9.99,
+        currency: "AUD"
+      },
+      {
+        pricing: 99.0,
+        currency: "AUD"
+      }
+    ]
   };
 
   componentDidMount() {
-    this._handleConvertCurrencyChange(this.props.currency);
+    if (
+      this.props.currency &&
+      !isEqual(this.props.currency, this.state.selectedCurrency)
+    ) {
+      this._handleConvertCurrencyChange(this.props.currency);
+    }
+    if (this.props.tiers && !isEqual(this.props.tiers, this.state.tiers)) {
+      this._updateTiers(this.props.tiers);
+    }
+    if (
+      this.props.tiersPricing &&
+      !isEqual(this.props.tiersPricing, this.state.tiersPricing)
+    ) {
+      this._updateTiersPricing(this.props.tiersPricing);
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (!isEqual(prevProps.currency, this.props.currency)) {
       this._handleConvertCurrencyChange(this.props.currency);
     }
+    if (!isEqual(prevProps.tiers, this.props.tiers)) {
+      this._updateTiers(this.props.tiers);
+    }
+    if (!isEqual(prevProps.tiersPricing, this.props.tiersPricing)) {
+      this._updateTiersPricing(this.props.tiersPricing);
+    }
   }
 
-  _renderButton() {
-    const { isWebsite, classes, isVizierRepo } = this.props;
-    const { isConvertCurrencyDDVisible } = this.state;
-    return (
-      <div className={classes.cardBtnWrapper}>
-        {!isVizierRepo &&
-          isWebsite &&
-          !isConvertCurrencyDDVisible && (
-            <Button
-              className={classes.cardBtn}
-              onClick={this._onCurrencyBtnClick}
-              variant={'contained'}>
-              Convert Currency
-            </Button>
-          )}
-      </div>
-    );
-  }
+  _updateTiers = incomingTiers => {
+    this.setState({
+      tiers: incomingTiers
+    });
+  };
+
+  _updateTiersPricing = newTiersPricing => {
+    this.setState({
+      tiersPricing: newTiersPricing
+    });
+  };
 
   _handleOnChange = (name, e) => {
-    this.props.onConvertCurrencyDDChange(e.value);
+    this.props.onCurrencyChange(e.value);
     this._handleConvertCurrencyChange(e.value);
   };
 
-  _handleConvertCurrencyChange = value => {
-    this.setState(
-      {
-        isLoading: true,
-      },
-      () => {
-        let { subscriptionPrice, subscriptionRange } = this.props;
-        let {
-          calculatedSubscriptionRange,
-          calculatedSubscriptionPrice,
-        } = this.state;
-        getCurrencyBaseAmount('USD', value).then(res => {
-          calculatedSubscriptionRange = Math.round(subscriptionRange * res);
-          for (let i = 0; i < subscriptionPrice.length; i++) {
-            calculatedSubscriptionPrice[i] = Math.round(
-              subscriptionPrice[i] * res
-            );
-          }
-          this.setState({
-            calculatedSubscriptionRange,
-            calculatedSubscriptionPrice,
-            selectedCurrency: value,
-            isLoading: false,
-          });
-        });
-      }
+  _handleConvertCurrencyChange = async nextSelectedCurrency => {
+    this.setState({ isLoading: true });
+    const { tiers, selectedCurrency, tiersPricing } = this.state;
+    const res = await getCurrencyBaseAmount(
+      selectedCurrency,
+      nextSelectedCurrency
     );
+    const newTiersPricing = tiersPricing.map(tier => {
+      tier.pricing = Math.round(tier.pricing * res);
+      tier.currency = nextSelectedCurrency;
+      return tier;
+    });
+    this.setState({
+      selectedCurrency: nextSelectedCurrency,
+      isLoading: false,
+      tiersPricing: newTiersPricing
+    });
   };
 
   _renderDropDown = () => {
-    const { classes } = this.props;
-    const { isConvertCurrencyDDVisible, selectedCurrency } = this.state;
+    const { classes, showConvertCurrencyDropdown } = this.props;
+    const { selectedCurrency } = this.state;
     return (
-      <div className={classes.cardBtnWrapper}>
-        {isConvertCurrencyDDVisible && (
+      <div className={classes.dropdownWrapper}>
+        {showConvertCurrencyDropdown && (
           <Dropdown
             label="Currency"
-            className={classes.currencyDropdown}
             items={CURRENCY}
             value={selectedCurrency}
             onChange={e => {
-              this._handleOnChange('selectedCurrency', e);
+              this._handleOnChange("selectedCurrency", e);
+            }}
+            classes={{
+              component: classes.currencyDropdown
             }}
           />
         )}
@@ -116,99 +145,63 @@ class License extends React.Component<LicenseProps, LicenseState> {
     );
   };
 
-  _onCurrencyBtnClick = () => {
-    this.setState({
-      isConvertCurrencyDDVisible: true,
-    });
-  };
-
   _renderCard = () => {
-    const { classes, currency } = this.props;
-    const {
-      calculatedSubscriptionRange,
-      calculatedSubscriptionPrice,
-      justify,
-      lg,
-      isLoading,
-      component,
-    } = this.state;
-    const subscriptionPriceFree = Dinero({
-      amount: calculatedSubscriptionPrice[0] * 100,
-      currency: currency,
-    }).toFormat('$0,0');
-    const subscriptionPricePaid = Dinero({
-      amount: calculatedSubscriptionPrice[1] * 100,
-      currency: currency,
-    }).toFormat('$0,0');
-    const subscriptionRange = Dinero({
-      amount: calculatedSubscriptionRange * 100,
-      currency: currency,
-    }).toFormat('$0,0');
+    const { classes, onTierClick, selectedTierIndex } = this.props;
+    const { isLoading, tiers, selectedCurrency, tiersPricing } = this.state;
     return (
-      <React.Fragment>
+      <div>
         {isLoading ? (
-          <Loading color={'#000'} size={200} classes={component} />
+          <Loading size={100} />
         ) : (
           <Grid
             container
-            spacing={40}
-            classes={{ container: classes.container }}
-            justify={justify}>
-            <Grid
-              className={classes.subscriptionCardGrid}
-              item
-              xs={12}
-              sm={6}
-              md={6}
-              lg={lg}>
-              <SubscriptionCard
-                type="FREE"
-                price={this.state.pricing.free}
-                shortDescription={`All features except those specific to Pro or Enterprise version`}
-              />
-            </Grid>
-            <Grid
-              className={classes.subscriptionCardGrid}
-              item
-              xs={12}
-              sm={6}
-              md={6}
-              lg={lg}>
-              <SubscriptionCard
-                type="PRO"
-                price={this.state.pricing.pro}
-                period="One time fee"
-                shortDescription={`Includes PBS and MBS Integration`}
-              />
-            </Grid>
-            <Grid
-              className={classes.subscriptionCardGrid}
-              item
-              xs={12}
-              sm={6}
-              md={6}
-              lg={lg}>
-              <SubscriptionCard
-                type="ENTERPRISE"
-                price={this.state.pricing.enterprise}
-                period="One time fee"
-                shortDescription={`Automated Procurement, AI Budgeting and Sales predictions, Management Reporting`}
-              />
-            </Grid>
+            spacing={16}
+            classes={{ container: classes.tiersWrapper }}
+          >
+            {tiers.map((tier, index) => {
+              const finalPrice = Dinero({
+                amount: tiersPricing[index].pricing * 100,
+                currency: selectedCurrency
+              }).toFormat("$0,0");
+              return (
+                <Grid
+                  key={index}
+                  className={classes.subscriptionCardGrid}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  onClick={() => onTierClick(tier, index)}
+                >
+                  <SubscriptionCard
+                    type={tier.type}
+                    price={finalPrice}
+                    shortDescription={tier.description}
+                    period={tier.interval}
+                    classes={{
+                      root: cx(classes.card, {
+                        [classes.selectedCard]: selectedTierIndex === index
+                      })
+                    }}
+                  />
+                </Grid>
+              );
+            })}
           </Grid>
         )}
-      </React.Fragment>
+      </div>
     );
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <React.Fragment>
-        {this._renderButton()}
+      <div className={classes.wrapper}>
         {this._renderDropDown()}
         {this._renderCard()}
-      </React.Fragment>
+      </div>
     );
   }
 }
-export default withStyles(styles)(License);
+
+export default withStyles(styles)(License) as any;

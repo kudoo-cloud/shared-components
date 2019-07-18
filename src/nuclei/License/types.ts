@@ -1,21 +1,29 @@
+export type TierType = {
+  type: string;
+  interval: string;
+  description: string;
+};
+
+export type TierPricingType = {
+  pricing: number;
+  currency: string;
+};
+
 export type LicenseProps = {
-  isConvertCurrencyBtnVisible: boolean,
-  classes: any,
-  currency: string,
-  onConvertCurrencyDDChange: Function,
-  isWebsite: boolean,
-  subscriptionPrice: Array<number>,
-  subscriptionRange: number,
-  theme: any,
-  isVizierRepo: boolean,
+  classes?: any;
+  currency?: string;
+  onCurrencyChange?: Function;
+  onTierClick?: Function;
+  theme?: any;
+  tiers?: Array<TierType>;
+  tiersPricing?: Array<TierPricingType>;
+  showConvertCurrencyDropdown?: boolean;
+  selectedTierIndex?: number;
 };
 
 export type LicenseState = {
-  isConvertCurrencyDDVisible: boolean,
-  selectedCurrency: string,
-  calculatedSubscriptionPrice: Array<number>,
-  calculatedSubscriptionRange: number,
-  lg: number,
-  isLoading: boolean,
-  component: any,
+  selectedCurrency: string;
+  isLoading: boolean;
+  tiers?: Array<TierType>;
+  tiersPricing?: Array<TierPricingType>;
 };

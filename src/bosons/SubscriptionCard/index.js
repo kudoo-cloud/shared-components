@@ -1,13 +1,13 @@
 /* @flow */
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import type { CardProps } from './types';
-import cx from 'classnames';
-import ErrorBoundary from 'components/hoc/ErrorBoundary';
-import Button from 'components/bosons/Button';
-import withStyles from 'components/hoc/withStyles';
+import * as React from "react";
+import PropTypes from "prop-types";
+import type { CardProps } from "./types";
+import cx from "classnames";
+import ErrorBoundary from "components/hoc/ErrorBoundary";
+import Button from "components/bosons/Button";
+import withStyles from "components/hoc/withStyles";
 // import './styles.scss';
-import styles from './styles';
+import styles from "./styles";
 
 type State = {};
 
@@ -19,7 +19,7 @@ class SubscriptionCard extends React.Component<CardProps, State> {
     shortDescription: PropTypes.string,
     highlighted: PropTypes.bool,
     onFindOutClick: PropTypes.func,
-    classes: PropTypes.any,
+    classes: PropTypes.any
   };
 
   static defaultProps = {};
@@ -31,7 +31,7 @@ class SubscriptionCard extends React.Component<CardProps, State> {
       period,
       shortDescription,
       highlighted,
-      classes,
+      classes
     } = this.props;
 
     let cardWrapperClass = cx(classes.root, { highlighted });
@@ -40,7 +40,8 @@ class SubscriptionCard extends React.Component<CardProps, State> {
     return (
       <div className={cardWrapperClass}>
         <div className={classes.cardInfoWrapper}>
-          {price && <div className={classes.cardPrice}>{price}</div>}
+          {typeof price !== "undefined" &&
+            price !== null && <div className={classes.cardPrice}>{price}</div>}
           {period && <div className={classes.cardPeriod}>{period}</div>}
           {shortDescription && (
             <div className={cardDescClass}>{shortDescription}</div>
