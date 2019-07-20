@@ -1,60 +1,60 @@
-import * as React from "react";
-import cx from "classnames";
-import { Grid } from "@material-ui/core";
-import isEqual from "lodash/isEqual";
-import { LicenseState, LicenseProps } from "./types";
-import SubscriptionCard from "../../bosons/SubscriptionCard";
-import Dropdown from "../../bosons/Dropdown";
-import Loading from "../../bosons/Loading";
-import withStyles from "components/hoc/withStyles";
-import styles from "./styles";
-import { CURRENCY } from "./currency";
-import { getCurrencyBaseAmount } from "components/helpers";
-import Dinero from "dinero.js";
+import * as React from 'react';
+import cx from 'classnames';
+import { Grid } from '@material-ui/core';
+import isEqual from 'lodash/isEqual';
+import { LicenseState, LicenseProps } from './types';
+import SubscriptionCard from '../../bosons/SubscriptionCard';
+import Dropdown from '../../bosons/Dropdown';
+import Loading from '../../bosons/Loading';
+import withStyles from 'components/hoc/withStyles';
+import styles from './styles';
+import { CURRENCY } from './currency';
+import { getCurrencyBaseAmount } from 'components/helpers';
+import Dinero from 'dinero.js';
 
 class License extends React.Component<LicenseProps, LicenseState> {
   static defaultProps = {
     showConvertCurrencyDropdown: true,
     onCurrencyChange: () => {},
-    onTierClick: () => {}
+    onTierClick: () => {},
   };
 
   state = {
-    selectedCurrency: "AUD",
+    selectedCurrency: 'AUD',
     isLoading: false,
     tiers: [
       {
-        type: "FREE",
-        interval: "One Time Fee",
+        type: 'FREE',
+        interval: 'One Time Fee',
         description:
-          "All features except those specific to Pro or Enterprise version"
+          'All features except those specific to Pro or Enterprise version',
       },
       {
-        type: "PRO",
-        interval: "One Time Fee",
-        description: "Includes PBS and MBS Integration"
+        type: 'PRO',
+        interval: 'One Time Fee',
+        description: 'Includes PBS and MBS Integration',
       },
       {
-        type: "ENTERPRISE",
-        interval: "One Time Fee",
+        type: 'ENTERPRISE',
+        interval: 'One Time Fee',
         description:
-          "Automated Procurement, AI Budgeting and Sales predictions, Management Reporting"
-      }
+          'Automated Procurement, AI Budgeting and Sales predictions, Management Reporting',
+      },
     ],
     tiersPricing: [
       {
         pricing: 0,
-        currency: "AUD"
+        currency: 'AUD',
       },
       {
         pricing: 9.99,
-        currency: "AUD"
+        currency: 'AUD',
       },
       {
         pricing: 99.0,
-        currency: "AUD"
-      }
-    ]
+        currency: 'AUD',
+      },
+    ],
   };
 
   componentDidMount() {
@@ -87,15 +87,15 @@ class License extends React.Component<LicenseProps, LicenseState> {
     }
   }
 
-  _updateTiers = incomingTiers => {
+  _updateTiers = (incomingTiers) => {
     this.setState({
-      tiers: incomingTiers
+      tiers: incomingTiers,
     });
   };
 
-  _updateTiersPricing = newTiersPricing => {
+  _updateTiersPricing = (newTiersPricing) => {
     this.setState({
-      tiersPricing: newTiersPricing
+      tiersPricing: newTiersPricing,
     });
   };
 
@@ -104,14 +104,14 @@ class License extends React.Component<LicenseProps, LicenseState> {
     this._handleConvertCurrencyChange(e.value);
   };
 
-  _handleConvertCurrencyChange = async nextSelectedCurrency => {
+  _handleConvertCurrencyChange = async (nextSelectedCurrency) => {
     this.setState({ isLoading: true });
     const { tiers, selectedCurrency, tiersPricing } = this.state;
     const res = await getCurrencyBaseAmount(
       selectedCurrency,
       nextSelectedCurrency
     );
-    const newTiersPricing = tiersPricing.map(tier => {
+    const newTiersPricing = tiersPricing.map((tier) => {
       tier.pricing = Math.round(tier.pricing * res);
       tier.currency = nextSelectedCurrency;
       return tier;
@@ -119,7 +119,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
     this.setState({
       selectedCurrency: nextSelectedCurrency,
       isLoading: false,
-      tiersPricing: newTiersPricing
+      tiersPricing: newTiersPricing,
     });
   };
 
@@ -133,11 +133,11 @@ class License extends React.Component<LicenseProps, LicenseState> {
             label="Currency"
             items={CURRENCY}
             value={selectedCurrency}
-            onChange={e => {
-              this._handleOnChange("selectedCurrency", e);
+            onChange={(e) => {
+              this._handleOnChange('selectedCurrency', e);
             }}
             classes={{
-              component: classes.currencyDropdown
+              component: classes.currencyDropdown,
             }}
           />
         )}
@@ -161,8 +161,8 @@ class License extends React.Component<LicenseProps, LicenseState> {
             {tiers.map((tier, index) => {
               const finalPrice = Dinero({
                 amount: tiersPricing[index].pricing * 100,
-                currency: selectedCurrency
-              }).toFormat("$0,0");
+                currency: selectedCurrency,
+              }).toFormat('$0,0');
               return (
                 <Grid
                   key={index}
@@ -171,18 +171,14 @@ class License extends React.Component<LicenseProps, LicenseState> {
                   xs={12}
                   sm={6}
                   md={6}
-                  onClick={() => onTierClick(tier, index)}
+                  onClick={() => onTierClick(tier, tiersPricing[index], index)}
                 >
                   <SubscriptionCard
                     type={tier.type}
                     price={finalPrice}
                     shortDescription={tier.description}
                     period={tier.interval}
-                    classes={{
-                      root: cx(classes.card, {
-                        [classes.selectedCard]: selectedTierIndex === index
-                      })
-                    }}
+                    highlighted={selectedTierIndex === index}
                   />
                 </Grid>
               );
