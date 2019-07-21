@@ -25,18 +25,18 @@ class License extends React.Component<LicenseProps, LicenseState> {
     tiers: [
       {
         type: 'FREE',
-        interval: 'One Time Fee',
+        interval: 'Completely free',
         description:
           'All features except those specific to Pro or Enterprise version',
       },
       {
         type: 'PRO',
-        interval: 'One Time Fee',
+        interval: 'Price per month',
         description: 'Includes PBS and MBS Integration',
       },
       {
         type: 'ENTERPRISE',
-        interval: 'One Time Fee',
+        interval: 'Price per month',
         description:
           'Automated Procurement, AI Budgeting and Sales predictions, Management Reporting',
       },
