@@ -1,5 +1,6 @@
 storybook-static
 node_modules
+node_modules_bak
 __snapshots__
 dist
 build
