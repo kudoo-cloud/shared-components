@@ -4,6 +4,14 @@ let presets = [
   '@babel/preset-flow',
   '@lingui/babel-preset-react',
   '@babel/preset-typescript',
+  [
+    'minify',
+    {
+      builtIns: false,
+      evaluate: false,
+      mangle: false,
+    },
+  ],
 ];
 let plugins = [
   '@babel/plugin-proposal-class-properties',

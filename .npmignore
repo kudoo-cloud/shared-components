@@ -3,3 +3,6 @@ test
 .storybook
 __mocks__
 *.test.js
+storybook-static
+.idea
+__mocks__
