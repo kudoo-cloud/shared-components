@@ -16,6 +16,7 @@ storiesOf('HeaderBar', module).add('Default', () => (
               <HeaderBar
                 headerLabel={'Dashboard'}
                 profile={{ firstName: 'John', lastName: 'Doe' }}
+                noOfCompanies={1}
               />
             </div>
 
@@ -24,6 +25,7 @@ storiesOf('HeaderBar', module).add('Default', () => (
               <HeaderBar
                 headerLabel={'Dashboard'}
                 profile={{ firstName: 'John', lastName: 'Doe' }}
+                noOfCompanies={1}
               />
             </div>
           </div>

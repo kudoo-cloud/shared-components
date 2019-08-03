@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from 'react';
-import type { TriangleArrowProps } from './types';
+import { TriangleArrowProps } from './types';
 import cx from 'classnames';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
@@ -29,4 +29,4 @@ class TriangleArrow extends React.Component<TriangleArrowProps, State> {
   }
 }
 
-export default withStyles(styles)(TriangleArrow);
+export default withStyles<TriangleArrowProps>(styles)(TriangleArrow);
