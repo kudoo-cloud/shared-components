@@ -16,6 +16,11 @@ export type StyleKeys =
   | 'userMenuItemLabel'
   | 'userMenuItemIcon';
 
+export interface ProductType {
+  key: string;
+  value: string;
+}
+
 export interface HeaderBarProps
   extends withRouterHOCProps,
     withStylesHOCProps<StyleKeys> {
@@ -30,4 +35,5 @@ export interface HeaderBarProps
   logout?: Function;
   height?: number;
   noOfCompanies?: number;
+  onSelectProduct?: (index: number, data: ProductType) => void;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import HeaderBar from './index';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router';
@@ -17,6 +16,9 @@ storiesOf('HeaderBar', module).add('Default', () => (
                 headerLabel={'Dashboard'}
                 profile={{ firstName: 'John', lastName: 'Doe' }}
                 noOfCompanies={1}
+                onSelectProduct={(index, data) => {
+                  console.log({ index, data });
+                }}
               />
             </div>
 

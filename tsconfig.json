@@ -13,7 +13,8 @@
       "shared/*": ["./*"],
       "components/*": ["./src/*"],
       "images/*": ["./src/assets/images/*"]
-    }
+    },
+    "outDir": "dist"
   },
   "exclude": ["node_modules"],
   "include": ["src", "./index.d.ts"]
