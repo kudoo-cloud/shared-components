@@ -20,13 +20,13 @@ storiesOf('Drawer', module).add(
             onCompanyClick={() => {}}
             menuItems={[
               {
-                menuItem: 'Invoice',
+                name: 'Invoice',
               },
               {
-                menuItem: 'Customers',
+                name: 'Customers',
               },
               {
-                menuItem: 'Projects',
+                name: 'Projects',
               },
             ]}
           />

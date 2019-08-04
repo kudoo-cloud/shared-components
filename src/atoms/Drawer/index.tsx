@@ -172,12 +172,12 @@ class Drawer extends React.Component<DrawerProps, State> {
       let dom = (
         <React.Fragment>
           <div className={classes.drawerItem} key={index}>
-            <div className={classes.itemTitle}>{item.menuItem}</div>
+            <div className={classes.itemTitle}>{item.name}</div>
           </div>
         </React.Fragment>
       );
       if (renderMenuItem) {
-        dom = renderMenuItem(item.menuItem);
+        dom = renderMenuItem(item);
       }
       return dom;
     });
