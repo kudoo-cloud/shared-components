@@ -18,20 +18,23 @@ declare global {
 
   type ClassesKeys<T extends string> = { [K in T]?: string };
 
-  /** Types for style files */
+  /**
+   * Types for style files
+   */
+
   // This type is usefule for keys which has dynamic style based on props
   type StyleInnerFn<Props = {}> = (props: Props) => any;
 
   // This extends css in js type
-  type StyleExtend<P> = {
+  type StyleExtend<P = {}> = {
     [k in keyof SimpleStyle]: SimpleStyle[k] | StyleInnerFn<P>
   };
 
-  type JSSExtendKeys = '&:hover' | '&:active' | '&.hover' | '&.active';
-  type JSSExtendsArr<Props> = { [k in JSSExtendKeys]: StyleExtend<Props> };
+  // this is helpful for selector keys like, &.active, &.hover, &.closed, &:hover
+  type CSSSelectorAnyKey<Props> = { [key: string]: StyleExtend<Props> };
 
   // This type will be used to specify return type of style function
   type StyleFnReturnType<T extends string, Props extends Object = {}> = {
-    [K in T]?: StyleExtend<Props> | JSSExtendsArr<Props>
+    [K in T]?: StyleExtend<Props> | CSSSelectorAnyKey<Props>
   };
 }

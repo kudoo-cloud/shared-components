@@ -1,4 +1,7 @@
-export default theme => ({
+import { StyleKeys, DrawerProps } from './types';
+import { Theme } from 'shared/src/config/theme';
+
+export default (theme: Theme): StyleFnReturnType<StyleKeys, DrawerProps> => ({
   component: {
     minHeight: '100vh',
     width: theme.drawer.openWidth,
@@ -155,7 +158,7 @@ export default theme => ({
     fontSize: '16px',
     color: theme.palette.grey[300],
     fontFamily: theme.typography.font.family2,
-    fontWeight: '300',
+    fontWeight: 300,
   },
   kudooIconWraper: {
     padding: 20,
@@ -167,4 +170,6 @@ export default theme => ({
       width: 30,
     },
   },
+  userWrapper: {},
+  userMoreWrapper: {},
 });

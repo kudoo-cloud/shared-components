@@ -12,8 +12,23 @@ storiesOf('Drawer', module).add(
       <Route
         render={() => (
           <Drawer
-            companies={[{ id: 1, name: 'Kudoo' }, { id: 2, name: 'Facebook' }]}
+            companies={[
+              { id: 1, name: 'Kudoo', owner: true },
+              { id: 2, name: 'Facebook', owner: false },
+            ]}
             selectedCompany={{ id: 1, name: 'Kudoo', owner: true }}
+            onCompanyClick={() => {}}
+            menuItems={[
+              {
+                menuItem: 'Invoice',
+              },
+              {
+                menuItem: 'Customers',
+              },
+              {
+                menuItem: 'Projects',
+              },
+            ]}
           />
         )}
       />
