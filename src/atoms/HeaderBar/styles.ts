@@ -1,12 +1,13 @@
-/** @flow **/
-import { type Theme } from 'components/config/theme';
-import { type HeaderBarProps } from './types';
+import { Theme } from 'components/config/theme';
+import { HeaderBarProps, StyleKeys } from './types';
 
 const height = 70;
 
-export default (theme: Theme) => ({
+export default (
+  theme: Theme
+): StyleFnReturnType<StyleKeys, HeaderBarProps> => ({
   component: {
-    height: (props: HeaderBarProps) => props.height || height,
+    height: (props) => props.height || height,
     backgroundColor: theme.palette.grey['200'],
     display: 'flex',
     alignItems: 'center',
@@ -48,6 +49,8 @@ export default (theme: Theme) => ({
   },
   userBtn: {
     justifyContent: 'space-between',
+    position: 'relative',
+    minWidth: 150,
   },
   userName: {
     marginRight: 25,
@@ -69,6 +72,7 @@ export default (theme: Theme) => ({
     top: height,
     right: 0,
     zIndex: 9001,
+    minWidth: 250,
   },
   userMenuItem: {
     display: 'flex',

@@ -1,47 +1,28 @@
-/* @flow */
 import * as React from 'react';
 import cx from 'classnames';
-import type { DrawerProps } from './types';
+import { DrawerProps } from './types';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import URL from 'components/config/urls';
-import { withRouterProps, withStylesProps } from 'components/config/types';
 import { mobileAndTabletcheck, getFirstLetters } from 'components/helpers';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import Collapse from '@material-ui/core/Collapse';
 import KudooIconImage from 'images/kudoo-icon.png';
-// import './styles.scss';
 import styles from './styles';
 
 type State = {
-  closed: boolean,
-  userMoreClosed: boolean,
-  menuItems: Array<any>,
+  closed: boolean;
+  userMoreClosed: boolean;
 };
 
 class Drawer extends React.Component<DrawerProps, State> {
   items: any;
 
-  static propTypes = {
-    ...withStylesProps,
-    ...withRouterProps,
-    closed: PropTypes.bool,
-    onClose: PropTypes.func,
-    onOpen: PropTypes.func,
-    selectedCompany: PropTypes.object,
-    companies: PropTypes.arrayOf(PropTypes.object),
-    onCompanyClick: PropTypes.func,
-    renderMenuItem: PropTypes.func,
-    menuItems: PropTypes.array,
-  };
-
   static defaultProps = {
     companies: [],
-    selectedCompany: {},
     closed: false,
     onClose: () => {},
     onOpen: () => {},
@@ -136,7 +117,8 @@ class Drawer extends React.Component<DrawerProps, State> {
             className={classes.usernameWrapper}
             onClick={() => {
               this.setState({ userMoreClosed: !this.state.userMoreClosed });
-            }}>
+            }}
+          >
             <div className={classes.selectedCompanyName}>{name}</div>
             <i className={rightArrowClass} />
           </div>
@@ -146,7 +128,8 @@ class Drawer extends React.Component<DrawerProps, State> {
           className={classes.userMoreWrapper}
           in={!userMoreClosed}
           timeout="auto"
-          unmountOnExit>
+          unmountOnExit
+        >
           {this.props.companies.map((comp, index) => (
             <ButtonBase
               classes={{
@@ -159,7 +142,8 @@ class Drawer extends React.Component<DrawerProps, State> {
               onClick={() => {
                 this.props.onCompanyClick(comp);
                 this.setState({ userMoreClosed: true });
-              }}>
+              }}
+            >
               {/* <i className={cx('fa fa-gear', classes.goToCompanyIcon)} /> */}
               <div className={classes.companyName}>{comp.name}</div>
               {comp.id === selectedCompany.id && (
@@ -173,7 +157,8 @@ class Drawer extends React.Component<DrawerProps, State> {
               this.setState({ userMoreClosed: true });
             }}
             style={{ justifyContent: 'center' }}
-            className={classes.userMoreItem}>
+            className={classes.userMoreItem}
+          >
             <div className={classes.manageCompanyBtn}>Manage Companies</div>
           </Link>
         </Collapse>
@@ -187,12 +172,12 @@ class Drawer extends React.Component<DrawerProps, State> {
       let dom = (
         <React.Fragment>
           <div className={classes.drawerItem} key={index}>
-            <div className={classes.itemTitle}>{item.menuItem}</div>
+            <div className={classes.itemTitle}>{item.name}</div>
           </div>
         </React.Fragment>
       );
       if (renderMenuItem) {
-        dom = renderMenuItem(item.menuItem);
+        dom = renderMenuItem(item);
       }
       return dom;
     });
@@ -232,4 +217,4 @@ class Drawer extends React.Component<DrawerProps, State> {
   }
 }
 
-export default withRouter(withStyles(styles)(Drawer));
+export default withRouter(withStyles<DrawerProps>(styles)(Drawer));

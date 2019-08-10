@@ -4,14 +4,13 @@ import { render } from 'enzyme';
 import { action } from '@storybook/addon-actions';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router';
-
 import KudooThemeProvider, { theme } from 'components/config/theme';
-import { I18nProvider } from 'lingui-react';
+import { I18nProvider } from '@lingui/react';
 import toJson from 'enzyme-to-json';
 
 it('renders HeaderBar', () => {
   const wrapper = render(
-    <I18nProvider language="en" >
+    <I18nProvider language="en">
       <KudooThemeProvider theme={theme}>
         <Router>
           <Route

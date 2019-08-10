@@ -1,13 +1,16 @@
+import { Theme } from 'shared/src/config/theme';
+import { StyleKeys } from './types';
+
 const size = 8;
 
-export default theme => ({
+export default (theme: Theme): StyleFnReturnType<StyleKeys> => ({
   component: {},
   arrow: {
     width: 0,
     height: 0,
-    borderTop: props => `${props.size || size}px solid transparent`,
-    borderBottom: props => `${props.size || size}px solid transparent`,
-    borderLeft: props =>
+    borderTop: (props) => `${props.size || size}px solid transparent`,
+    borderBottom: (props) => `${props.size || size}px solid transparent`,
+    borderLeft: (props) =>
       `${props.size || size}px solid ${props.color ||
         theme.palette.primary.color2}`,
     borderRadius: 5,
