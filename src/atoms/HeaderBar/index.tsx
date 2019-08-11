@@ -12,19 +12,21 @@ import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import TriangleArrow from 'components/bosons/TriangleArrow';
 import styles from './styles';
 
-const products: ProductType[] = [
-  { key: 'finance', value: 'Finance' },
-  { key: 'health', value: 'Health' },
-  { key: 'inventory', value: 'Inventory' },
-  { key: 'project', value: 'Projects' },
-  { key: 'mobile', value: 'Mobile' },
-];
-
 const HeaderBar = (props: HeaderBarProps) => {
-  let { classes, headerLabel, profile, noOfCompanies, onSelectProduct } = props;
+  let {
+    classes,
+    headerLabel,
+    profile,
+    noOfCompanies,
+    onSelectProduct,
+    products,
+    initialSelectedProductIndex,
+  } = props;
   const [isUserMenuOpen, setIsUserMenuOpen] = React.useState(false);
   const [isProductMenuOpen, setIsProductMenuOpen] = React.useState(false);
-  const [selectedProductIndex, selectProduct] = React.useState(0);
+  const [selectedProductIndex, selectProduct] = React.useState(
+    initialSelectedProductIndex || 0
+  );
   let componentClass = cx(classes.component);
 
   const _isActive = (url: string) => {
@@ -95,7 +97,7 @@ const HeaderBar = (props: HeaderBarProps) => {
                 onSelectProduct(index, product);
               }}
             >
-              <div className={classes.userMenuItemLabel}>{product.value}</div>
+              <div className={classes.userMenuItemLabel}>{product.key}</div>
               {selectedProductIndex === index && (
                 <div className={classes.userMenuItemIcon}>
                   <i className={cx('icon icon-tick')} />
@@ -126,7 +128,7 @@ const HeaderBar = (props: HeaderBarProps) => {
             }}
           >
             <div className={classes.userName}>
-              {products[selectedProductIndex].value}
+              {products[selectedProductIndex].key}
             </div>
             <TriangleArrow direction={isProductMenuOpen && 'down'} />
             {renderProductMenu()}

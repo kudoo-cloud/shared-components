@@ -35,5 +35,7 @@ export interface HeaderBarProps
   logout?: Function;
   height?: number;
   noOfCompanies?: number;
+  products: ProductType[];
+  initialSelectedProductIndex?: number;
   onSelectProduct?: (index: number, data: ProductType) => void;
 }

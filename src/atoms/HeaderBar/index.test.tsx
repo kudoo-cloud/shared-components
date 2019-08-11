@@ -19,12 +19,52 @@ it('renders HeaderBar', () => {
                 <div>
                   <div style={{ marginTop: 15 }}>
                     <h4>Default</h4>
-                    <HeaderBar headerLabel={'Dashboard'} />
+                    <HeaderBar
+                      headerLabel={'Dashboard'}
+                      profile={{ firstName: 'John', lastName: 'Doe' }}
+                      noOfCompanies={1}
+                      onSelectProduct={(index, data) => {
+                        console.log({ index, data });
+                      }}
+                      products={[
+                        {
+                          key: 'inventory',
+                          value: 'INVENTORY',
+                        },
+                        {
+                          key: 'finance',
+                          value: 'FINANCE',
+                        },
+                        {
+                          key: 'health',
+                          value: 'HEALTH',
+                        },
+                      ]}
+                    />
                   </div>
 
                   <div style={{ marginTop: 100 }}>
                     <h4>Custom Label</h4>
-                    <HeaderBar headerLabel={'Dashboard'} />
+                    <HeaderBar
+                      headerLabel={'Dashboard'}
+                      profile={{ firstName: 'John', lastName: 'Doe' }}
+                      noOfCompanies={1}
+                      products={[
+                        {
+                          key: 'inventory',
+                          value: 'INVENTORY',
+                        },
+                        {
+                          key: 'finance',
+                          value: 'FINANCE',
+                        },
+                        {
+                          key: 'health',
+                          value: 'HEALTH',
+                        },
+                      ]}
+                      initialSelectedProductIndex={2}
+                    />
                   </div>
                 </div>
               );

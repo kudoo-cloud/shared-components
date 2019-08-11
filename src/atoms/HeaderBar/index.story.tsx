@@ -19,6 +19,20 @@ storiesOf('HeaderBar', module).add('Default', () => (
                 onSelectProduct={(index, data) => {
                   console.log({ index, data });
                 }}
+                products={[
+                  {
+                    key: 'Inventory',
+                    value: 'INVENTORY',
+                  },
+                  {
+                    key: 'Finance',
+                    value: 'FINANCE',
+                  },
+                  {
+                    key: 'Health',
+                    value: 'HEALTH',
+                  },
+                ]}
               />
             </div>
 
@@ -28,6 +42,21 @@ storiesOf('HeaderBar', module).add('Default', () => (
                 headerLabel={'Dashboard'}
                 profile={{ firstName: 'John', lastName: 'Doe' }}
                 noOfCompanies={1}
+                products={[
+                  {
+                    key: 'Inventory',
+                    value: 'INVENTORY',
+                  },
+                  {
+                    key: 'Finance',
+                    value: 'FINANCE',
+                  },
+                  {
+                    key: 'Health',
+                    value: 'HEALTH',
+                  },
+                ]}
+                initialSelectedProductIndex={2}
               />
             </div>
           </div>
