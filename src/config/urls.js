@@ -39,7 +39,6 @@ export default {
   // Acccount Settings
   ACCOUNT_SETTINGS: abstractURL('/account-settings'),
   ACCOUNT_BASIC_DETAILS: abstractURL('/account-settings/basic-details'),
-  ACCOUNT_USER_SUBSCRIPTION: abstractURL('/account-settings/user-subscription'),
   ACCOUNT_USER_SECURITY: abstractURL('/account-settings/user-security'),
   ACCOUNT_USER_HISTORY: abstractURL('/account-settings/user-history'),
 
@@ -64,6 +63,9 @@ export default {
   COMPANY_BANKING: abstractURL('/company/settings/:companyId/banking'),
   COMPANY_INTEGRATIONS: abstractURL(
     '/company/settings/:companyId/integrations'
+  ),
+  COMPANY_SUBSCRIPTION: abstractURL(
+    '/company/settings/:companyId/subscription'
   ),
 
   // Projects
