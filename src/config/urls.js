@@ -16,7 +16,7 @@ const processURL = (pathRegex, { path, ...params } = {}) => {
   return toPath(params, { encode: (value, token) => value });
 };
 
-const abstractURL = pathRegex => (options: any) =>
+const abstractURL = pathRegex => (options) =>
   processURL(pathRegex, options);
 
 export default {
@@ -200,8 +200,10 @@ export default {
 
   //Patients
   PATIENTS: abstractURL('/patients'),
+  ACTIVE_PATIENTS: abstractURL('/patients/active'),
+  ARCHIVED_PATIENTS: abstractURL('/patients/archived'),
   CREATE_PATIENT: abstractURL('/patients/create'),
-  EDIT_PATIENT: abstractURL('/patients/:id/edit'),
+  PATIENT_DETAILS: abstractURL('/patients/:id/details'),
 
   //HealthcareProviders
   HEALTH_CARE_PROVIDERS: abstractURL('/healthcareProviders'),
