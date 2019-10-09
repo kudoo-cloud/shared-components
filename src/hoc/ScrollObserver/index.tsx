@@ -1,8 +1,19 @@
 import React from 'react';
 import { compose, withState } from 'recompose';
 import PropTypes from 'prop-types';
+import { ScrollObserverProps } from './types';
 
-class ScrollObserver extends React.Component {
+type InternalComposeProps = {
+  setShouldSendBottomEvent: Function;
+  setShouldSendTopEvent: Function;
+  shouldSendTopEvent: boolean;
+  shouldSendBottomEvent: boolean;
+};
+
+class ScrollObserver extends React.Component<
+  ScrollObserverProps & InternalComposeProps
+> {
+  el: HTMLElement;
   static propTypes = {
     onBottomReached: PropTypes.func,
     onBottomReachedThreshold: PropTypes.number,
@@ -84,7 +95,7 @@ class ScrollObserver extends React.Component {
   };
 
   render() {
-    return <span ref={ref => (this.el = ref)}>{this.props.children}</span>;
+    return <span ref={(ref) => (this.el = ref)}>{this.props.children}</span>;
   }
 }
 

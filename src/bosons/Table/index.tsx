@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { type TableProps } from './types';
+import { TableProps, RowData, ColumnType } from './types';
 import get from 'lodash/get';
 import cx from 'classnames';
 import BaseTable from '@material-ui/core/Table';
@@ -23,9 +23,13 @@ class Table extends React.PureComponent<TableProps, {}> {
         id: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         sorted: PropTypes.bool,
+        default: PropTypes.node,
         order: PropTypes.oneOf(['asc', 'desc']),
         type: PropTypes.oneOf(['string', 'date', 'number']),
         classes: PropTypes.object,
+        notSortable: PropTypes.bool,
+        renderCell: PropTypes.func,
+        renderHeader: PropTypes.func,
       })
     ).isRequired,
     data: PropTypes.array.isRequired,
@@ -63,7 +67,7 @@ class Table extends React.PureComponent<TableProps, {}> {
     onTopReachedThreshold: 200,
   };
 
-  _onRequestSort = column => event => {
+  _onRequestSort = (column: ColumnType) => (event) => {
     const { sortable } = this.props;
     if (!sortable || column.notSortable) {
       return;
@@ -73,33 +77,33 @@ class Table extends React.PureComponent<TableProps, {}> {
     }
   };
 
-  _onRemoveClicked = row => event => {
+  _onRemoveClicked = (row: RowData) => (event) => {
     if (this.props.onRemoveClicked) {
       this.props.onRemoveClicked(row, event);
     }
   };
 
-  _onAddClicked = row => event => {
+  _onAddClicked = (row: RowData) => (event) => {
     if (this.props.onAddClicked) {
       this.props.onAddClicked(row, event);
     }
   };
 
-  _onRowClick = row => event => {
+  _onRowClick = (row: RowData) => (event) => {
     const { onRowClick } = this.props;
     if (onRowClick) {
       onRowClick(event, row);
     }
   };
 
-  _onCellClick = ({ row, column, index }) => e => {
+  _onCellClick = ({ row, column, index }) => (e) => {
     const { onCellClick } = this.props;
     if (onCellClick) {
       onCellClick(e, { row, column, index });
     }
   };
 
-  _renderSortIcon(column) {
+  _renderSortIcon(column: ColumnType) {
     const { classes } = this.props;
     if (!column.sorted) {
       return (
@@ -128,14 +132,27 @@ class Table extends React.PureComponent<TableProps, {}> {
     );
   }
 
+  _renderColumnHeader(column: ColumnType) {
+    const { classes, sortable } = this.props;
+    if (typeof column.renderHeader === 'function') {
+      return column.renderHeader(column);
+    }
+    return (
+      <>
+        <div
+          className={cx(classes.tableHeaderText, {
+            'sorted-column': column.sorted && sortable,
+          })}
+        >
+          {column.label}
+        </div>
+        {sortable && !column.notSortable && this._renderSortIcon(column)}
+      </>
+    );
+  }
+
   _renderHeader() {
-    const {
-      columnData,
-      classes,
-      sortable,
-      showRemoveIcon,
-      showAddIcon,
-    } = this.props;
+    const { columnData, classes, showRemoveIcon, showAddIcon } = this.props;
     return (
       <TableHead>
         <TableRow>
@@ -145,19 +162,13 @@ class Table extends React.PureComponent<TableProps, {}> {
               className={cx(
                 classes.tableHeaderCellWrapper,
                 get(column, 'classes.tableHeaderCellWrapper', '')
-              )}>
+              )}
+            >
               <div
                 className={classes.tableHeaderCell}
-                onClick={this._onRequestSort(column)}>
-                <div
-                  className={cx(classes.tableHeaderText, {
-                    'sorted-column': column.sorted && sortable,
-                  })}>
-                  {column.label}
-                </div>
-                {sortable &&
-                  !column.notSortable &&
-                  this._renderSortIcon(column)}
+                onClick={this._onRequestSort(column)}
+              >
+                {this._renderColumnHeader(column)}
               </div>
             </TableCell>
           ))}
@@ -166,6 +177,26 @@ class Table extends React.PureComponent<TableProps, {}> {
         </TableRow>
       </TableHead>
     );
+  }
+
+  _renderCellData(row: RowData, column: ColumnType) {
+    const { classes } = this.props;
+    const columnClasses = column.classes || {};
+    const cellText =
+      row[column.id] !== '' && typeof row[column.id] !== 'undefined'
+        ? row[column.id]
+        : column.default || '—';
+    const cellTextDom = (
+      <span className={cx(classes.cellValueText, columnClasses.cellValueText)}>
+        {cellText}
+      </span>
+    );
+    if (typeof column.renderCell === 'function') {
+      return column.renderCell(row, column);
+    } else if (this.props.cellRenderer) {
+      return this.props.cellRenderer(row, column, cellTextDom);
+    }
+    return cellTextDom;
   }
 
   _renderData() {
@@ -194,40 +225,28 @@ class Table extends React.PureComponent<TableProps, {}> {
             data-test={`row-${index}`}
             classes={{ root: classes.tableRowRoot }}
             key={index}
-            onClick={this._onRowClick(row)}>
-            {columnData.map((column: any, index) => {
+            onClick={this._onRowClick(row)}
+          >
+            {columnData.map((column, index) => {
               const columnClasses = column.classes || {};
-              const cellText: string =
-                row[column.id] !== '' && typeof row[column.id] !== 'undefined'
-                  ? row[column.id]
-                  : column.default || '—';
-              const cellTextDom = (
-                <span
-                  className={cx(
-                    classes.cellValueText,
-                    columnClasses.cellValueText
-                  )}>
-                  {cellText}
-                </span>
-              );
               return (
                 <TableCell
-                  data-test={`cell-${cellText}-${index}`}
+                  data-test={`cell-${index}`}
                   className={cx(
                     classes.tableCellRoot,
                     columnClasses.tableCellRoot
                   )}
                   onClick={this._onCellClick({ row, column, index })}
-                  key={index}>
+                  key={index}
+                >
                   <div
                     className={cx(
                       classes.cellValue,
                       columnClasses.cellValue,
                       cellStyler ? cellStyler(row, column) : ''
-                    )}>
-                    {this.props.cellRenderer
-                      ? this.props.cellRenderer(row, column, cellTextDom)
-                      : cellTextDom}
+                    )}
+                  >
+                    {this._renderCellData(row, column)}
                   </div>
                 </TableCell>
               );
@@ -236,7 +255,8 @@ class Table extends React.PureComponent<TableProps, {}> {
               <TableCell
                 className={cx(classes.tableCellRoot, classes.closeIconCellRoot)}
                 padding="checkbox"
-                onClick={this._onAddClicked(row)}>
+                onClick={this._onAddClicked(row)}
+              >
                 <div className={classes.closeIcon}>
                   <i className={cx('ion-plus')} />
                 </div>
@@ -246,7 +266,8 @@ class Table extends React.PureComponent<TableProps, {}> {
               <TableCell
                 className={cx(classes.tableCellRoot, classes.closeIconCellRoot)}
                 padding="checkbox"
-                onClick={this._onRemoveClicked(row)}>
+                onClick={this._onRemoveClicked(row)}
+              >
                 <div className={classes.closeIcon}>
                   <i className={cx('icon icon-close')} />
                 </div>
@@ -260,7 +281,8 @@ class Table extends React.PureComponent<TableProps, {}> {
               <TableCell
                 className={classes.tableCellRoot}
                 padding="none"
-                colSpan={totalColumns}>
+                colSpan={totalColumns}
+              >
                 <div className={classes.noDatCell}>No data to display</div>
               </TableCell>
             </TableRow>
@@ -268,11 +290,13 @@ class Table extends React.PureComponent<TableProps, {}> {
         <TableRow
           classes={{
             root: cx(classes.tableRowRoot, !loading ? classes.hideLoading : ''),
-          }}>
+          }}
+        >
           <TableCell
             className={classes.tableCellRoot}
             padding="none"
-            colSpan={totalColumns}>
+            colSpan={totalColumns}
+          >
             <div className={classes.loadingCell}>
               <Loading size={30} />
             </div>
@@ -306,7 +330,8 @@ class Table extends React.PureComponent<TableProps, {}> {
           onBottomReachedThreshold={onBottomReachedThreshold}
           onBottomReached={onBottomReached}
           onTopReachedThreshold={onTopReachedThreshold}
-          onTopReached={onTopReached}>
+          onTopReached={onTopReached}
+        >
           <div className={classes.component}>{this._renderTable()}</div>
         </ScrollObserver>
       </ErrorBoundary>
@@ -314,4 +339,4 @@ class Table extends React.PureComponent<TableProps, {}> {
   }
 }
 
-export default withStyles(styles)(Table);
+export default withStyles<TableProps>(styles)(Table);

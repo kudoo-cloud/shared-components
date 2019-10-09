@@ -1,22 +1,24 @@
-/* @flow */
+import { Theme } from 'components/config/theme';
+import { TableProps, StyleKeys } from './types';
 
-import type { Theme } from 'components/config/theme';
-import type { TableProps } from './types';
-
-export default (theme: Theme) => ({
+export default (theme: Theme): StyleFnReturnType<StyleKeys, TableProps> => ({
   component: {},
   tableRoot: {
     borderCollapse: 'initial',
   },
+  tableHeaderCellWrapper: {
+    padding: '0px 24px',
+  },
   tableHeaderCell: {
     display: 'flex',
     alignItems: 'center',
+    height: 55,
   },
   tableHeaderText: {
     fontFamily: theme.typography.font.family2,
     fontSize: 15,
     cursor: 'pointer',
-    fontWeight: '500',
+    fontWeight: 500,
     color: theme.palette.grey['400'],
     '&.sorted-column': {
       color: theme.palette.primary.color2,
@@ -28,7 +30,6 @@ export default (theme: Theme) => ({
   downArrow: {
     marginTop: -3,
   },
-
   tableRowRoot: {
     backgroundColor: 'white',
     height: 'auto',
@@ -37,7 +38,6 @@ export default (theme: Theme) => ({
         props.stripe ? theme.palette.grey[50] : 'white',
     },
   },
-
   tableCellRoot: {
     borderBottom: `1px solid ${theme.palette.grey['300']}`,
     padding: '0px !important',
@@ -56,11 +56,10 @@ export default (theme: Theme) => ({
       paddingRight: 5,
     },
   },
-
   cellValue: {
     fontFamily: theme.typography.font.family2,
     fontSize: 16,
-    fontWeight: '300',
+    fontWeight: 300,
     color: theme.palette.grey['500'],
   },
   cellValueText: {
@@ -77,6 +76,7 @@ export default (theme: Theme) => ({
     color: theme.palette.grey['400'],
     fontSize: 20,
     cursor: 'pointer',
+    height: 50,
   },
   noDatCell: {
     padding: 15,

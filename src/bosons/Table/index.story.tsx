@@ -6,12 +6,25 @@ import _ from 'lodash';
 import faker from 'faker';
 
 let counter = 0;
-export default class DemoTable extends Component {
+export default class DemoTable extends Component<any, any> {
   constructor(props) {
     super(props);
 
     const columnData = [
-      { id: 'firstName', label: 'First Name', type: 'string' },
+      {
+        id: 'firstName',
+        label: 'First Name',
+        type: 'string',
+        renderCell: (row, column) => {
+          return (
+            <div
+              style={{ fontWeight: 'bold', paddingLeft: 24, paddingRight: 24 }}
+            >
+              {row[column.id]}
+            </div>
+          );
+        },
+      },
       { id: 'lastName', label: 'Last Name', type: 'string' },
       {
         id: 'email',
@@ -19,6 +32,17 @@ export default class DemoTable extends Component {
         sorted: true,
         order: 'asc',
         type: 'string',
+        renderCell: (row, column) => {
+          const email = row[column.id];
+          return (
+            <a
+              href={`mailto:${email}`}
+              style={{ paddingLeft: 24, paddingRight: 24 }}
+            >
+              {email}
+            </a>
+          );
+        },
       },
       { id: 'title', label: 'Title', type: 'string' },
     ];
@@ -102,7 +126,7 @@ export default class DemoTable extends Component {
     };
   }
 
-  _onRequestSort = column => {
+  _onRequestSort = (column) => {
     let { columnData } = this.state;
     let orderBy = column.id;
     let order = '';
@@ -137,7 +161,7 @@ export default class DemoTable extends Component {
     this.setState({ data });
   };
 
-  _onRemoveClicked = row => {
+  _onRemoveClicked = (row) => {
     let { data } = this.state;
     _.remove(data, { id: row.id });
     this.setState({ data });
