@@ -1,6 +1,10 @@
-/* @flow */
 import * as React from 'react';
-import type { TextFieldProps } from './types';
+import {
+  TextFieldProps,
+  ReactInputFocusEvent,
+  ReactInputKeyboardEvent,
+  ReactInputChangeEvent,
+} from './types';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from 'components/hoc/withStyles';
@@ -9,13 +13,13 @@ import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
 
 type State = {
-  value?: string,
-  isFocused?: boolean,
-  showingPassword?: boolean,
+  value?: string;
+  isFocused?: boolean;
+  showingPassword?: boolean;
 };
 
 class TextField extends React.Component<TextFieldProps, State> {
-  inputRef: React.ElementRef<HTMLElement>;
+  inputRef: any;
 
   static propTypes = {
     applyBottomBorderRadius: PropTypes.bool,
@@ -23,6 +27,7 @@ class TextField extends React.Component<TextFieldProps, State> {
     autoComplete: PropTypes.oneOf(['on', 'off']),
     autoFocus: PropTypes.bool,
     classes: PropTypes.object,
+    theme: PropTypes.any,
     disabled: PropTypes.bool,
     error: PropTypes.string,
     errorColor: PropTypes.string,
@@ -65,7 +70,7 @@ class TextField extends React.Component<TextFieldProps, State> {
     label: '',
     name: '',
     value: '',
-    onBlur: (e: SyntheticEvent<HTMLInputElement>) => {},
+    onBlur: (e) => {},
     onChangeText: () => {},
     onFocus: () => {},
     onKeyDown: () => {},
@@ -107,7 +112,7 @@ class TextField extends React.Component<TextFieldProps, State> {
     }
   };
 
-  _handleOnChange = (e: SyntheticEvent<HTMLInputElement>) => {
+  _handleOnChange = (e: ReactInputChangeEvent) => {
     this.setState({
       value: e.currentTarget.value,
     });
@@ -119,7 +124,7 @@ class TextField extends React.Component<TextFieldProps, State> {
     }
   };
 
-  _handleOnFocus = (e: SyntheticEvent<HTMLInputElement>) => {
+  _handleOnFocus = (e: ReactInputFocusEvent) => {
     this.setState({
       isFocused: true,
     });
@@ -128,7 +133,7 @@ class TextField extends React.Component<TextFieldProps, State> {
     }
   };
 
-  _handleOnBlur = (e: SyntheticEvent<HTMLInputElement>) => {
+  _handleOnBlur = (e: ReactInputFocusEvent) => {
     this.setState({
       isFocused: false,
     });
@@ -137,7 +142,7 @@ class TextField extends React.Component<TextFieldProps, State> {
     }
   };
 
-  _handleOnKeyPress = e => {
+  _handleOnKeyPress = (e: ReactInputKeyboardEvent) => {
     if (this.props.isNumber) {
       if (/[\d\.]/.test(e.key)) {
         if (this.props.onKeyPress) {
@@ -222,7 +227,7 @@ class TextField extends React.Component<TextFieldProps, State> {
         }}
         value={this.state.value}
         placeholder={this.props.placeholder}
-        autoComplete={this.props.autoComplete}
+        autoComplete={this.props.autoComplete as string}
         autoFocus={this.props.autoFocus}
         disabled={this.props.disabled}
         id={this.props.id}
@@ -263,7 +268,8 @@ class TextField extends React.Component<TextFieldProps, State> {
       return (
         <span
           onClick={this._hidePassowrd}
-          className={cx(classes.eyeIcon, 'show')}>
+          className={cx(classes.eyeIcon, 'show')}
+        >
           <i className={'icon icon-show'} />
         </span>
       );
@@ -306,7 +312,7 @@ class TextField extends React.Component<TextFieldProps, State> {
             <FieldLabel
               label={label}
               extraLinkWithLabel={extraLinkWithLabel}
-              onExtraLinkClicked={this.props.onExtraLinkClicked}
+              onExtraLinkClicked={this.props.onExtraLinkClicked as any}
               classes={{ label: classes.label }}
             />
           )}
@@ -328,4 +334,4 @@ class TextField extends React.Component<TextFieldProps, State> {
   }
 }
 
-export default withStyles(styles)(TextField);
+export default withStyles<TextFieldProps>(styles)(TextField);

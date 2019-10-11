@@ -46,7 +46,7 @@
 		"es6-promise": "^4.2.2",
 		"extract-text-webpack-plugin": "^3.0.2",
 		"flow": "^0.2.3",
-		"formik": "^0.11.11",
+		"formik": "1.5.1",
 		"idx": "^2.5.4",
 		"jquery": "^3.4.1",
 		"lodash": "^4.17.11",

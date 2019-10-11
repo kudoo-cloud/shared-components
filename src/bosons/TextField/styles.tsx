@@ -1,18 +1,17 @@
-/* @flow */
+import { Theme } from 'components/config/theme';
+import { TextFieldProps, StyleKeys } from './types';
 
-import type { Theme } from 'components/config/theme';
-import type { TextFieldProps } from './types';
-
-export default (theme: Theme) => ({
+export default (
+  theme: Theme
+): StyleFnReturnType<StyleKeys, TextFieldProps> => ({
   component: {
     fontFamily: theme.typography.font.family2,
     flex: 1,
-    color: (props: TextFieldProps) => '',
+    color: (props) => '',
   },
   label: {
     '$component.error &': {
-      color: (props: TextFieldProps) =>
-        props.errorColor || theme.palette.secondary.color1,
+      color: (props) => props.errorColor || theme.palette.secondary.color1,
     },
   },
   textInputWrapper: {
@@ -21,7 +20,7 @@ export default (theme: Theme) => ({
     flexDirection: 'row',
     border: `1px solid ${theme.palette.grey[300]}`,
     backgroundColor: 'transparent',
-    padding: (props: TextFieldProps) => (props.multiline ? 0 : '0px'),
+    padding: (props) => (props.multiline ? 0 : '0px'),
     borderRadius: 5,
     '&.top-border-radius': {
       borderRadius: 0,
@@ -40,7 +39,7 @@ export default (theme: Theme) => ({
       backgroundColor: 'white',
     },
     '$component.error &': {
-      backgroundColor: (props: TextFieldProps) =>
+      backgroundColor: (props) =>
         props.errorColor || theme.palette.secondary.color1,
       color: 'white',
     },
@@ -74,22 +73,19 @@ export default (theme: Theme) => ({
     },
     // change placeholder color
     '&::-webkit-input-placeholder': {
-      color: (props: TextFieldProps) =>
-        props.placeholderColor || theme.palette.grey[300],
+      color: (props) => props.placeholderColor || theme.palette.grey[300],
       '$component.error &': {
         color: 'white',
       },
     },
     '&::-moz-placeholder': {
-      color: (props: TextFieldProps) =>
-        props.placeholderColor || theme.palette.grey[300],
+      color: (props) => props.placeholderColor || theme.palette.grey[300],
       '$component.error &': {
         color: 'white',
       },
     },
     '&::-ms-input-placeholder': {
-      color: (props: TextFieldProps) =>
-        props.placeholderColor || theme.palette.grey[300],
+      color: (props) => props.placeholderColor || theme.palette.grey[300],
       '$component.error &': {
         color: 'white',
       },
@@ -123,8 +119,7 @@ export default (theme: Theme) => ({
   error: {
     fontWeight: 300,
     fontSize: 14,
-    color: (props: TextFieldProps) =>
-      props.errorColor || theme.palette.secondary.color1,
+    color: (props) => props.errorColor || theme.palette.secondary.color1,
     marginBottom: 10,
     marginTop: 3,
     whiteSpace: 'nowrap',

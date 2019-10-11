@@ -1,9 +1,9 @@
-/** @flow **/
+import { Theme } from 'components/config/theme';
+import { FieldLabelProps, StyleKeys } from './types';
 
-import type { Theme } from 'components/config/theme';
-import type { FieldLabelProps } from './types';
-
-export default (theme: Theme) => ({
+export default (
+  theme: Theme
+): StyleFnReturnType<StyleKeys, FieldLabelProps> => ({
   component: {},
   wrapper: {
     display: 'flex',
@@ -15,8 +15,7 @@ export default (theme: Theme) => ({
   label: {
     fontWeight: 300,
     fontSize: 16,
-    color: (props: FieldLabelProps) =>
-      props.labelColor || theme.palette.grey[500],
+    color: (props) => props.labelColor || theme.palette.grey[500],
     margin: '10px 0px',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',

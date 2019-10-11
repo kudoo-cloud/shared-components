@@ -1,6 +1,5 @@
-/* @flow */
 import * as React from 'react';
-import type { FieldLabelProps } from './types';
+import { FieldLabelProps } from './types';
 import PropTypes from 'prop-types';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
@@ -15,6 +14,7 @@ class FieldLabel extends React.Component<FieldLabelProps, State> {
     extraLinkWithLabel: PropTypes.string,
     onExtraLinkClicked: PropTypes.func,
     classes: PropTypes.object,
+    theme: PropTypes.any,
   };
 
   static defaultProps = {
@@ -39,7 +39,8 @@ class FieldLabel extends React.Component<FieldLabelProps, State> {
                     extraLinkWithLabel
                   )}`}
                   className={classes.linkWithLabel}
-                  onClick={this.props.onExtraLinkClicked}>
+                  onClick={this.props.onExtraLinkClicked}
+                >
                   {extraLinkWithLabel}
                 </div>
               )}
@@ -51,4 +52,4 @@ class FieldLabel extends React.Component<FieldLabelProps, State> {
   }
 }
 
-export default withStyles(styles)(FieldLabel);
+export default withStyles<FieldLabelProps>(styles)(FieldLabel);

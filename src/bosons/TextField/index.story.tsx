@@ -19,7 +19,6 @@ storiesOf('TextField', module).add(
           label="Custom Width"
           icon={<i className={'icon icon-message'} />}
           placeholder={'Enter email'}
-          applyBorderRadius={true}
           value={'storybook@kudoo.com'}
         />
       </div>
@@ -28,7 +27,6 @@ storiesOf('TextField', module).add(
           label="With Extra Link"
           icon={<i className={'icon icon-message'} />}
           placeholder={'Enter email'}
-          applyBorderRadius={true}
           value={'storybook@kudoo.com'}
           extraLinkWithLabel="Change"
         />
@@ -47,14 +45,12 @@ storiesOf('TextField', module).add(
         label={'with icon'}
         icon={<i className={'icon icon-message'} />}
         placeholder={'Enter email'}
-        applyBorderRadius={true}
       />
       <TextField
         label="Password field"
         type="password"
         icon={<i className={'icon icon-password'} />}
         placeholder={'Enter password'}
-        applyBorderRadius={true}
       />
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div style={{ width: 110, marginRight: 20 }}>
@@ -74,7 +70,6 @@ storiesOf('TextField', module).add(
         label="with invalid state"
         icon={<i className={'icon icon-message'} />}
         placeholder={'Enter email'}
-        applyBorderRadius={true}
         value={'storybook@kudoo.com'}
         error={'Invalid Email'}
       />
@@ -82,7 +77,6 @@ storiesOf('TextField', module).add(
         label="Custom Error Color"
         icon={<i className={'icon icon-message'} />}
         placeholder={'Enter email'}
-        applyBorderRadius={true}
         value={'storybook@kudoo.com'}
         error={'Invalid Email'}
         errorColor={'red'}
@@ -91,7 +85,6 @@ storiesOf('TextField', module).add(
         label="with invalid state but dont show error message"
         icon={<i className={'icon icon-message'} />}
         placeholder={'Enter email'}
-        applyBorderRadius={true}
         value={'storybook@kudoo.com'}
         error={'Invalid Email'}
         showErrorMessage={false}

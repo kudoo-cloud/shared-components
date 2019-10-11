@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from './index';
 import { render } from 'enzyme';
 import { action } from '@storybook/addon-actions';
-
 import { I18nProvider } from 'lingui-react';
 import KudooThemeProvider, { theme } from 'components/config/theme';
 import toJson from 'enzyme-to-json';
@@ -32,14 +31,12 @@ it('renders TextField', () => {
             label={'with icon'}
             icon={<i className={'icon icon-message'} />}
             placeholder={'Enter email'}
-            applyBorderRadius={true}
           />
           <TextField
             label="Password field"
             type="password"
             icon={<i className={'icon icon-password'} />}
             placeholder={'Enter password'}
-            applyBorderRadius={true}
           />
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div style={{ width: 110, marginRight: 20 }}>
@@ -59,7 +56,6 @@ it('renders TextField', () => {
             label="with invalid state"
             icon={<i className={'icon icon-message'} />}
             placeholder={'Enter email'}
-            applyBorderRadius={true}
             value={'storybook@kudoo.com'}
             error={'Invalid Email'}
           />
@@ -67,7 +63,6 @@ it('renders TextField', () => {
             label="Custom Error Color"
             icon={<i className={'icon icon-message'} />}
             placeholder={'Enter email'}
-            applyBorderRadius={true}
             value={'storybook@kudoo.com'}
             error={'Invalid Email'}
             errorColor={'red'}
@@ -76,7 +71,6 @@ it('renders TextField', () => {
             label="with invalid state but dont show error message"
             icon={<i className={'icon icon-message'} />}
             placeholder={'Enter email'}
-            applyBorderRadius={true}
             value={'storybook@kudoo.com'}
             error={'Invalid Email'}
             showErrorMessage={false}
@@ -86,7 +80,6 @@ it('renders TextField', () => {
               label="Custom Width"
               icon={<i className={'icon icon-message'} />}
               placeholder={'Enter email'}
-              applyBorderRadius={true}
               value={'storybook@kudoo.com'}
             />
           </div>
