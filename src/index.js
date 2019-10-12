@@ -42,6 +42,7 @@ export { default as Table } from './bosons/Table';
 export { default as Tabs } from './atoms/Tabs';
 export { default as TermsOfService } from './bosons/TermsOfService';
 export { default as TextField } from './bosons/TextField';
+export { default as FormikTextField } from './bosons/TextField/FormikTextField';
 export { default as TimesheetRowDisplay } from './nuclei/TimesheetRowDisplay';
 export { default as ToggleButton } from './bosons/ToggleButton';
 export { default as ToggleSwitch } from './bosons/ToggleSwitch';
