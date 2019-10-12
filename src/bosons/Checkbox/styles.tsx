@@ -1,4 +1,5 @@
-import type { Theme } from 'components/config/theme';
+import { Theme } from 'components/config/theme';
+import { CheckBoxProps, StyleKeys } from './types';
 
 const width = {
   small: 20,
@@ -18,7 +19,7 @@ const tickSize = {
   large: 25,
 };
 
-export default (theme: Theme) => ({
+export default (theme: Theme): StyleFnReturnType<StyleKeys, CheckBoxProps> => ({
   component: {
     display: 'flex',
     flexDirection: 'column',
@@ -33,9 +34,9 @@ export default (theme: Theme) => ({
     },
   },
   checkbox: {
-    width: props => width[props.size],
-    height: props => width[props.size],
-    borderRadius: props => radius[props.size],
+    width: (props) => width[props.size],
+    height: (props) => width[props.size],
+    borderRadius: (props) => radius[props.size],
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
@@ -44,12 +45,12 @@ export default (theme: Theme) => ({
     transition: 'all ease-in 0.2s',
     '&.checked': {
       border: '1px solid transparent',
-      backgroundColor: props => props.color || theme.palette.primary.color2,
+      backgroundColor: (props) => props.color || theme.palette.primary.color2,
     },
   },
   tickIcon: {
     color: 'white',
-    fontSize: props => tickSize[props.size],
+    fontSize: (props) => tickSize[props.size],
     fontWeight: 'bold',
   },
   label: {

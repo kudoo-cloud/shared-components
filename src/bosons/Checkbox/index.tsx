@@ -1,6 +1,5 @@
-/* @flow */
 import * as React from 'react';
-import type { CheckBoxProps } from './types';
+import { CheckBoxProps, CheckboxSize } from './types';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import withStyles from 'components/hoc/withStyles';
@@ -9,7 +8,7 @@ import { randomNumber } from 'components/helpers';
 import styles from './styles';
 
 type State = {
-  value: boolean,
+  value: boolean;
 };
 
 class CheckBox extends React.Component<CheckBoxProps, State> {
@@ -17,11 +16,12 @@ class CheckBox extends React.Component<CheckBoxProps, State> {
     label: PropTypes.node,
     color: PropTypes.string,
     error: PropTypes.string,
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    size: PropTypes.any,
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
     value: PropTypes.bool,
     classes: PropTypes.object,
+    theme: PropTypes.any,
     id: PropTypes.string,
   };
 
@@ -30,7 +30,7 @@ class CheckBox extends React.Component<CheckBoxProps, State> {
     onChange: () => {},
     disabled: false,
     value: false,
-    size: 'large',
+    size: CheckboxSize.large,
     id: `checkbox-${randomNumber()}`,
   };
 
@@ -49,7 +49,7 @@ class CheckBox extends React.Component<CheckBoxProps, State> {
     }
   }
 
-  changeValue = value => {
+  changeValue = (value) => {
     this.setState({ value });
     if (this.props.onChange) {
       this.props.onChange(value);
@@ -70,11 +70,13 @@ class CheckBox extends React.Component<CheckBoxProps, State> {
       <div
         id={id + '-checkbox'}
         className={cx(classes.wrapper, { disabled })}
-        onClick={this._toggleValue}>
+        onClick={this._toggleValue}
+      >
         <div
           className={cx(classes.checkbox, {
             checked: this.state.value,
-          })}>
+          })}
+        >
           {this.state.value && (
             <i className={cx('icon icon-tick', classes.tickIcon)} />
           )}
@@ -101,4 +103,4 @@ class CheckBox extends React.Component<CheckBoxProps, State> {
   }
 }
 
-export default withStyles(styles)(CheckBox);
+export default withStyles<CheckBoxProps>(styles)(CheckBox);

@@ -1,7 +1,6 @@
 import React from 'react';
 import CheckBox from './index';
 import { render } from 'enzyme';
-
 import { I18nProvider } from 'lingui-react';
 import KudooThemeProvider, { theme } from 'components/config/theme';
 import toJson from 'enzyme-to-json';
