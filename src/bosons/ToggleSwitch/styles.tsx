@@ -1,7 +1,5 @@
-/* @flow */
-
-import type { ToggleSwitchProps } from './types';
-import type { Theme } from 'components/config/theme';
+import { ToggleSwitchProps, StyleKeys } from './types';
+import { Theme } from 'components/config/theme';
 
 const switchWidth = 90;
 const switchHeight = 40;
@@ -10,7 +8,7 @@ const compactSwitchHeight = 28;
 const circleIconWidth = 30;
 const compactCircleIconWidth = 20;
 
-export default (theme: Theme) => ({
+export default (theme: Theme): StyleFnReturnType<StyleKeys, ToggleSwitchProps> => ({
   switchComponent: {},
   toggleSwitchWrapper: {
     display: 'inline-flex',

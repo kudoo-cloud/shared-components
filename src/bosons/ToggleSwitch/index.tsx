@@ -1,6 +1,5 @@
-/* @flow */
 import * as React from 'react';
-import type { ToggleSwitchProps } from './types';
+import { ToggleSwitchProps } from './types';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Switch from '@material-ui/core/Switch';
@@ -9,7 +8,7 @@ import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
 
 type State = {
-  value: boolean,
+  value: boolean;
 };
 
 class ToggleSwitch extends React.Component<ToggleSwitchProps, State> {
@@ -23,7 +22,9 @@ class ToggleSwitch extends React.Component<ToggleSwitchProps, State> {
     value: PropTypes.bool,
     label: PropTypes.string,
     compact: PropTypes.bool,
-    classes: PropTypes.object, // will come from withStyles HOC
+    classes: PropTypes.object,
+    theme: PropTypes.any,
+    name: PropTypes.string,
   };
 
   static defaultProps = {
@@ -49,7 +50,7 @@ class ToggleSwitch extends React.Component<ToggleSwitchProps, State> {
     }
   }
 
-  changeValue = value => {
+  changeValue = (value) => {
     this.setState({ value });
     if (this.props.onChange) {
       this.props.onChange(value);
@@ -73,7 +74,8 @@ class ToggleSwitch extends React.Component<ToggleSwitchProps, State> {
     return (
       <div
         className={classes.toggleSwitchWrapper}
-        data-test={`toggle-switch${this.state.value ? '-checked' : ''}`}>
+        data-test={`toggle-switch${this.state.value ? '-checked' : ''}`}
+      >
         <Switch
           checked={this.state.value}
           classes={{
@@ -107,4 +109,4 @@ class ToggleSwitch extends React.Component<ToggleSwitchProps, State> {
   }
 }
 
-export default withStyles(styles)(ToggleSwitch);
+export default withStyles<ToggleSwitchProps>(styles)(ToggleSwitch);
