@@ -9,21 +9,17 @@ const FormikCheckbox = (props: CheckBoxProps) => {
       {({
         field,
         form: { touched, errors, setFieldValue, setFieldTouched },
-      }) => {
-        console.log(field);
-
-        return (
-          <Checkbox
-            {...props}
-            {...field}
-            error={touched[field.name] && errors[field.name]}
-            onChange={(checked) => {
-              setFieldValue(name, checked);
-              setFieldTouched(name);
-            }}
-          />
-        );
-      }}
+      }) => (
+        <Checkbox
+          {...props}
+          {...field}
+          error={touched[field.name] && errors[field.name]}
+          onChange={(checked) => {
+            setFieldValue(name, checked);
+            setFieldTouched(name);
+          }}
+        />
+      )}
     </Field>
   );
 };

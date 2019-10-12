@@ -3,6 +3,7 @@ export { default as AddressForm } from './nuclei/AddressForm';
 export { default as Attachment } from './nuclei/Attachment';
 export { default as Button } from './bosons/Button';
 export { default as Checkbox } from './bosons/Checkbox';
+export { default as FormikCheckbox } from './bosons/Checkbox/FormikCheckbox';
 export { default as CircularProgressBar } from './bosons/CircularProgressBar';
 export { default as CompanyCard } from './bosons/CompanyCard';
 export { default as ContactForm } from './nuclei/ContactForm';
@@ -46,6 +47,9 @@ export { default as FormikTextField } from './bosons/TextField/FormikTextField';
 export { default as TimesheetRowDisplay } from './nuclei/TimesheetRowDisplay';
 export { default as ToggleButton } from './bosons/ToggleButton';
 export { default as ToggleSwitch } from './bosons/ToggleSwitch';
+export {
+  default as FormikToggleSwitch,
+} from './bosons/ToggleSwitch/FormikToggleSwitch';
 export { default as Tooltip } from './bosons/Tooltip';
 export { default as TriangleArrow } from './bosons/TriangleArrow';
 export { default as WeekPeriod } from './nuclei/WeekPeriod';
