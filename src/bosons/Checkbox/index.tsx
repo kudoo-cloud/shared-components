@@ -13,6 +13,7 @@ type State = {
 
 class CheckBox extends React.Component<CheckBoxProps, State> {
   static propTypes = {
+    name: PropTypes.string,
     label: PropTypes.node,
     color: PropTypes.string,
     error: PropTypes.string,

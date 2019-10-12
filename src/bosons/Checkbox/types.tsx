@@ -16,6 +16,7 @@ export enum CheckboxSize {
 }
 
 export type CheckBoxProps = IComponentProps<StyleKeys> & {
+  name?: string;
   /** label **/
   label?: string | any;
   /** checkbox color **/
