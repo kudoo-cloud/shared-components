@@ -1,9 +1,9 @@
-/* @flow */
+import { Theme } from 'components/config/theme';
+import { PhoneNumberFieldProps, StyleKeys } from './types';
 
-import type { Theme } from 'components/config/theme';
-// import type { PhoneNumberFieldProps } from './types';
-
-export default (theme: Theme) => ({
+export default (
+  theme: Theme
+): StyleFnReturnType<StyleKeys, PhoneNumberFieldProps> => ({
   component: {
     display: 'flex',
   },
