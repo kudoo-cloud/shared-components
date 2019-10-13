@@ -1,6 +1,3 @@
-import * as React from 'react';
-import { IComponentProps } from 'shared/src/atoms/Footer/types';
-
 export type StyleKeys =
   | 'switchComponent'
   | 'toggleSwitchWrapper'
@@ -12,7 +9,7 @@ export type StyleKeys =
   | 'offLabel'
   | 'onLabel';
 
-export type ToggleSwitchProps = IComponentProps<StyleKeys> & {
+export type ToggleSwitchProps = withStylesHOCProps<StyleKeys> & {
   name?: string;
   /** label displayed when switch is off **/
   offLabel?: string;

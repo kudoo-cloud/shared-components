@@ -1,6 +1,3 @@
-import * as React from 'react';
-import { IComponentProps } from 'shared/src/atoms/Footer/types';
-
 export type StyleKeys =
   | 'component'
   | 'wrapper'
@@ -15,7 +12,7 @@ export enum CheckboxSize {
   'large' = 'large',
 }
 
-export type CheckBoxProps = IComponentProps<StyleKeys> & {
+export type CheckBoxProps = withStylesHOCProps<StyleKeys> & {
   name?: string;
   /** label **/
   label?: string | any;

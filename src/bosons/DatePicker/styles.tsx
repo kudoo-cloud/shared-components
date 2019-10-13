@@ -1,9 +1,9 @@
-/** @flow **/
+import { Theme } from 'components/config/theme';
+import { DatePickerProps, StyleKeys } from './types';
 
-import type { Theme } from 'components/config/theme';
-import type { DatePickerProps } from './types';
-
-export default (theme: Theme) => ({
+export default (
+  theme: Theme
+): StyleFnReturnType<StyleKeys, DatePickerProps> => ({
   component: {},
   wrapper: {},
   inputWrapper: {
@@ -18,7 +18,7 @@ export default (theme: Theme) => ({
   },
   textInput: {
     color: theme.palette.blueGrey['50'],
-    fontWeight: '500',
+    fontWeight: 500,
     fontFamily: theme.typography.font.family2,
     fontSize: 16,
     cursor: 'pointer',

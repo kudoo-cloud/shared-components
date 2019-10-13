@@ -1,4 +1,3 @@
-/* @flow */
 import React, { Component } from 'react';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
@@ -11,17 +10,18 @@ import withStyles from 'components/hoc/withStyles';
 import TextField from 'components/bosons/TextField';
 import FieldLabel from 'components/bosons/FieldLabel';
 import PropTypes from 'prop-types';
-import type { DatePickerProps } from './types';
+import { DatePickerProps } from './types';
 import styles from './styles';
 
 type State = {
-  isModalOpen: boolean,
-  selectedDate: string | null | Date,
-  internalDate: string | null | Date,
+  isModalOpen: boolean;
+  selectedDate: string | null | Date;
+  internalDate: string | null | Date;
 };
 
 class DatePicker extends Component<DatePickerProps, State> {
   static propTypes = {
+    name: PropTypes.string,
     isDisabled: PropTypes.bool,
     label: PropTypes.string,
     placeholder: PropTypes.string,
@@ -31,6 +31,8 @@ class DatePicker extends Component<DatePickerProps, State> {
     textFieldProps: PropTypes.object,
     calendarProps: PropTypes.object,
     classes: PropTypes.object, // will come from withStyles HOC
+    theme: PropTypes.any,
+    buttonColor: PropTypes.string,
   };
 
   static defaultProps = {
@@ -107,7 +109,8 @@ class DatePicker extends Component<DatePickerProps, State> {
         className={classes.inputWrapper}
         onClick={() => {
           this.setState({ isModalOpen: true });
-        }}>
+        }}
+      >
         <TextField
           {...textFieldProps}
           placeholder={placeholder || 'Select Date'}
@@ -131,7 +134,7 @@ class DatePicker extends Component<DatePickerProps, State> {
     const { isModalOpen, selectedDate, internalDate } = this.state;
     return (
       <Transition in={isModalOpen} timeout={0}>
-        {state => {
+        {(state) => {
           if (!isModalOpen) {
             return null;
           }
@@ -146,7 +149,7 @@ class DatePicker extends Component<DatePickerProps, State> {
                     displayOptions={{
                       showOverlay: false,
                     }}
-                    onSelect={e => {
+                    onSelect={(e) => {
                       this.setState({ internalDate: e });
                     }}
                     {...calendarProps}
@@ -159,12 +162,14 @@ class DatePicker extends Component<DatePickerProps, State> {
                       <div className={classes.rightButtons}>
                         <div
                           className={classes.button}
-                          onClick={this.closeModal}>
+                          onClick={this.closeModal}
+                        >
                           Cancel
                         </div>
                         <div
                           className={classes.button}
-                          onClick={this._selectDateAndClose}>
+                          onClick={this._selectDateAndClose}
+                        >
                           Ok
                         </div>
                       </div>
@@ -197,4 +202,4 @@ class DatePicker extends Component<DatePickerProps, State> {
   }
 }
 
-export default withStyles(styles)(DatePicker);
+export default withStyles<DatePickerProps>(styles)(DatePicker);

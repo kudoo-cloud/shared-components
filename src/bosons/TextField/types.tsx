@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IComponentProps } from 'shared/src/atoms/Footer/types';
 
 export type StyleKeys =
   | 'component'
@@ -24,7 +23,7 @@ export type ReactInputChangeEvent =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLTextAreaElement>;
 
-export type TextFieldProps = IComponentProps<StyleKeys> & {
+export type TextFieldProps = withStylesHOCProps<StyleKeys> & {
   /** Standard HTML input autocomplete attribute. */
   autoComplete?: string | 'on' | 'off';
   /** Type value to be passed to the html input. */

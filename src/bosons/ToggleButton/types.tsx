@@ -1,5 +1,3 @@
-import { IComponentProps } from 'shared/src/atoms/Footer/types';
-
 export type StyleKeys =
   | 'component'
   | 'root'
@@ -9,7 +7,7 @@ export type StyleKeys =
   | 'button'
   | 'highlighter';
 
-export type ToggleButtonProps = IComponentProps<StyleKeys> & {
+export type ToggleButtonProps = withStylesHOCProps<StyleKeys> & {
   name?: string;
   id?: string;
   title?: string;
