@@ -4,7 +4,6 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import AddressForm from './index';
 import { Formik } from 'formik';
-import Yup from 'yup';
 
 storiesOf('AddressForm', module).add(
   'Default',
@@ -16,18 +15,12 @@ storiesOf('AddressForm', module).add(
           city: '',
           state: '',
           country: '',
-          postcode: '',
+          postcode: '12345',
         }}
         onSubmit={action('onSubmit')}
-        render={formProps => (
+        render={(formProps) => (
           <form onSubmit={formProps.handleSubmit}>
-            <AddressForm
-              values={formProps.values}
-              errors={formProps.errors}
-              touched={formProps.touched}
-              handleChange={formProps.handleChange}
-              handleBlur={formProps.handleBlur}
-            />
+            <AddressForm />
           </form>
         )}
       />

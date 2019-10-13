@@ -17,6 +17,7 @@ export {
 export { default as DottedCreateButton } from './bosons/DottedCreateButton';
 export { default as Drawer } from './atoms/Drawer';
 export { default as Dropdown } from './bosons/Dropdown';
+export { default as FormikDropdown } from './bosons/Dropdown/FormikDropdown';
 export { default as EmailInputFields } from './nuclei/EmailInputFields';
 export { default as ErrorBoundary } from './hoc/ErrorBoundary';
 export { default as FieldLabel } from './bosons/FieldLabel';
