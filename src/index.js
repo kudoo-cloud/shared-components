@@ -11,6 +11,9 @@ export { default as CustomerForm } from './nuclei/CustomerForm';
 export { default as CreditCardDetailForm } from './nuclei/CreditCardDetailForm';
 export { default as DataImports } from './nuclei/DataImports';
 export { default as DatePicker } from './bosons/DatePicker';
+export {
+  default as FormikDatePicker,
+} from './bosons/DatePicker/FormikDatePicker';
 export { default as DottedCreateButton } from './bosons/DottedCreateButton';
 export { default as Drawer } from './atoms/Drawer';
 export { default as Dropdown } from './bosons/Dropdown';
