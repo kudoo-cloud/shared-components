@@ -49,6 +49,9 @@ export { default as TextField } from './bosons/TextField';
 export { default as FormikTextField } from './bosons/TextField/FormikTextField';
 export { default as TimesheetRowDisplay } from './nuclei/TimesheetRowDisplay';
 export { default as ToggleButton } from './bosons/ToggleButton';
+export {
+  default as FormikToggleButton,
+} from './bosons/ToggleButton/FormikToggleButton';
 export { default as ToggleSwitch } from './bosons/ToggleSwitch';
 export {
   default as FormikToggleSwitch,
