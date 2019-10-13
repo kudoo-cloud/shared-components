@@ -34,6 +34,9 @@ export { default as Pagination } from './bosons/Pagination';
 export { default as PhoneNumberField } from './nuclei/PhoneNumberField';
 export { default as ProjectCard } from './bosons/ProjectCard';
 export { default as RadioButton } from './bosons/RadioButton';
+export {
+  default as FormikRadioButton,
+} from './bosons/RadioButton/FormikRadioButton';
 export { default as SearchInput } from './bosons/SearchInput';
 export { default as SectionHeader } from './nuclei/SectionHeader';
 export { default as Signature } from './nuclei/Signature';
