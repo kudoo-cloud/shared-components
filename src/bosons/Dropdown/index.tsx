@@ -1,9 +1,6 @@
-/* @flow */
-
 import * as React from 'react';
-import type { DropdownProps } from './types';
+import { DropdownProps } from './types';
 import withStyles from 'components/hoc/withStyles';
-import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import cx from 'classnames';
@@ -15,51 +12,12 @@ import FieldLabel from 'components/bosons/FieldLabel';
 import styles from './styles';
 
 type State = {
-  selectedIndex: Array<number> | number,
-  isOpen: boolean,
+  selectedIndex: Array<number> | number;
+  isOpen: boolean;
 };
 
 class Dropdown extends React.Component<DropdownProps, State> {
   container: any;
-  static propTypes = {
-    /** id **/
-    id: PropTypes.string,
-    /** label **/
-    label: PropTypes.string,
-    /** placeholder **/
-    placeholder: PropTypes.string,
-    /** called when item selection change **/
-    onChange: PropTypes.func,
-    /** called when dropdown selection change **/
-    onClick: PropTypes.func,
-    /** called when dropdown menu close **/
-    onClose: PropTypes.func,
-    /** disable dropdown **/
-    disabled: PropTypes.bool,
-    /** selcted index  **/
-    selectedIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-    /** items to display in dropdown  **/
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        value: PropTypes.any.isRequired,
-      })
-    ).isRequired,
-    /** error message **/
-    error: PropTypes.string,
-    /** should show error message (default : true) **/
-    showErrorMessage: PropTypes.bool,
-    /** value of selected item **/
-    value: PropTypes.any,
-    /** this is used to find selected value from given item  */
-    comparator: PropTypes.func,
-    /** multiple: to allow multiple selection, default: false */
-    multiple: PropTypes.bool,
-    /** classes  **/
-    classes: PropTypes.object,
-    /** custom css  **/
-    className: PropTypes.string,
-  };
 
   static defaultProps = {
     placeholder: 'Select',
@@ -130,7 +88,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
     }
   };
 
-  _toggle = e => {
+  _toggle = (e) => {
     if (this.state.isOpen) {
       this.close();
     } else {
@@ -151,7 +109,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
     let nextSelectedItem: any;
     if (this.props.comparator) {
       let { index, item } = this.props.comparator(
-        items.map(item => item.value),
+        items.map((item) => item.value),
         value
       );
       if (!multiple) {
@@ -167,7 +125,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
       // if comparator is not given then entire value object will be matched with given items
       if (!multiple) {
         nextSelectedIndex = findIndex(items, { value });
-        nextSelectedItem = idx(items, _ => _[nextSelectedIndex]);
+        nextSelectedItem = idx(items, (_) => _[nextSelectedIndex]);
       } else {
         nextSelectedIndex = [];
         nextSelectedItem = [];
@@ -238,7 +196,7 @@ class Dropdown extends React.Component<DropdownProps, State> {
       if (selectedIndex instanceof Array) {
         const labels = []
           .concat(selectedIndex || [])
-          .map(val => get(items, val + `.label`));
+          .map((val) => get(items, val + `.label`));
         selectedLabel = labels.join(', ');
       }
     }
@@ -262,7 +220,8 @@ class Dropdown extends React.Component<DropdownProps, State> {
             'is-value-selected': Boolean(selectedLabel),
             disabled,
           })}
-          onClick={this._toggle}>
+          onClick={this._toggle}
+        >
           {/* placeholder */}
           {Boolean(placeholder) &&
             !selectedLabel && (
@@ -282,7 +241,8 @@ class Dropdown extends React.Component<DropdownProps, State> {
           unmountOnExit
           classes={{
             container: cx(classes.selectMenu, { withoutLabel: !label }),
-          }}>
+          }}
+        >
           <div data-test-id="select-menu-wrapper">
             {/* menu items */}
             {items.map((item, index) => {
@@ -299,12 +259,14 @@ class Dropdown extends React.Component<DropdownProps, State> {
                   className={cx(classes.menuItem)}
                   onClick={() => {
                     this._handleChange(item, index);
-                  }}>
+                  }}
+                >
                   {/* menu item label */}
                   <div
                     className={cx(classes.menuItemText, {
                       selected: isItemSelected,
-                    })}>
+                    })}
+                  >
                     {item.label}
                   </div>
                   {/* menu item select indicator */}
@@ -325,7 +287,8 @@ class Dropdown extends React.Component<DropdownProps, State> {
         <div
           className={cx(classes.component)}
           id={id}
-          ref={ref => (this.container = ref)}>
+          ref={(ref) => (this.container = ref)}
+        >
           {this._renderDropdown()}
           {Boolean(error) &&
             showErrorMessage && <div className={classes.error}>{error}</div>}
@@ -335,4 +298,4 @@ class Dropdown extends React.Component<DropdownProps, State> {
   }
 }
 
-export default withStyles(styles)(Dropdown);
+export default withStyles<DropdownProps>(styles)(Dropdown);

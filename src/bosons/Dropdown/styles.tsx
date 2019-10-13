@@ -1,4 +1,7 @@
-export default theme => ({
+import { Theme } from 'components/config/theme';
+import { DropdownProps, StyleKeys } from './types';
+
+export default (theme: Theme): StyleFnReturnType<StyleKeys, DropdownProps> => ({
   component: {
     fontFamily: theme.typography.font.family2,
     flex: 1,
@@ -124,7 +127,7 @@ export default theme => ({
     right: 0,
     bottom: 0,
     backgroundColor: 'transparent',
-    zIndex: '9998',
+    zIndex: 9998,
     width: '100%',
     height: '100%',
   },
