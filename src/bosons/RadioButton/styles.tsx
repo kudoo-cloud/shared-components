@@ -1,6 +1,12 @@
+import { Theme } from 'components/config/theme';
+import { StyleKeys, RadioButtonProps } from './types';
+
 const outerWidth = 37;
 const innerWidth = 15;
-export default theme => ({
+
+export default (
+  theme: Theme
+): StyleFnReturnType<StyleKeys, RadioButtonProps> => ({
   radioComponent: {
     flex: 1,
   },
@@ -25,7 +31,7 @@ export default theme => ({
     backgroundColor: 'white',
     transition: 'all ease-in 0.2s',
     '&.selected': {
-      backgroundColor: props => props.color || theme.palette.primary.color2,
+      backgroundColor: (props) => props.color || theme.palette.primary.color2,
       border: '1px solid transparent',
     },
   },
@@ -39,6 +45,6 @@ export default theme => ({
     marginLeft: 10,
     fontFamily: "'montserrat', sans-serif",
     fontSize: 15,
-    fontWeight: '300',
+    fontWeight: 300,
   },
 });

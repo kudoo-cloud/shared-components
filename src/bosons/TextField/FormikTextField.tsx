@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Field } from 'formik';
 import { TextFieldProps } from './types';
 import TextInput from './index';
+import get from 'lodash/get';
 
 const FormikTextField = (props: TextFieldProps) => {
   return (
@@ -13,7 +14,7 @@ const FormikTextField = (props: TextFieldProps) => {
         <TextInput
           {...props}
           {...field}
-          error={touched[field.name] && errors[field.name]}
+          error={get(touched, field.name) && get(errors, field.name)}
         />
       )}
     </Field>

@@ -101,19 +101,31 @@ storiesOf('TextField', module)
     withInfo('Formik TextField')(() => (
       <div style={{ padding: 10 }}>
         <Formik
-          initialValues={{ email: '' }}
+          initialValues={{
+            email: '',
+            email1: '',
+            nested: {
+              email: '',
+            },
+          }}
           validationSchema={Yup.object().shape({
             email: Yup.string()
               .required('Email is required')
               .email('Email is invalid'),
-            email1: Yup.string()
-              .required('Email is required')
-              .email('Email is invalid'),
+            nested: Yup.object().shape({
+              email: Yup.string()
+                .required('Email is required')
+                .email('Email is invalid'),
+            }),
           })}
           onSubmit={() => {}}
         >
           <React.Fragment>
             <FormikTextField name="email" label="Formik Field Email" />
+            <FormikTextField
+              name="nested.email"
+              label="Formik Field Nested Email"
+            />
             <FormikTextField
               name="email1"
               label={'custom placeholder color'}

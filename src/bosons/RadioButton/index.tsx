@@ -1,13 +1,12 @@
-/* @flow */
 import * as React from 'react';
-import type { RadioButtonProps } from './types';
+import { RadioButtonProps } from './types';
 import classNames from 'classnames';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
 
 type State = {
-  value: boolean,
+  value: boolean;
 };
 
 class RadioButton extends React.Component<RadioButtonProps, State> {
@@ -35,7 +34,7 @@ class RadioButton extends React.Component<RadioButtonProps, State> {
     }
   }
 
-  changeValue = value => {
+  changeValue = (value) => {
     this.setState({ value });
     if (this.props.onChange) {
       this.props.onChange(value);
@@ -54,11 +53,13 @@ class RadioButton extends React.Component<RadioButtonProps, State> {
     return (
       <div
         className={classNames(classes.radioWrapper, { disabled })}
-        onClick={this._select}>
+        onClick={this._select}
+      >
         <div
           className={classNames(classes.radioOuterCircle, {
             selected: this.state.value,
-          })}>
+          })}
+        >
           <div className={classes.radioInnerCircle} />
         </div>
         {Boolean(label) && <div className={classes.radioLabel}>{label}</div>}
@@ -79,4 +80,4 @@ class RadioButton extends React.Component<RadioButtonProps, State> {
   }
 }
 
-export default withStyles(styles)(RadioButton);
+export default withStyles<RadioButtonProps>(styles)(RadioButton);

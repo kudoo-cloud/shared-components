@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Field } from 'formik';
 import { CheckBoxProps } from './types';
+import get from 'lodash/get';
 import Checkbox from './index';
 
 const FormikCheckbox = (props: CheckBoxProps) => {
@@ -13,7 +14,7 @@ const FormikCheckbox = (props: CheckBoxProps) => {
         <Checkbox
           {...props}
           {...field}
-          error={touched[field.name] && errors[field.name]}
+          error={get(touched, field.name) && get(errors, field.name)}
           onChange={(checked) => {
             setFieldValue(name, checked);
             setFieldTouched(name);
