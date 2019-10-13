@@ -4,7 +4,6 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import CustomerForm from './index';
 import { Formik } from 'formik';
-import Yup from 'yup';
 
 storiesOf('CustomerForm', module).add(
   'Default',
@@ -16,18 +15,12 @@ storiesOf('CustomerForm', module).add(
           contact_name: '',
           contact_surname: '',
           abn: '',
-          email: '',
+          email: 'test@mail.com',
         }}
         onSubmit={action('onSubmit')}
-        render={formProps => (
+        render={(formProps) => (
           <form onSubmit={formProps.handleSubmit}>
-            <CustomerForm
-              values={formProps.values}
-              errors={formProps.errors}
-              touched={formProps.touched}
-              handleChange={formProps.handleChange}
-              handleBlur={formProps.handleBlur}
-            />
+            <CustomerForm />
           </form>
         )}
       />
