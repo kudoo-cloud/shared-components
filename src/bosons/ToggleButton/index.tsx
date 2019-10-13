@@ -1,6 +1,5 @@
-/* @flow */
 import * as React from 'react';
-import type { ToggleButtonProps } from './types';
+import { ToggleButtonProps } from './types';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from 'components/hoc/withStyles';
@@ -8,11 +7,12 @@ import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
 
 type State = {
-  selectedIndex: number,
+  selectedIndex: number;
 };
 
 class ToggleButton extends React.Component<ToggleButtonProps, State> {
   static propTypes = {
+    name: PropTypes.string,
     id: PropTypes.string,
     title: PropTypes.string,
     labels: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -20,6 +20,7 @@ class ToggleButton extends React.Component<ToggleButtonProps, State> {
     onChange: PropTypes.func,
     selectedIndex: PropTypes.number,
     classes: PropTypes.object, // will come from withStyles HOC
+    theme: PropTypes.any,
   };
 
   static defaultProps = {
@@ -66,7 +67,8 @@ class ToggleButton extends React.Component<ToggleButtonProps, State> {
               className={cx(classes.button, {
                 active: selectedIndex === index,
               })}
-              key={index}>
+              key={index}
+            >
               {label}
             </div>
           ))}
@@ -99,4 +101,4 @@ class ToggleButton extends React.Component<ToggleButtonProps, State> {
   }
 }
 
-export default withStyles(styles)(ToggleButton);
+export default withStyles<ToggleButtonProps>(styles)(ToggleButton);
