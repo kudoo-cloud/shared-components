@@ -16,8 +16,8 @@ const FormikCheckbox = (props: CheckBoxProps) => {
           {...field}
           error={get(touched, field.name) && get(errors, field.name)}
           onChange={(checked) => {
-            setFieldValue(name, checked);
-            setFieldTouched(name);
+            setFieldValue(field.name, checked);
+            setFieldTouched(field.name);
           }}
         />
       )}

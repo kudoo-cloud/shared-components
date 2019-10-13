@@ -15,6 +15,8 @@ export type StyleKeys =
   | 'overlay'
   | 'error';
 
+export type DropdownItem = { label: string; value: any };
+
 export type DropdownProps = withStylesHOCProps<StyleKeys> & {
   name?: string;
   /** id **/
@@ -24,7 +26,9 @@ export type DropdownProps = withStylesHOCProps<StyleKeys> & {
   /** placeholder **/
   placeholder?: string;
   /** called when item selection change **/
-  onChange?: Function;
+  onChange?: (item: DropdownItem, index: number, isSelected: boolean) => void;
+  /** called with all selected items when item selection change if multiple props is provided **/
+  onChangeMultiple?: (items: DropdownItem[], index: number[]) => void;
   /** on click of dropdown **/
   onClick?: Function;
   /** on dropdown close **/
@@ -34,7 +38,7 @@ export type DropdownProps = withStylesHOCProps<StyleKeys> & {
   /** selcted index  **/
   selectedIndex?: number | Array<number>;
   /** items to display in dropdown  **/
-  items: Array<{ label: string; value: any }>;
+  items: Array<DropdownItem>;
   /** error **/
   error?: string;
   /** should show error message (default : true) **/

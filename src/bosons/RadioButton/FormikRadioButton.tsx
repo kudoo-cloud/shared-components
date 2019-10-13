@@ -11,8 +11,8 @@ const FormikRadioButton = (props: RadioButtonProps) => {
           {...props}
           {...field}
           onChange={(checked) => {
-            setFieldValue(name, checked);
-            setFieldTouched(name);
+            setFieldValue(field.name, checked);
+            setFieldTouched(field.name);
           }}
         />
       )}

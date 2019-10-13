@@ -12,8 +12,8 @@ const FormikToggleButton = (props: ToggleButtonProps) => {
           {...field}
           selectedIndex={field.value}
           onChange={(checked) => {
-            setFieldValue(name, checked);
-            setFieldTouched(name);
+            setFieldValue(field.name, checked);
+            setFieldTouched(field.name);
           }}
         />
       )}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DropdownProps } from './types';
+import { DropdownProps, DropdownItem } from './types';
 import withStyles from 'components/hoc/withStyles';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
@@ -144,15 +144,15 @@ class Dropdown extends React.Component<DropdownProps, State> {
     this.setState({ selectedIndex: -1 });
   };
 
-  _handleChange = (item: Object, index: number) => {
-    const { onChange, multiple } = this.props;
+  _handleChange = (item: DropdownItem, index: number) => {
+    const { onChange, multiple, onChangeMultiple, items } = this.props;
     let isSelected = true;
+    let newSelectedIndex = [];
     if (!multiple) {
       this.setState({ selectedIndex: index });
     } else {
       const { selectedIndex } = this.state;
       const pos = [].concat(selectedIndex || []).indexOf(index);
-      let newSelectedIndex = [];
       if (selectedIndex instanceof Array) {
         newSelectedIndex = [...selectedIndex];
       }
@@ -171,6 +171,15 @@ class Dropdown extends React.Component<DropdownProps, State> {
       // isSelected is mainly used for multiple selection , whether item is checked or unchecked
       onChange(item, index, isSelected);
     }
+
+    if (multiple && onChangeMultiple) {
+      // if multiple selection is true then call onChangeMultiple on item selection
+      onChangeMultiple(
+        items.filter((_, index) => newSelectedIndex.indexOf(index) > -1),
+        newSelectedIndex
+      );
+    }
+
     if (!multiple) {
       // if only single selection, then close dropdown on select
       this.close();

@@ -19,8 +19,8 @@ const FormikDatePicker = (props: DatePickerProps) => {
             error: get(touched, field.name) && get(errors, field.name),
           }}
           onDateChange={(date) => {
-            setFieldValue(name, date);
-            setFieldTouched(name);
+            setFieldValue(field.name, date);
+            setFieldTouched(field.name);
           }}
         />
       )}
