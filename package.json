@@ -111,6 +111,7 @@
 		"@storybook/addons": "^3.4.0",
 		"@storybook/react": "^3.4.0",
 		"@types/lingui__react": "^2.8.0",
+		"@types/react-infinite-calendar": "^2.3.3",
 		"@types/react-router-dom": "^4.3.4",
 		"@types/storybook__react": "^4.0.1",
 		"auto-changelog": "^1.12.0",

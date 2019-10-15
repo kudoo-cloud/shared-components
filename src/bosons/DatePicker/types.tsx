@@ -1,4 +1,5 @@
 import { TextFieldProps } from 'components/bosons/TextField/types';
+import { ReactInfiniteCalendarProps } from 'react-infinite-calendar';
 
 export type StyleKeys =
   | 'component'
@@ -33,5 +34,5 @@ export type DatePickerProps = withStylesHOCProps<StyleKeys> & {
   /** text field props */
   textFieldProps?: TextFieldProps;
   /** calendar props */
-  calendarProps?: Object;
+  calendarProps?: ReactInfiniteCalendarProps;
 };
