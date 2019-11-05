@@ -10,17 +10,15 @@ storiesOf('PatientForm', module)
     'Default',
     withInfo('Default')(() => (
       <div style={{ margin: 10, width: 600 }}>
-        <Formik
-          initialValues={{}}
-          onSubmit={action('onSubmit')}
-          render={(formProps) => {
+        <Formik initialValues={{}} onSubmit={action('onSubmit')}>
+          {(formProps) => {
             return (
               <form onSubmit={formProps.handleSubmit}>
                 <PatientForm />
               </form>
             );
           }}
-        />
+        </Formik>
       </div>
     ))
   )
@@ -28,17 +26,15 @@ storiesOf('PatientForm', module)
     'with AU Fields',
     withInfo('with Australian specific Fields')(() => (
       <div style={{ margin: 10, width: 600 }}>
-        <Formik
-          initialValues={{}}
-          onSubmit={action('onSubmit')}
-          render={(formProps) => {
+        <Formik initialValues={{}} onSubmit={action('onSubmit')}>
+          {(formProps) => {
             return (
               <form onSubmit={formProps.handleSubmit}>
                 <PatientForm showAUFields />
               </form>
             );
           }}
-        />
+        </Formik>
       </div>
     ))
   );

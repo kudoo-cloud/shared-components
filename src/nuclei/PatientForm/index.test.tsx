@@ -12,15 +12,13 @@ it('renders PatientForm', () => {
     <I18nProvider language="en">
       <KudooThemeProvider theme={theme}>
         <div style={{ margin: 10, width: 600 }}>
-          <Formik
-            initialValues={{}}
-            onSubmit={action('onSubmit')}
-            render={(formProps) => (
+          <Formik initialValues={{}} onSubmit={action('onSubmit')}>
+            {(formProps) => (
               <form onSubmit={formProps.handleSubmit}>
                 <PatientForm />
               </form>
             )}
-          />
+          </Formik>
         </div>
       </KudooThemeProvider>
     </I18nProvider>

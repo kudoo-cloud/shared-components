@@ -21,12 +21,13 @@ it('renders CustomerForm', () => {
               email: '',
             }}
             onSubmit={action('onSubmit')}
-            render={(formProps) => (
+          >
+            {(formProps) => (
               <form onSubmit={formProps.handleSubmit}>
                 <CustomerForm />
               </form>
             )}
-          />
+          </Formik>
         </div>
       </KudooThemeProvider>
     </I18nProvider>
