@@ -207,6 +207,8 @@ export default {
 
   //HealthcareProviders
   HEALTH_CARE_PROVIDERS: abstractURL('/healthcareProviders'),
+  ACTIVE_HEALTH_CARE_PROVIDERS: abstractURL('/healthcareProviders/active'),
+  ARCHIVED_HEALTH_CARE_PROVIDERS: abstractURL('/healthcareProviders/archived'),
   CREATE_HEALTH_CARE_PROVIDER: abstractURL('/healthcareProviders/create'),
   EDIT_HEALTH_CARE_PROVIDER: abstractURL('/healthcareProviders/:id/edit'),
 
