@@ -14,7 +14,16 @@ let presets = [
   ]
 ];
 let plugins = [
-  "@babel/plugin-transform-runtime",
+  [
+    "@babel/plugin-transform-runtime",
+    {
+      absoluteRuntime: false,
+      corejs: false,
+      helpers: true,
+      regenerator: true,
+      useESModules: false
+    }
+  ],
   "@babel/plugin-proposal-class-properties",
   "@babel/plugin-transform-async-to-generator",
   "@babel/plugin-syntax-dynamic-import",

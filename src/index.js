@@ -1,4 +1,3 @@
-import * as helpers from './helpers';
 export { default as AddressForm } from './nuclei/AddressForm';
 export { default as Attachment } from './nuclei/Attachment';
 export { default as Button } from './bosons/Button';
@@ -75,4 +74,6 @@ export {
 } from './config/theme';
 export { withRouterProps, withStylesProps } from './config/types';
 export { default as URL } from './config/urls';
+
+import * as helpers from './helpers';
 export { helpers };
