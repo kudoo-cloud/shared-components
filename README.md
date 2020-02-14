@@ -17,33 +17,3 @@ Atoms are the building blocks of the application. They can be thought of as the 
 * NotFound
 * Tabs
 * Screens
-
-# Creating a basic screen
-
-The webapp will always consist of at least the following components
-* drawer
-* headerBar
-* screen
-
-```javascript
-import React from 'react';
-import Drawer, HeaderBar from './index';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route } from 'react-router';
-
-<Router>
-    <Route
-    render={() => (
-        <Drawer
-            companies={[{ id: 1, name: 'Kudoo' }, { id: 2, name: 'Facebook' }]}
-            selectedCompany={{ id: 1, name: 'Kudoo', owner: true }}
-        />
-        <HeaderBar
-            headerLabel={'Dashboard'}
-            profile={{ firstName: 'John', lastName: 'Doe' }}
-        />
-    )}
-    />
-</Router>
-
-```

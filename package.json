@@ -2,6 +2,9 @@
 	"name": "@kudoo/components",
 	"version": "2.2.5",
 	"description": "Shared React components across Kudoo",
+	"engines": {
+		"node": ">=12"
+	},
 	"main": "build/index.js",
 	"scripts": {
 		"test": "jest --env=jsdom",
