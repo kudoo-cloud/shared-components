@@ -107,7 +107,7 @@ class Footer extends React.Component<Props, any> {
                     className={classes.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/KudooCloud">
+                    href="https://github.com/kudoo-cloud">
                     <i className="fa fa-github" />
                   </a>
                   <a
