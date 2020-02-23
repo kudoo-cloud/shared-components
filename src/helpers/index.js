@@ -4,7 +4,7 @@ import moment from 'moment';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import { toast } from 'react-toastify';
-import { matchPath } from 'react-router';
+import { matchPath } from 'react-router-dom';
 import axios from 'axios';
 
 const getCurrencyBaseAmount = async (source, target) => {

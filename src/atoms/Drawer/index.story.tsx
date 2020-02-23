@@ -2,8 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import Drawer from './index';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 storiesOf('Drawer', module).add(
   'Default',

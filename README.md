@@ -28,8 +28,7 @@ The webapp will always consist of at least the following components
 ```javascript
 import React from 'react';
 import Drawer, HeaderBar from './index';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 <Router>
     <Route

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { HeaderBarProps, ProductType } from './types';
-import { withRouter, matchPath } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, matchPath, withRouter } from 'react-router-dom';
 import { Portal } from 'react-portal';
 import cx from 'classnames';
 import idx from 'idx';

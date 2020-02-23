@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import HeaderBar from './index';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 storiesOf('HeaderBar', module).add('Default', () => (
   <Router>

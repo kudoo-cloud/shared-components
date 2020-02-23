@@ -1,8 +1,7 @@
 import React from 'react';
 import Drawer from './index';
 import { render } from 'enzyme';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { I18nProvider } from '@lingui/react';
 import KudooThemeProvider, { theme } from 'components/config/theme';
 import toJson from 'enzyme-to-json';

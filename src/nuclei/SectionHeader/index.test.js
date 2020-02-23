@@ -1,11 +1,7 @@
 import React from 'react';
 import SectionHeader from './index';
 import { render } from 'enzyme';
-import { action } from '@storybook/addon-actions';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Button from 'components/bosons/Button';
-import { Route } from 'react-router';
-
 import KudooThemeProvider, { theme } from 'components/config/theme';
 import { I18nProvider } from 'lingui-react';
 import toJson from 'enzyme-to-json';
