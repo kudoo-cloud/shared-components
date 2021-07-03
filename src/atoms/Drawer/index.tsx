@@ -158,7 +158,7 @@ class Drawer extends React.Component<DrawerProps, State> {
             style={{ justifyContent: 'center' }}
             className={classes.userMoreItem}
           >
-            <div className={classes.manageCompanyBtn}>Manage Companies</div>
+            <div className={classes.manageCompanyBtn}>Manage DAOs</div>
           </Link>
         </Collapse>
       </div>
