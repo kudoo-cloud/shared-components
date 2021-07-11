@@ -22,7 +22,7 @@ class Footer extends React.Component<Props, any> {
               <div className={classes.block}>
                 <div className={classes.title}>
                   <i className="fa fa-industry" />
-                  COMPANY INFO
+                  DAO INFO
                 </div>
                 <div className={classes.items}>
                   <a

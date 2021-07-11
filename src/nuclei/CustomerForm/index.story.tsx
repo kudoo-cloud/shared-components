@@ -11,19 +11,19 @@ storiesOf('CustomerForm', module).add(
     <div style={{ margin: 10, width: 600 }}>
       <Formik
         initialValues={{
-          company_name: '',
+          dao_name: '',
           contact_name: '',
           contact_surname: '',
           abn: '',
           email: 'test@mail.com',
         }}
         onSubmit={action('onSubmit')}
-        render={(formProps) => (
+        render={formProps => (
           <form onSubmit={formProps.handleSubmit}>
             <CustomerForm />
           </form>
         )}
       />
     </div>
-  ))
+  )),
 );

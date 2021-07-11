@@ -5,5 +5,5 @@ import ContactForm from '.';
 
 storiesOf('Contact Form', module).add(
   'Default',
-  withInfo('Sample Contact Form')(() => <ContactForm />)
+  withInfo('Sample Contact Form')(() => <ContactForm />),
 );

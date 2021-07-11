@@ -4,7 +4,6 @@ import { DrawerProps } from './types';
 import classNames from 'classnames';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link, withRouter } from 'react-router-dom';
-import URL from 'components/config/urls';
 import { mobileAndTabletcheck, getFirstLetters } from 'components/helpers';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
@@ -21,11 +20,11 @@ class Drawer extends React.Component<DrawerProps, State> {
   items: any;
 
   static defaultProps = {
-    companies: [],
+    daos: [],
     closed: false,
     onClose: () => {},
     onOpen: () => {},
-    onCompanyClick: () => {},
+    onDAOClick: () => {},
   };
 
   constructor(props) {
@@ -93,16 +92,16 @@ class Drawer extends React.Component<DrawerProps, State> {
     );
   }
 
-  _renderCompany() {
-    let { name } = this.props.selectedCompany;
-    let { classes, selectedCompany } = this.props;
+  _renderDAO() {
+    let { name } = this.props.selectedDAO;
+    let { classes, selectedDAO, manageDAOUrl } = this.props;
     let { closed, userMoreClosed } = this.state;
     let rightArrowClass = classNames(
       'icon-chevron-right',
       classes.moreRightArrow,
       {
         down: !userMoreClosed,
-      }
+      },
     );
     return (
       <div className={classes.userWrapper}>
@@ -118,7 +117,7 @@ class Drawer extends React.Component<DrawerProps, State> {
               this.setState({ userMoreClosed: !this.state.userMoreClosed });
             }}
           >
-            <div className={classes.selectedCompanyName}>{name}</div>
+            <div className={classes.selectedDAOName}>{name}</div>
             <i className={rightArrowClass} />
           </div>
         )}
@@ -129,36 +128,35 @@ class Drawer extends React.Component<DrawerProps, State> {
           timeout="auto"
           unmountOnExit
         >
-          {this.props.companies.map((comp, index) => (
+          {(this.props.daos || []).map((comp, index) => (
             <ButtonBase
               classes={{
                 root: classNames(classes.userMoreItem, {
-                  selected: comp.id === selectedCompany.id,
+                  selected: comp.id === selectedDAO.id,
                 }),
               }}
               style={{ width: '100%' }}
               key={index}
               onClick={() => {
-                this.props.onCompanyClick(comp);
+                this.props.onDAOClick(comp);
                 this.setState({ userMoreClosed: true });
               }}
             >
-              {/* <i className={cx('fa fa-gear', classes.goToCompanyIcon)} /> */}
-              <div className={classes.companyName}>{comp.name}</div>
-              {comp.id === selectedCompany.id && (
+              <div className={classes.daoName}>{comp.name}</div>
+              {comp.id === selectedDAO.id && (
                 <div className={classes.onlineStatus} />
               )}
             </ButtonBase>
           ))}
           <Link
-            to={URL.MANAGE_COMPANIES()}
+            to={manageDAOUrl || ''}
             onClick={() => {
               this.setState({ userMoreClosed: true });
             }}
             style={{ justifyContent: 'center' }}
             className={classes.userMoreItem}
           >
-            <div className={classes.manageCompanyBtn}>Manage DAOs</div>
+            <div className={classes.manageDAOBtn}>Manage DAOs</div>
           </Link>
         </Collapse>
       </div>
@@ -190,7 +188,7 @@ class Drawer extends React.Component<DrawerProps, State> {
         <div className={classes.upperPart}>
           {closed && this._renderHamburgerIcon()}
           {!closed && this._renderCloseIcon()}
-          {this._renderCompany()}
+          {this._renderDAO()}
           {this._renderItems()}
         </div>
         <div className={classes.kudooIconWraper}>

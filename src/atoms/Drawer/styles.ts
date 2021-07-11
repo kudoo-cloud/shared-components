@@ -70,7 +70,7 @@ export default (theme: Theme): StyleFnReturnType<StyleKeys, DrawerProps> => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  selectedCompanyName: {
+  selectedDAOName: {
     flex: 1,
     whiteSpace: 'pre-wrap',
     lineHeight: '23px',
@@ -95,7 +95,7 @@ export default (theme: Theme): StyleFnReturnType<StyleKeys, DrawerProps> => ({
       transform: 'rotate(90deg)',
     },
   },
-  goToCompanyIcon: {
+  goToDAOIcon: {
     color: 'white',
     fontSize: 18,
     marginRight: 10,
@@ -116,7 +116,7 @@ export default (theme: Theme): StyleFnReturnType<StyleKeys, DrawerProps> => ({
     backgroundColor: theme.palette.primary.color1,
     borderRadius: '50%',
   },
-  companyName: {
+  daoName: {
     color: 'white',
     fontSize: '14px',
     flex: 1,
@@ -129,7 +129,7 @@ export default (theme: Theme): StyleFnReturnType<StyleKeys, DrawerProps> => ({
       fontStyle: 'italic',
     },
   },
-  manageCompanyBtn: {
+  manageDAOBtn: {
     padding: '15px',
     border: `1px solid ${theme.palette.primary.color2}`,
     borderRadius: '50px',

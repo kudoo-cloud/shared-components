@@ -9,17 +9,17 @@ import toJson from 'enzyme-to-json';
 
 it('renders SearchInput', () => {
   const wrapper = render(
-    <I18nProvider language="en" >
+    <I18nProvider language="en">
       <KudooThemeProvider theme={theme}>
         <div style={{ margin: 10 }}>
           <h4>Default</h4>
           <SearchInput
-            placeholder={'Search by Company Name'}
+            placeholder={'Search by DAO Name'}
             showClearIcon={false}
           />
         </div>
       </KudooThemeProvider>
-    </I18nProvider>
+    </I18nProvider>,
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });

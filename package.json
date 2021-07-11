@@ -9,6 +9,7 @@
 		"build": "cross-env ENV=storybook build-storybook",
 		"copy-files": "copyfiles ./src/assets/**/* ./src/config/theme/css/fonts/**/* ./src/config/theme/css/*.scss ./src/config/theme/css/*.css  ./build -u 1",
 		"babel": "rm -rf build && babel ./src --extensions \".ts,.tsx,.js,.jsx\" --out-dir build && npm run copy-files",
+		"babel:watch": "babel ./src --watch --extensions \".ts,.tsx,.js,.jsx\"  --out-dir build",
 		"prepublishOnly": "npm run babel",
 		"version": "auto-changelog -p && git add CHANGELOG.md",
 		"release": "np --yolo --no-yarn"
@@ -58,7 +59,6 @@
 		"rc-progress": "^2.6.1",
 		"react": "17.0.2",
 		"react-addons-css-transition-group": "^15.6.2",
-		"react-apollo": "2.0.4",
 		"react-datepicker": "^1.1.0",
 		"react-dom": "17.0.2",
 		"react-dropzone": "^4.2.7",
@@ -99,9 +99,9 @@
 		"@babel/plugin-transform-runtime": "^7.11.5",
 		"@babel/plugin-transform-spread": "^7.11.0",
 		"@babel/polyfill": "^7.11.5",
-		"@babel/preset-env": "^7.11.5",
+		"@babel/preset-env": "^7.14.5",
 		"@babel/preset-flow": "^7.10.4",
-		"@babel/preset-react": "^7.10.4",
+		"@babel/preset-react": "^7.14.5",
 		"@babel/preset-typescript": "^7.10.4",
 		"@storybook/addon-actions": "^3.4.12",
 		"@storybook/addon-info": "^3.4.12",
@@ -156,8 +156,8 @@
 		"url-loader": "^0.6.2"
 	},
 	"resolutions": {
-		"react": "16.13.1",
-		"react-dom": "16.13.1"
+		"react": "17.0.2",
+		"react-dom": "17.0.2"
 	},
 	"publishConfig": {
 		"access": "public"

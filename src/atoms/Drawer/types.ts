@@ -10,14 +10,14 @@ export type StyleKeys =
   | 'hamburgerIcon'
   | 'userImageWrapper'
   | 'userInitial'
-  | 'selectedCompanyName'
+  | 'selectedDAOName'
   | 'usernameWrapper'
   | 'moreRightArrow'
-  | 'goToCompanyIcon'
+  | 'goToDAOIcon'
   | 'userMoreItem'
   | 'onlineStatus'
-  | 'companyName'
-  | 'manageCompanyBtn'
+  | 'daoName'
+  | 'manageDAOBtn'
   | 'drawerItem'
   | 'itemIcon'
   | 'itemTitle'
@@ -34,19 +34,20 @@ export type DrawerProps = {
   /** callback will be called when drawer opened */
   onOpen?: Function;
   /** user object */
-  selectedCompany: {
+  selectedDAO: {
     name: string;
     owner: boolean;
     id: number;
   };
   /** compnies list **/
-  companies: Array<{
+  daos: Array<{
     name: string;
     owner: boolean;
     id: number;
   }>;
-  onCompanyClick: Function;
+  onDAOClick: Function;
   renderMenuItem?: Function;
   menuItems: any[];
+  manageDAOUrl?: string;
 } & withStylesHOCProps<StyleKeys> &
   withRouterHOCProps;

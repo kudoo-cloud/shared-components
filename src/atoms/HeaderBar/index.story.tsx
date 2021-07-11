@@ -14,7 +14,7 @@ storiesOf('HeaderBar', module).add('Default', () => (
               <HeaderBar
                 headerLabel={'Dashboard'}
                 profile={{ firstName: 'John', lastName: 'Doe' }}
-                noOfCompanies={1}
+                noOfDAOs={1}
                 onSelectProduct={(index, data) => {
                   console.log({ index, data });
                 }}
@@ -40,7 +40,7 @@ storiesOf('HeaderBar', module).add('Default', () => (
               <HeaderBar
                 headerLabel={'Dashboard'}
                 profile={{ firstName: 'John', lastName: 'Doe' }}
-                noOfCompanies={1}
+                noOfDAOs={1}
                 products={[
                   {
                     key: 'Inventory',

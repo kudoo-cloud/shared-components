@@ -11,7 +11,7 @@ it('renders default ContactForm', () => {
         <I18nProvider>
           <ContactForm />
         </I18nProvider>
-      </KudooThemeProvider>
+      </KudooThemeProvider>,
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

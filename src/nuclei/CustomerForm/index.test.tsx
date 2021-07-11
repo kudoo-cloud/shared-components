@@ -14,7 +14,7 @@ it('renders CustomerForm', () => {
         <div style={{ margin: 10, width: 600 }}>
           <Formik
             initialValues={{
-              company_name: '',
+              dao_name: '',
               contact_name: '',
               contact_surname: '',
               abn: '',
@@ -22,7 +22,7 @@ it('renders CustomerForm', () => {
             }}
             onSubmit={action('onSubmit')}
           >
-            {(formProps) => (
+            {formProps => (
               <form onSubmit={formProps.handleSubmit}>
                 <CustomerForm />
               </form>
@@ -30,7 +30,7 @@ it('renders CustomerForm', () => {
           </Formik>
         </div>
       </KudooThemeProvider>
-    </I18nProvider>
+    </I18nProvider>,
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });

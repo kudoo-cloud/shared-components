@@ -14,12 +14,12 @@ it('renders Drawer', () => {
           <Route
             render={() => (
               <Drawer
-                companies={[
+                daos={[
                   { id: 1, name: 'Kudoo', owner: true },
                   { id: 2, name: 'Facebook', owner: false },
                 ]}
-                selectedCompany={{ id: 1, name: 'Kudoo', owner: true }}
-                onCompanyClick={() => {}}
+                selectedDAO={{ id: 1, name: 'Kudoo', owner: true }}
+                onDAOClick={() => {}}
                 menuItems={[
                   {
                     menuItem: 'Invoice',
@@ -36,7 +36,7 @@ it('renders Drawer', () => {
           />
         </Router>
       </KudooThemeProvider>
-    </I18nProvider>
+    </I18nProvider>,
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });

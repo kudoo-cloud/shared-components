@@ -12,11 +12,11 @@ type State = {};
 class ProjectCard extends React.Component<ProjectCardProps, State> {
   static propTypes = {
     title: PropTypes.string,
-    titleColor: PropTypes.oneOf(['darkBlue', 'green']),
-    companyName: PropTypes.string,
+    titleColor: PropTypes.any,
+    daoName: PropTypes.string,
     projectStatus: PropTypes.string,
     invoiceStatus: PropTypes.string,
-    invoiceStatusColor: PropTypes.oneOf(['orange', 'green']),
+    invoiceStatusColor: PropTypes.any,
     invoiceDate: PropTypes.string,
     onEditClick: PropTypes.func,
     classes: PropTypes.object, // comes from withStyles HOC
@@ -32,7 +32,7 @@ class ProjectCard extends React.Component<ProjectCardProps, State> {
     let {
       classes,
       title,
-      companyName,
+      daoName,
       projectStatus,
       // invoiceStatus,
       // invoiceDate,
@@ -50,7 +50,7 @@ class ProjectCard extends React.Component<ProjectCardProps, State> {
               />
             </div>
             <div className={classes.infoWrapper}>
-              <div className={classes.companyName}>{companyName}</div>
+              <div className={classes.daoName}>{daoName}</div>
               <div className={classes.projectStatus}>{projectStatus}</div>
               {/* <div className={classes.invoiceRow}>
                 <div className={classes.invoiceStatus}>{invoiceStatus}</div>
@@ -64,4 +64,4 @@ class ProjectCard extends React.Component<ProjectCardProps, State> {
   }
 }
 
-export default withStyles(styles)(ProjectCard);
+export default withStyles<ProjectCardProps>(styles)(ProjectCard);

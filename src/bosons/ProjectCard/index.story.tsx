@@ -10,7 +10,7 @@ storiesOf('ProjectCard', module).add(
       <h4 />
       <ProjectCard
         title="Dev For Google"
-        companyName="Google"
+        daoName="Google"
         projectStatus="Project Started"
         invoiceStatus="Invoice Sent"
         invoiceStatusColor="green"
@@ -20,7 +20,7 @@ storiesOf('ProjectCard', module).add(
       <ProjectCard
         title="Dev for Petter Potter"
         titleColor="green"
-        companyName="Petter Potter"
+        daoName="Petter Potter"
         projectStatus="Project Started"
         invoiceStatus="Invoice not sent"
         invoiceStatusColor="orange"

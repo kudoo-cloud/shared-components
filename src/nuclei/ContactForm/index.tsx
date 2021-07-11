@@ -5,18 +5,18 @@ import ErrorBoundary from 'components/hoc/ErrorBoundary';
 type Props = {};
 
 type State = {
-  contactEmail: string,
-  contactMessage: string,
-  contactName: string,
-  demoCompanyName: string,
-  demoContactNumber: string,
-  demoEmail: string,
-  demoName: string,
-  demoRole: string,
-  demoSurname: string,
-  formType: string,
-  isLoading: boolean,
-  isSubmited: boolean,
+  contactEmail?: string;
+  contactMessage?: string;
+  contactName?: string;
+  demoDAOName?: string;
+  demoContactNumber?: string;
+  demoEmail?: string;
+  demoName?: string;
+  demoRole?: string;
+  demoSurname?: string;
+  formType?: string;
+  isLoading?: boolean;
+  isSubmited?: boolean;
 };
 
 class ContactForm extends Component<Props, State> {
@@ -29,7 +29,7 @@ class ContactForm extends Component<Props, State> {
     demoName: '',
     demoSurname: '',
     demoContactNumber: '',
-    demoCompanyName: '',
+    demoDAOName: '',
     demoRole: '',
     isLoading: false,
     isSubmited: false,
@@ -51,12 +51,12 @@ class ContactForm extends Component<Props, State> {
       demoName,
       demoSurname,
       demoContactNumber,
-      demoCompanyName,
+      demoDAOName,
       demoRole,
       formType,
       demoEmail,
     } = this.state;
-    let variables = {};
+    let variables = {} as any;
     if (formType === 'ContactFormOnly') {
       variables = {
         email: contactEmail,
@@ -64,7 +64,7 @@ class ContactForm extends Component<Props, State> {
         message: contactMessage,
         contactNumber: '',
         role: '',
-        companyName: '',
+        daoName: '',
       };
     } else {
       variables = {
@@ -73,15 +73,15 @@ class ContactForm extends Component<Props, State> {
         message: '',
         contactNumber: demoContactNumber,
         role: demoRole,
-        companyName: demoCompanyName,
+        daoName: demoDAOName,
       };
     }
     if (variables.email === '') {
       return;
     }
-    if (mixpanel) {
-      mixpanel.track('Contact', { ...variables });
-    }
+    // if (mixpanel) {
+    //   mixpanel.track('Contact', { ...variables });
+    // }
     this.setState({ isLoading: true });
     try {
       // await this.props.createGetInTouch({ variables });
@@ -100,7 +100,7 @@ class ContactForm extends Component<Props, State> {
       demoName,
       demoSurname,
       demoContactNumber,
-      demoCompanyName,
+      demoDAOName,
       demoRole,
       demoEmail,
       isLoading,
@@ -115,7 +115,8 @@ class ContactForm extends Component<Props, State> {
                 <a
                   className="contact-msg"
                   href="javascript:void(0);"
-                  onClick={() => this.onChangeForm('ContactFormOnly')}>
+                  onClick={() => this.onChangeForm('ContactFormOnly')}
+                >
                   Send us a message
                 </a>
               </li>
@@ -123,7 +124,8 @@ class ContactForm extends Component<Props, State> {
                 <a
                   className="demo-message"
                   href="javascript:void(0);"
-                  onClick={() => this.onChangeForm('DemoFormOnly')}>
+                  onClick={() => this.onChangeForm('DemoFormOnly')}
+                >
                   Request a demo
                 </a>
               </li>
@@ -232,10 +234,10 @@ class ContactForm extends Component<Props, State> {
                   <input
                     type="text"
                     className="form-control"
-                    id="demoCompanyName"
+                    id="demoDAOName"
                     onChange={this.onChange}
-                    value={demoCompanyName}
-                    placeholder={`Company Name`}
+                    value={demoDAOName}
+                    placeholder={`DAO Name`}
                   />
                 </div>
                 <div className="cols">

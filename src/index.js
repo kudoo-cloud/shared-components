@@ -4,7 +4,7 @@ export { default as Button } from './bosons/Button';
 export { default as Checkbox } from './bosons/Checkbox';
 export { default as FormikCheckbox } from './bosons/Checkbox/FormikCheckbox';
 export { default as CircularProgressBar } from './bosons/CircularProgressBar';
-export { default as CompanyCard } from './bosons/CompanyCard';
+export { default as DAOCard } from './bosons/DAOCard';
 export { default as ContactForm } from './nuclei/ContactForm';
 export { default as CustomerForm } from './nuclei/CustomerForm';
 export { default as CreditCardDetailForm } from './nuclei/CreditCardDetailForm';
@@ -73,7 +73,5 @@ export {
   default as KudooThemeProvider,
 } from './config/theme';
 export { withRouterProps, withStylesProps } from './config/types';
-export { default as URL } from './config/urls';
-
 import * as helpers from './helpers';
 export { helpers };

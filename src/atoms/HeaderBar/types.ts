@@ -34,8 +34,11 @@ export interface HeaderBarProps
   };
   logout?: Function;
   height?: number;
-  noOfCompanies?: number;
+  noOfDAOs?: number;
   products: ProductType[];
   initialSelectedProductIndex?: number;
   onSelectProduct?: (index: number, data: ProductType) => void;
+  accountSettingsUrl?: string;
+  loginUrl?: string;
+  configurationUrl?: string;
 }

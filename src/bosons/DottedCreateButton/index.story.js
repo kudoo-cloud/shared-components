@@ -8,13 +8,13 @@ storiesOf('DottedCreateButton', module).add(
   withInfo('Default')(() => (
     <div style={{ margin: 10, width: 250 }}>
       <h4>Default</h4>
-      <DottedCreateButton text="Create new company" />
+      <DottedCreateButton text="Create new DAO" />
       <h4>Custom Text/Icon Color </h4>
       <DottedCreateButton
-        text="Join new company"
+        text="Join new DAO"
         textColor={'green'}
         iconColor={'red'}
       />
     </div>
-  ))
+  )),
 );

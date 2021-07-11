@@ -4,7 +4,6 @@ import { Link, matchPath, withRouter } from 'react-router-dom';
 import { Portal } from 'react-portal';
 import cx from 'classnames';
 import idx from 'idx';
-import URL from 'components/config/urls';
 import withStyles from 'components/hoc/withStyles';
 import Collapse from '@material-ui/core/Collapse';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
@@ -16,20 +15,23 @@ const HeaderBar = (props: HeaderBarProps) => {
     classes,
     headerLabel,
     profile,
-    noOfCompanies,
+    noOfDAOs,
     onSelectProduct,
     products,
     initialSelectedProductIndex,
+    accountSettingsUrl,
+    loginUrl,
+    configurationUrl,
   } = props;
   const [isUserMenuOpen, setIsUserMenuOpen] = React.useState(false);
   const [isProductMenuOpen, setIsProductMenuOpen] = React.useState(false);
   const [selectedProductIndex, selectProduct] = React.useState(
-    initialSelectedProductIndex || 0
+    initialSelectedProductIndex || 0,
   );
   let componentClass = cx(classes.component);
 
   const _isActive = (url: string) => {
-    const match = matchPath(idx(props, (_) => _.location.pathname), {
+    const match = matchPath(idx(props, _ => _.location.pathname), {
       path: url,
     });
     return Boolean(match);
@@ -49,7 +51,7 @@ const HeaderBar = (props: HeaderBarProps) => {
             onClick={() => {
               setIsUserMenuOpen(false);
             }}
-            to={URL.ACCOUNT_SETTINGS()}
+            to={accountSettingsUrl}
           >
             <div className={classes.userMenuItemLabel}>Account Settings</div>
             <div className={classes.userMenuItemIcon}>
@@ -64,7 +66,7 @@ const HeaderBar = (props: HeaderBarProps) => {
                 props.actions.logoutUser();
               }
               props.logout();
-              props.history.replace(URL.LOGIN());
+              props.history.replace(loginUrl);
             }}
           >
             <div className={classes.userMenuItemLabel}>Logout</div>
@@ -133,12 +135,12 @@ const HeaderBar = (props: HeaderBarProps) => {
             {renderProductMenu()}
           </div>
           {/* settings gear icon */}
-          {noOfCompanies > 0 && (
+          {noOfDAOs > 0 && (
             <Link
               className={cx(classes.smallBtn, {
-                active: _isActive(URL.CONFIGURATION()),
+                active: _isActive(configurationUrl),
               })}
-              to={URL.CONFIGURATION()}
+              to={configurationUrl}
             >
               <i className={cx('icon icon-settings', classes.smallBtnIcon)} />
             </Link>
@@ -182,5 +184,5 @@ HeaderBar.defaultProps = {
 };
 
 export default withRouter<HeaderBarProps, React.ComponentType<HeaderBarProps>>(
-  withStyles<HeaderBarProps>(styles)(HeaderBar)
+  withStyles<HeaderBarProps>(styles)(HeaderBar),
 );

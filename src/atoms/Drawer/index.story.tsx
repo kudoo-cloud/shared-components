@@ -11,12 +11,12 @@ storiesOf('Drawer', module).add(
       <Route
         render={() => (
           <Drawer
-            companies={[
+            daos={[
               { id: 1, name: 'Kudoo', owner: true },
               { id: 2, name: 'Facebook', owner: false },
             ]}
-            selectedCompany={{ id: 1, name: 'Kudoo', owner: true }}
-            onCompanyClick={() => {}}
+            selectedDAO={{ id: 1, name: 'Kudoo', owner: true }}
+            onDAOClick={() => {}}
             menuItems={[
               {
                 name: 'Invoice',
@@ -32,5 +32,5 @@ storiesOf('Drawer', module).add(
         )}
       />
     </Router>
-  ))
+  )),
 );

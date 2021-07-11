@@ -21,7 +21,7 @@ it('renders HeaderBar', () => {
                     <HeaderBar
                       headerLabel={'Dashboard'}
                       profile={{ firstName: 'John', lastName: 'Doe' }}
-                      noOfCompanies={1}
+                      noOfDAOs={1}
                       onSelectProduct={(index, data) => {
                         console.log({ index, data });
                       }}
@@ -47,7 +47,7 @@ it('renders HeaderBar', () => {
                     <HeaderBar
                       headerLabel={'Dashboard'}
                       profile={{ firstName: 'John', lastName: 'Doe' }}
-                      noOfCompanies={1}
+                      noOfDAOs={1}
                       products={[
                         {
                           key: 'inventory',
@@ -71,7 +71,7 @@ it('renders HeaderBar', () => {
           />
         </Router>
       </KudooThemeProvider>
-    </I18nProvider>
+    </I18nProvider>,
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });

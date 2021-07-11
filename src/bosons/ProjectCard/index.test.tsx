@@ -2,20 +2,19 @@ import React from 'react';
 import ProjectCard from './index';
 import { render } from 'enzyme';
 import { action } from '@storybook/addon-actions';
-
 import { I18nProvider } from 'lingui-react';
 import KudooThemeProvider, { theme } from 'components/config/theme';
 import toJson from 'enzyme-to-json';
 
 it('renders ProjectCard', () => {
   const wrapper = render(
-    <I18nProvider language="en" >
+    <I18nProvider language="en">
       <KudooThemeProvider theme={theme}>
         <div style={{ margin: 10, width: 350 }}>
           <h4 />
           <ProjectCard
             title="Dev For Google"
-            companyName="Google"
+            daoName="Google"
             projectStatus="Project Started"
             invoiceStatus="Invoice Sent"
             invoiceStatusColor="green"
@@ -25,7 +24,7 @@ it('renders ProjectCard', () => {
           <ProjectCard
             title="Dev for Petter Potter"
             titleColor="green"
-            companyName="Petter Potter"
+            daoName="Petter Potter"
             projectStatus="Project Started"
             invoiceStatus="Invoice not sent"
             invoiceStatusColor="orange"
@@ -33,7 +32,7 @@ it('renders ProjectCard', () => {
           />
         </div>
       </KudooThemeProvider>
-    </I18nProvider>
+    </I18nProvider>,
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });

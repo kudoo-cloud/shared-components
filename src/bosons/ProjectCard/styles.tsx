@@ -38,7 +38,7 @@ export default theme => ({
     border: `1px solid ${theme.palette.grey[300]}`,
     padding: 20,
   },
-  companyName: {
+  daoName: {
     fontSize: 16,
     fontWeight: 'bold',
     color: theme.palette.blueGrey[50],

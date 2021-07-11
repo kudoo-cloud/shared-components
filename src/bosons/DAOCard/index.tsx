@@ -1,15 +1,13 @@
 /* @flow */
 import * as React from 'react';
-import type { CardProps } from './types';
 import cx from 'classnames';
 import { getFirstLetters } from 'components/helpers';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import styles from './styles';
+import { CardProps } from './types';
 
-type State = {};
-
-class CompanyCard extends React.Component<CardProps, State> {
+class DAOCard extends React.Component<CardProps, {}> {
   static defaultProps = {
     onClick: () => {},
     onSettingClick: () => {},
@@ -23,7 +21,7 @@ class CompanyCard extends React.Component<CardProps, State> {
       primaryLabel,
       imageUrl,
       onSettingClick,
-      isJoinedCompany,
+      isJoinedDAO,
     } = this.props;
     return (
       <div className={cx(classes.root)} onClick={onClick}>
@@ -42,7 +40,7 @@ class CompanyCard extends React.Component<CardProps, State> {
         </div>
         <div className={cx(classes.lowerPart)}>
           <div className={cx(classes.secondaryLabel)}>{secondaryLabel}</div>
-          {!isJoinedCompany && (
+          {!isJoinedDAO && (
             <div className={cx(classes.settingIcon)} onClick={onSettingClick}>
               <i className={'icon icon-settings'} />
             </div>
@@ -63,4 +61,4 @@ class CompanyCard extends React.Component<CardProps, State> {
   }
 }
 
-export default withStyles(styles)(CompanyCard);
+export default withStyles<CardProps>(styles)(DAOCard);
