@@ -8,7 +8,7 @@ import { mobileAndTabletcheck, getFirstLetters } from 'components/helpers';
 import withStyles from 'components/hoc/withStyles';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import Collapse from '@material-ui/core/Collapse';
-import KudooIconImage from 'images/kudoo-icon.png';
+import KudooIconImage from '../../assets/images/kudoo-icon.png';
 import styles from './styles';
 
 type State = {

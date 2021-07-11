@@ -11,7 +11,7 @@ class Logo extends Component<Props, State> {
       <ErrorBoundary>
         <div className="logo">
           <a href="/">
-            <img src={require('images/kudoo-log_v1.png')} alt="" />
+            <img src={require('../../assets/images/kudoo-log_v1.png')} alt="" />
           </a>
         </div>
       </ErrorBoundary>

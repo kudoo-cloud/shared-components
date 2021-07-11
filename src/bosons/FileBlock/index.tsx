@@ -52,7 +52,7 @@ class FileBlock extends Component<FileBlockProps, State> {
       <WrapComponent className={classes.component} {...extraProps}>
         <div className={classes.icon}>
           <img
-            src={require('images/file-icon.png')}
+            src={require('../../assets/images/file-icon.png')}
             className={classes.iconImage}
           />
           <div className={classes.ext}>{ext}</div>

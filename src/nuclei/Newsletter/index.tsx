@@ -49,7 +49,7 @@ class NewsLetterSubScription extends Component<Props, State> {
               </div>
               <div className="left_signup clearfix">
                 <div className="left_thumnail">
-                  <img src={require('images/mail-icon@3x.png')} />
+                  <img src={require('../../assets/images/mail-icon@3x.png')} />
                 </div>
                 {!isSignUp ? (
                   <div className="desc">

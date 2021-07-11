@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react';
 import ErrorBoundary from 'components/hoc/ErrorBoundary';
+import LoadingImage from '../../assets/images/loading.gif';
 
 type Props = {};
 
@@ -167,12 +167,7 @@ class ContactForm extends Component<Props, State> {
                 <a className="btn send_btn" onClick={this.onSubmitForm}>
                   Send
                 </a>
-                {isLoading && (
-                  <img
-                    className="loading"
-                    src={require('images/loading.gif')}
-                  />
-                )}
+                {isLoading && <img className="loading" src={LoadingImage} />}
                 <div className="response-result">
                   {isSubmited && (
                     <p>
@@ -256,12 +251,7 @@ class ContactForm extends Component<Props, State> {
                 <a className="btn send_btn" onClick={this.onSubmitForm}>
                   Send
                 </a>
-                {isLoading && (
-                  <img
-                    className="loading"
-                    src={require('images/loading.gif')}
-                  />
-                )}
+                {isLoading && <img className="loading" src={LoadingImage} />}
                 <div className="response-result">
                   {isSubmited && (
                     <p>
