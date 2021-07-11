@@ -39,7 +39,7 @@
 		"@types/dinero.js": "^1.6.5",
 		"@types/jest": "^24.9.1",
 		"autoprefixer": "^9.8.6",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"babel-plugin-import-md-to-js": "^1.0.0",
 		"classnames": "^2.2.5",
 		"copyfiles": "^2.3.0",
