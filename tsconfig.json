@@ -6,6 +6,7 @@
     "jsx": "react",
     "esModuleInterop": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "declaration": true,
     "baseUrl": ".",
     "rootDir": "src",
@@ -14,8 +15,20 @@
       "components/*": ["./src/*"],
       "images/*": ["./src/assets/images/*"]
     },
-    "outDir": "dist"
+    "strict": false,
+    "outDir": "build",
+    "plugins": [
+      { "transform": "typescript-transform-paths" },
+      { "transform": "typescript-transform-paths", "afterDeclarations": true }
+    ]
   },
-  "exclude": ["node_modules"],
+
+  "exclude": [
+    "node_modules",
+    "**/**/*.test.tsx",
+    "**/**/*.test.ts",
+    "**/**/*.story.tsx",
+    "**/**/*.story.ts"
+  ],
   "include": ["src", "global.d.ts", "modules.d.ts"]
 }

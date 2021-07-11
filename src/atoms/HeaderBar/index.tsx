@@ -10,7 +10,7 @@ import ErrorBoundary from 'components/hoc/ErrorBoundary';
 import TriangleArrow from 'components/bosons/TriangleArrow';
 import styles from './styles';
 
-const HeaderBar = (props: HeaderBarProps) => {
+const HeaderBar: React.FC<HeaderBarProps> = props => {
   let {
     classes,
     headerLabel,
@@ -183,6 +183,6 @@ HeaderBar.defaultProps = {
   onSelectProduct: () => {},
 };
 
-export default withRouter<HeaderBarProps, React.ComponentType<HeaderBarProps>>(
-  withStyles<HeaderBarProps>(styles)(HeaderBar),
-);
+export default withRouter<any, any>(withStyles(styles)(
+  HeaderBar,
+) as any) as React.ComponentClass<HeaderBarProps>;

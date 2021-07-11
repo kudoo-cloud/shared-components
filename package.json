@@ -10,9 +10,11 @@
 		"copy-files": "copyfiles ./src/assets/**/* ./src/config/theme/css/fonts/**/* ./src/config/theme/css/*.scss ./src/config/theme/css/*.css  ./build -u 1",
 		"babel": "rm -rf build && babel ./src --extensions \".ts,.tsx,.js,.jsx\" --out-dir build && npm run copy-files",
 		"babel:watch": "babel ./src --watch --extensions \".ts,.tsx,.js,.jsx\"  --out-dir build",
-		"prepublishOnly": "npm run babel",
+		"prepublishOnly": "npm run tsc:compile",
 		"version": "auto-changelog -p && git add CHANGELOG.md",
-		"release": "np --yolo --no-yarn"
+		"release": "np --yolo --no-yarn",
+		"tsc:watch": "ttsc --watch",
+		"tsc:compile": "rm -rf build && ttsc && npm run copy-files"
 	},
 	"keywords": [
 		"React",
@@ -152,7 +154,9 @@
 		"react-test-renderer": "^16.13.1",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.19.1",
-		"typescript": "4.0.2",
+		"ttypescript": "^1.5.12",
+		"typescript": "^4.3.5",
+		"typescript-transform-paths": "^3.0.2",
 		"url-loader": "^0.6.2"
 	},
 	"resolutions": {

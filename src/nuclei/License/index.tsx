@@ -87,13 +87,13 @@ class License extends React.Component<LicenseProps, LicenseState> {
     }
   }
 
-  _updateTiers = (incomingTiers) => {
+  _updateTiers = incomingTiers => {
     this.setState({
       tiers: incomingTiers,
     });
   };
 
-  _updateTiersPricing = (newTiersPricing) => {
+  _updateTiersPricing = newTiersPricing => {
     this.setState({
       tiersPricing: newTiersPricing,
     });
@@ -104,14 +104,14 @@ class License extends React.Component<LicenseProps, LicenseState> {
     this._handleConvertCurrencyChange(e.value);
   };
 
-  _handleConvertCurrencyChange = async (nextSelectedCurrency) => {
+  _handleConvertCurrencyChange = async nextSelectedCurrency => {
     this.setState({ isLoading: true });
     const { tiers, selectedCurrency, tiersPricing } = this.state;
     const res = await getCurrencyBaseAmount(
       selectedCurrency,
-      nextSelectedCurrency
+      nextSelectedCurrency,
     );
-    const newTiersPricing = tiersPricing.map((tier) => {
+    const newTiersPricing = tiersPricing.map(tier => {
       tier.pricing = Math.round(tier.pricing * res);
       tier.currency = nextSelectedCurrency;
       return tier;
@@ -133,7 +133,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
             label="Currency"
             items={CURRENCY}
             value={selectedCurrency}
-            onChange={(e) => {
+            onChange={e => {
               this._handleOnChange('selectedCurrency', e);
             }}
             classes={{
@@ -161,7 +161,7 @@ class License extends React.Component<LicenseProps, LicenseState> {
             {tiers.map((tier, index) => {
               const finalPrice = Dinero({
                 amount: tiersPricing[index].pricing * 100,
-                currency: selectedCurrency,
+                currency: selectedCurrency as any,
               }).toFormat('$0,0');
               return (
                 <Grid
@@ -200,4 +200,4 @@ class License extends React.Component<LicenseProps, LicenseState> {
   }
 }
 
-export default withStyles(styles)(License) as any;
+export default withStyles<LicenseProps>(styles)(License);

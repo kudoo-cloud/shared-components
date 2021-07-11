@@ -1,15 +1,15 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import withStyles from "components/hoc/withStyles";
-import ErrorBoundary from "components/hoc/ErrorBoundary";
-import { withStylesProps } from "components/config/types";
-import styles, { StyleKeys } from "./styles";
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import withStyles from 'components/hoc/withStyles';
+import ErrorBoundary from 'components/hoc/ErrorBoundary';
+import { withStylesProps } from 'components/config/types';
+import styles, { StyleKeys } from './styles';
 import { IComponentProps, ITheme } from './types';
 type Props = IComponentProps<StyleKeys>;
 
 class Footer extends React.Component<Props, any> {
   static propTypes = {
-    ...withStylesProps
+    ...withStylesProps,
   };
 
   render() {
@@ -27,12 +27,14 @@ class Footer extends React.Component<Props, any> {
                 <div className={classes.items}>
                   <a
                     className={classes.itemLink}
-                    href="https://kudoo.io/terms-of-service">
+                    href="https://kudoo.io/terms-of-service"
+                  >
                     Terms of Service
                   </a>
                   <a
                     className={classes.itemLink}
-                    href="https://kudoo.io/privacy-policy">
+                    href="https://kudoo.io/privacy-policy"
+                  >
                     Privacy Policy
                   </a>
                 </div>
@@ -86,35 +88,40 @@ class Footer extends React.Component<Props, any> {
                     className={classes.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.facebook.com/kudoocloud/">
+                    href="https://www.facebook.com/kudoocloud/"
+                  >
                     <i className="fa fa-facebook" />
                   </a>
                   <a
                     className={classes.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://twitter.com/kudoocloud">
+                    href="https://twitter.com/kudoocloud"
+                  >
                     <i className="fa fa-twitter" />
                   </a>
                   <a
                     className={classes.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.facebook.com/kudoocloud/">
+                    href="https://www.facebook.com/kudoocloud/"
+                  >
                     <i className="fa fa-linkedin" />
                   </a>
                   <a
                     className={classes.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/kudoo-cloud">
+                    href="https://github.com/kudoo-cloud"
+                  >
                     <i className="fa fa-github" />
                   </a>
                   <a
                     className={classes.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.youtube.com/channel/UC-uK_8X0F7sv3jeDjNmwczA">
+                    href="https://www.youtube.com/channel/UC-uK_8X0F7sv3jeDjNmwczA"
+                  >
                     <i className="fa fa-youtube" />
                   </a>
                 </div>
@@ -127,4 +134,4 @@ class Footer extends React.Component<Props, any> {
   }
 }
 
-export default withStyles(styles)(Footer) as any; // TODO: Remove "as any" once we refactor withStyles to typescript
+export default withStyles<Props>(styles)(Footer as any); // TODO: Remove "as any" once we refactor withStyles to typescript

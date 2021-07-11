@@ -1,4 +1,4 @@
-/* @flow */
+
 import * as React from 'react';
 import { TriangleArrowProps } from './types';
 import cx from 'classnames';

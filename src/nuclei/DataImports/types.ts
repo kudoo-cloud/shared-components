@@ -1,14 +1,14 @@
 export type DataImportsProps = {
-  requiredFields: {
+  requiredFields?: {
     date: Date,
     amount: number,
     description: string
   },
-  supportedFormats: Array<string>
-  importEntity: string
-  classes: any
+  supportedFormats?: Array<string>
+  importEntity?: string
+  classes?: any
 };
 
 export type DataImportsState = {
-  wizardStep: Array<object>
+  wizardStep: Array<any>
 };

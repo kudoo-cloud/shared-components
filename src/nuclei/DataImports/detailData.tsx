@@ -4,7 +4,7 @@ import styles from './styles';
 import Button from '../../bosons/Button';
 
 type Props = {
-  classes: any,
+  classes?: any,
   makeStepActive: Function,
   unmarkedVisited: Function,
   markedVisited: Function
@@ -46,4 +46,4 @@ class DetailData extends React.Component<Props> {
     );
   }
 }
-export default withStyles(styles)(DetailData);
+export default withStyles<Props>(styles)(DetailData);

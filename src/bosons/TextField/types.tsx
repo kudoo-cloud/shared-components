@@ -35,7 +35,7 @@ export type TextFieldProps = withStylesHOCProps<StyleKeys> & {
   /** Add asterisk to label. Set required for form that the field is part of. */
   required?: boolean;
   /** Sets error message. */
-  error?: string;
+  error?: string | string[];
   /** Custom Error Color */
   errorColor?: string;
   /** show error message or not when input state is invalid,

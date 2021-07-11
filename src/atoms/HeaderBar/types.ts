@@ -1,4 +1,4 @@
-/* @flow */
+
 import * as React from 'react';
 
 export type StyleKeys =
@@ -35,7 +35,7 @@ export interface HeaderBarProps
   logout?: Function;
   height?: number;
   noOfDAOs?: number;
-  products: ProductType[];
+  products?: ProductType[];
   initialSelectedProductIndex?: number;
   onSelectProduct?: (index: number, data: ProductType) => void;
   accountSettingsUrl?: string;

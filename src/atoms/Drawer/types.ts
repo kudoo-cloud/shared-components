@@ -34,20 +34,20 @@ export type DrawerProps = {
   /** callback will be called when drawer opened */
   onOpen?: Function;
   /** user object */
-  selectedDAO: {
+  selectedDAO?: {
     name: string;
     owner: boolean;
     id: number;
   };
   /** compnies list **/
-  daos: Array<{
+  daos?: Array<{
     name: string;
     owner: boolean;
     id: number;
   }>;
-  onDAOClick: Function;
+  onDAOClick?: Function;
   renderMenuItem?: Function;
-  menuItems: any[];
+  menuItems?: any[];
   manageDAOUrl?: string;
 } & withStylesHOCProps<StyleKeys> &
   withRouterHOCProps;

@@ -1,4 +1,4 @@
-/* @flow */
+
 import * as React from 'react';
 import type { ProjectCardProps } from './types';
 import cx from 'classnames';

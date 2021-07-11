@@ -6,7 +6,7 @@ import FieldLabel from '../../bosons/FieldLabel';
 import FileBlock from '../../bosons/FileBlock';
 import Dropzone from 'react-dropzone';
 type Props = {
-  classes: any,
+  classes?: any,
   makeStepActive: Function,
   markedVisited: Function
 }
@@ -70,4 +70,4 @@ class UploadFile extends React.Component<Props> {
     );
   }
 }
-export default withStyles(styles)(UploadFile);
+export default withStyles<Props>(styles)(UploadFile);

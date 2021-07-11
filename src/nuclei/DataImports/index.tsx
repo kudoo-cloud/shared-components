@@ -105,4 +105,4 @@ class DataImports extends React.Component<DataImportsProps, DataImportsState> {
   );
   }
 }
-export default withStyles(styles)(DataImports);
+export default withStyles<DataImportsProps>(styles)(DataImports);

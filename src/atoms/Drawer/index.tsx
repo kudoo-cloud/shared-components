@@ -214,4 +214,6 @@ class Drawer extends React.Component<DrawerProps, State> {
   }
 }
 
-export default withRouter(withStyles<DrawerProps>(styles)(Drawer));
+export default withRouter<any, any>(
+  withStyles<any>(styles)(Drawer),
+) as React.ComponentClass<DrawerProps>;

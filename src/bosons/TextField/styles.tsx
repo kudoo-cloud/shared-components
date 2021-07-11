@@ -74,18 +74,21 @@ export default (
     // change placeholder color
     '&::-webkit-input-placeholder': {
       color: (props) => props.placeholderColor || theme.palette.grey[300],
+      // @ts-ignore
       '$component.error &': {
         color: 'white',
       },
     },
     '&::-moz-placeholder': {
       color: (props) => props.placeholderColor || theme.palette.grey[300],
+      // @ts-ignore
       '$component.error &': {
         color: 'white',
       },
     },
     '&::-ms-input-placeholder': {
       color: (props) => props.placeholderColor || theme.palette.grey[300],
+      // @ts-ignore
       '$component.error &': {
         color: 'white',
       },

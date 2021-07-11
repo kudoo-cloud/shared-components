@@ -6,7 +6,7 @@ import CardSection from "./CardSection";
 import styles from "./styles";
 
 type CreditCardDetailProps = {
-  classes: any;
+  classes?: any;
 };
 
 type CreditCardDetailState = {
@@ -50,4 +50,4 @@ class CreditCardDetailForm extends React.Component<
   }
 }
 
-export default withStyles(styles)(CreditCardDetailForm);
+export default withStyles<CreditCardDetailProps>(styles)(CreditCardDetailForm);

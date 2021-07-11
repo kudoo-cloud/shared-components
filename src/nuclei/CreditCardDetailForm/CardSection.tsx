@@ -32,7 +32,7 @@ const createOptions = (fontSize, padding) => {
 
 type Props = {
   fontSize: string;
-  classes: any;
+  classes?: any;
 };
 class CardSection extends React.Component<Props> {
   handleSubmit = ev => {

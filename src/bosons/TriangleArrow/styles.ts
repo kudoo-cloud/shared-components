@@ -3,7 +3,7 @@ import { StyleKeys } from './types';
 
 const size = 8;
 
-export default (theme: Theme): StyleFnReturnType<StyleKeys> => ({
+export default (theme: Theme): StyleFnReturnType<StyleKeys, any> => ({
   component: {},
   arrow: {
     width: 0,

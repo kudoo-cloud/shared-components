@@ -6,9 +6,9 @@ import { SimpleStyle } from 'jss/css';
 
 declare global {
   type withRouterHOCProps = {
-    match: match; // will come from withRouter HOC
-    location: H.Location; // will come from withRouter HOC
-    history: H.History; // will come from withRouter HOC
+    match?: match; // will come from withRouter HOC
+    location?: H.Location; // will come from withRouter HOC
+    history?: H.History; // will come from withRouter HOC
   };
 
   type withStylesHOCProps<StyleKeys extends string> = {
