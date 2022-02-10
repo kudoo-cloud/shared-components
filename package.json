@@ -147,7 +147,7 @@
 		"imports-loader": "^0.7.1",
 		"jest": "^24.9.0",
 		"markdown-loader": "^3.0.0",
-		"node-sass": "^4.14.1",
+		"node-sass": "^7.0.0",
 		"np": "^4.0.2",
 		"postcss-loader": "^2.0.10",
 		"prettier": "1.14.3",
